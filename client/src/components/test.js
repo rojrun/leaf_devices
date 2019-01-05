@@ -7,13 +7,14 @@ class Test extends Component {
             text: 'This is a message from the client, Hello',
             name: 'Kim'
         };
-        const resp = await axios.post('/api/send-message', message);
-        console.log('Send message resp:', resp);
-        // const resp = await axios.get('/api/test');
-        // console.log('Test Response:', resp);
-        //
-        // const user = await axios.get('/api/user');
-        // console.log('User Response:', user);
+        const postResp = await axios.post('/api/send-message', message);
+        console.log('Send message resp:', postResp);
+        
+        const resp = await axios.get('/api/test');
+        console.log('Test Response:', resp);
+
+        const user = await axios.get('/api/user');
+        console.log('User Response:', user);
     }
 
     render(){
