@@ -1,12 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const PORT = process.env.PORT || 9000;
+// const { resolve } = require('path');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+// app.use(express.static(resolve(__dirname, 'client', 'dist')));
 
 app.get('/', (req, res) => {
     res.send('<h1>The server is working!</h1>');
@@ -37,6 +39,10 @@ app.post('/api/send-message', (req, res) => {
         dataReceived: req.body
     });
 });
+
+// app.get('*', (req, res) () => {
+//     res.sendFile(resolve(__dirname, 'client', 'dist', 'index.html'));
+// });
 
 app.listen(PORT, () => {
     console.log('Server running @ localhost:' + PORT);
