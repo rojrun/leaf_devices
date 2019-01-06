@@ -1,11 +1,11 @@
+import 'materialize-css/dist/css/materialize.min.css';
 import React from 'react';
-import Test from './test';
+import Landing from './landing';
+import '../assets/css/app.css';
 
 const App = () => (
-    <div>
-        <div className="app">
-            <Test/>
-        </div>
+    <div className="center">
+        <Landing/>
     </div>
 );
 
