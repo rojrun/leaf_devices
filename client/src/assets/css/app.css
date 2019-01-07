@@ -1,43 +1,47 @@
 @font-face {
-    font-family: Trebuchet_MS;
-    src: url(../fonts/Trebuchet_MS.ttf);
+    font-family: trebuchet_ms;
+    src: url("../fonts/trebuchet_ms.ttf");
 }
 
 body {
     margin: 0;
 }
 
-.app {
-    background-color: #000;
-    color: #FFF;
-    font-family: quest;
-    font-size: 30px;
-    padding: 50px;
-    text-align: center;
+.row {
+    margin: 0;
 }
 
-.app .logo {
-    height: 220px;
-    filter: drop-shadow(2px 2px 0px #FFF);
+.back_ground {
+    /*background-color: #1543DC;*/
+    background-image:
+        repeating-linear-gradient(to bottom, transparent, transparent 5px, #28487d 5px, #28487d 10px),
+        repeating-linear-gradient(to right, #617ca2, #617ca2 5px, #28487d 5px, #28487d 10px);
+    height: 100vh;
 }
 
-.app h1 {
-    color: #61DAFB;
-    font-size: 5em;
-    letter-spacing: 5px;
-    margin: 0.16em;
-    text-shadow: 2px 2px 0 #FFF;
+.footer-copyright {
+    bottom: 0;
+    color: #FFEE00;
+    font-size: smaller;
+    position: fixed;
 }
 
-.rotate {
-    animation: spin 10s linear infinite;
+.main_content {
+    background-color: #FFB000;
+    height: 100vh;
 }
 
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.logo {
+    background-image: url("../images/logo.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 29%;
+    margin-top: 1%;
 }
+
+
+
+
+
+
