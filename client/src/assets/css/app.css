@@ -1,21 +1,43 @@
 @font-face {
-    font-family: Trebuchet_MS;
-    src: url(../fonts/Trebuchet_MS.ttf);
+    font-family: trebuchet_ms;
+    src: url("../fonts/trebuchet_ms.ttf");
 }
 
 body {
     margin: 0;
-    width: 100%;
-    /*height: 100vh;*/
 }
 
-.app {
-    background-color: #000;
-    color: #FFF;
-    font-family: Trebuchet_MS;
-    font-size: 30px;
-    padding: 50px;
-    text-align: center;
+.row {
+    margin: 0;
+}
+
+.back_ground {
+    /*background-color: #1543DC;*/
+    background-image:
+        repeating-linear-gradient(to bottom, transparent, transparent 5px, #28487d 5px, #28487d 10px),
+        repeating-linear-gradient(to right, #617ca2, #617ca2 5px, #28487d 5px, #28487d 10px);
+    height: 100vh;
+}
+
+.footer-copyright {
+    bottom: 0;
+    color: #FFEE00;
+    font-size: smaller;
+    position: fixed;
+}
+
+.main_content {
+    background-color: #FFB000;
+    height: 100vh;
+}
+
+.logo {
+    background-image: url("../images/logo.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 29%;
+    margin-top: 1%;
 }
 
 
