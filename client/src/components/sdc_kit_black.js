@@ -1,4 +1,3 @@
-import 'materialize-css/dist/css/materialize.min.css';
 import React, {Component} from 'react';
 import '../assets/css/sdc_kit_black.css';
 
@@ -8,9 +7,9 @@ class SdcKitBlack extends Component {
 
     render(){
         return(
-            <div className="black carousel-item col s12">
+            <a className="black carousel-item col s12" href="#one!">
                 <div className="card"></div>
-            </div>
+            </a>
         );
     }
 }

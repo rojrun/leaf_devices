@@ -1,6 +1,9 @@
 import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min';
 import React from 'react';
 import ProductCarousel from './product_carousel';
+import Buttons from './buttons';
+import Contact from './contact';
 import '../assets/css/app.css';
 
 const App = () => (
@@ -14,9 +17,12 @@ const App = () => (
             <div className="col s2"></div>
             <div className="col s8 logo"></div>
             <div className="col s2"></div>
-            <ProductCarousel/>
+            {/*<ProductCarousel/>*/}
+            <Contact/>
         </div>
-        <div className="col s3 back_ground"></div>
+        <div className="col s3 back_ground">
+            <Buttons/>
+        </div>
     </div>
 );
 
