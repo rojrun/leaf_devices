@@ -7,8 +7,8 @@ class SdcKitPurple extends Component {
 
     render(){
         return(
-            <div className="purple carousel-item col s12" href="#four!">
-                <div className="card"></div>
+            <div className="purple carousel-item col s10" href="#four!">
+                <div className="card col s5"></div>
             </div>
         );
     }

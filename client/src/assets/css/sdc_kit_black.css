@@ -1,11 +1,18 @@
 .black {
     background-color: black;
-    height: 40%;
 }
 
 .card {
     background-color: white;
-    height: 30%;
-    width: 40%;
+    height: 93%;
+}
+
+.carousel .carousel-item {
+    bottom: 31%;
+    height: 80%;
+}
+
+.description {
+    color: white;
 }
 
