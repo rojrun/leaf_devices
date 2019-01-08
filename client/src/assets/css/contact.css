@@ -3,3 +3,8 @@
     font-size: 2em;
 }
 
+.input-field {
+    position: relative;
+    margin-top: 0.5rem;
+    margin-bottom: .5rem;
+}

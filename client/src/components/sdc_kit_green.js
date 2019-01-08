@@ -7,8 +7,8 @@ class SdcKitGreen extends Component {
 
     render(){
         return(
-            <div className="green carousel-item col s12" href="#three!">
-                <div className="card"></div>
+            <div className="green carousel-item col s10" href="#three!">
+                <div className="card col s5"></div>
             </div>
         );
     }

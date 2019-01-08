@@ -17,8 +17,8 @@ const App = () => (
             <div className="col s2"></div>
             <div className="col s8 logo"></div>
             <div className="col s2"></div>
-            {/*<ProductCarousel/>*/}
-            <Contact/>
+            <ProductCarousel/>
+            {/*<Contact/>*/}
         </div>
         <div className="col s3 back_ground">
             <Buttons/>

@@ -49,10 +49,10 @@ class Contact extends Component {
                     </div>
                     <div className="row">
                         <div className="col s6 center">
-                            <button onClick={this.reset} type="button" className="btn red waves-effect">Reset</button>
+                            <button onClick={this.reset} type="button" className="btn-small waves-effect">Reset</button>
                         </div>
                         <div className="col s6 center">
-                            <button className="btn green waves-effect waves-light">Submit</button>
+                            <button className="btn-small waves-effect waves-light">Submit</button>
                         </div>
                     </div>
                 </form>
