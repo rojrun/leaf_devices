@@ -16,3 +16,8 @@
     color: white;
 }
 
+input[type=number]:not(.browser-default) {
+    background-color: #1543dc;
+    height: 2rem;
+    width: 20%;
+}
