@@ -22,8 +22,7 @@
   "homepage": "https://github.com/rojrun/leaf_devices#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "materialize-css": "^1.0.0"
+    "express": "^4.16.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.9",
