@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
     res.send('<h1>The server is working!</h1>');
 });
 
-app.get('/api/test', (req, res) => {
+app.get('/api/products', (req, res) => {
    const data = {
        success: true,
        message: 'Test API working!',
@@ -23,13 +23,31 @@ app.get('/api/test', (req, res) => {
    res.send(data);
 });
 
-app.get('/api/user', (req, res) => {
+app.get('/api/contact_us', (req, res) => {
     const user = {
         email: 'jim@mail.com',
         name: 'Jim Bob',
         username: 'Jimmy'
     };
     res.send(user);
+});
+
+app.get('/api/customer', (req, res) => {
+    const data = {
+        success: true,
+        message: 'Test API working!',
+        another: 'Property goes here'
+    };
+    res.send(data);
+});
+
+app.get('/api/cart', (req, res) => {
+    const data = {
+        success: true,
+        message: 'Test API working!',
+        another: 'Property goes here'
+    };
+    res.send(data);
 });
 
 app.post('/api/send-message', (req, res) => {

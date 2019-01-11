@@ -44,10 +44,7 @@ class SdcKit extends Component {
 
     }
 
-    render(){
-        // const products = this.data.map(prod => {
-        //     return <div className="carousel-item" img={prod.img}>
-        // });
+    render() {
         const products = this.data.map(prod => {
             return (
                 <div className={prod.backgroundColor} href={prod.href}>
@@ -57,11 +54,13 @@ class SdcKit extends Component {
                             {prod.description}
                         </div>
                         <div className="row">
-                            <button type="button" className="btn-floating btn-small waves-effect waves-light" data-quantity="minus" data-field="quantity">
+                            <button type="button" className="btn-floating btn-small waves-effect waves-light"
+                                    data-quantity="minus" data-field="quantity">
                                 <i className="material-icons">-</i>
                             </button>
-                            <input  type="number" name="quantity" value="0"/>
-                            <button type="button" className="btn-floating btn-small waves-effect waves-light" data-quantity="add" data-field="quantity">
+                            <input type="number" name="quantity" value="0"/>
+                            <button type="button" className="btn-floating btn-small waves-effect waves-light"
+                                    data-quantity="add" data-field="quantity">
                                 <i className="material-icons">+</i>
                             </button>
                         </div>
@@ -70,32 +69,12 @@ class SdcKit extends Component {
             );
         });
 
-            return (
-                <div>
-                    {products}
-                </div>
-            );
-
-        // return (
-        //     <div className="carousel-item col s10" href="#one!">
-        //         <div className="card col s6"></div>
-        //         <div className=" col s6">
-        //             <div className="description input-group-button">
-        //                 Description
-        //             </div>
-        //             <div className="row">
-        //                 <button type="button" className="btn-floating btn-small waves-effect waves-light" data-quantity="minus" data-field="quantity">
-        //                     <i className="material-icons">-</i>
-        //                 </button>
-        //                 <input  type="number" name="quantity" value="0"/>
-        //                 <button type="button" className="btn-floating btn-small waves-effect waves-light" data-quantity="add" data-field="quantity">
-        //                     <i className="material-icons">+</i>
-        //                 </button>
-        //             </div>
-        //         </div>
-        //     </div>
-        // );
-
+        return (
+            <div>
+                {products}
+            </div>
+        );
+    }
 }
 
 export default SdcKit;
