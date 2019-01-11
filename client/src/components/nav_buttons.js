@@ -1,15 +1,17 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import '../assets/css/nav_buttons.css';
 
-export default () => {
 
-    return (
-        <div className="buttons">
-            <button className="waves-effect waves-light btn-small">home</button>
-            <button className="waves-effect waves-light btn-small">cart</button>
-            <button className="waves-effect waves-light btn-small">contact</button>
-            <button className="waves-effect waves-light btn-small">create</button>
-            <button className="waves-effect waves-light btn-small">login</button>
-        </div>
-    );
-}
+
+export default () => (
+    <div className="buttons">
+        <Link className="waves-effect waves-light btn-small" to="/" >home</Link>
+        <Link className="waves-effect waves-light btn-small" to="/cart">cart</Link>
+        <Link className="waves-effect waves-light btn-small" to="/contact">contact</Link>
+        <Link className="waves-effect waves-light btn-small" to="/create">create</Link>
+        <Link className="waves-effect waves-light btn-small" to="/login">login</Link>
+    </div>
+);
+
+
