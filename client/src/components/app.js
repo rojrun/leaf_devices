@@ -14,12 +14,13 @@ import '../assets/css/app.css';
 const App = () => (
     <Router>
         <div className="row">
-            <div className="col s3 back_ground">
-                <div className="col s3 footer-copyright">
-                    © 2019 Leaf Devices LLC. All rights reserved.
+            <div className="col s2 back_ground">
+                <div className="footer-copyright">
+                    <p>© 2019 Leaf Devices LLC.</p>
+                    <p>All rights reserved.</p>
                 </div>
             </div>
-            <div className="col s6 main_content">
+            <div className="col s8 main_content">
                 <div className="row">
                     <div className="col s2"></div>
                     <div className="col s8 logo"></div>
@@ -32,7 +33,7 @@ const App = () => (
                 <Route exact path="/create" component={Create}/>
                 <Route exact path="/login" component={Login}/>
             </div>
-            <div className="col s3 back_ground">
+            <div className="col s2 back_ground">
                 <NavButtons/>
             </div>
         </div>

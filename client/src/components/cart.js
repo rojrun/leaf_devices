@@ -5,7 +5,7 @@ class Cart extends Component {
 
     render() {
         return (
-            <div>
+            <div className="col s12">
                 <div className="cart center">CART</div>
                 <table className="striped responsive-table">
                     <thead>
@@ -28,7 +28,7 @@ class Cart extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <button className="waves-effect waves-light btn-small">checkout</button>
+                <button className="checkoutButton waves-effect waves-light btn">checkout</button>
             </div>
         );
     }

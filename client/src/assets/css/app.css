@@ -12,7 +12,6 @@ body {
 }
 
 .back_ground {
-    /*background-color: #1543DC;*/
     background-image:
         repeating-linear-gradient(to bottom, transparent, transparent 5px, #28487d 5px, #28487d 10px),
         repeating-linear-gradient(to right, #617ca2, #617ca2 5px, #28487d 5px, #28487d 10px);
@@ -21,13 +20,18 @@ body {
 
 .footer-copyright {
     bottom: 0;
-    color: #FFEE00;
-    font-size: smaller;
+    color: #E6DF44;
+    font-weight: 500;
     position: fixed;
 }
 
+.footer-copyright > p {
+    margin: 0;
+
+}
+
 .main_content {
-    background-color: #FFB000;
+    background-color: #F0810F;
     height: 100vh;
 }
 

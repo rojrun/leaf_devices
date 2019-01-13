@@ -45,7 +45,7 @@ class Checkout extends Component {
                             <label htmlFor="email">Email</label>
                         </div>
                     </div>
-                    <button type="button" className="waves-effect waves-light btn-small">complete checkout</button>
+                    <button type="button" className="waves-effect waves-light btn">complete checkout</button>
                 </form>
             </div>
         );

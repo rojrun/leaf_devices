@@ -1,4 +1,10 @@
 .cart {
-    color: #1543DC;
+    color: #063852;
     font-size: 2em;
+}
+
+.checkoutButton {
+    background-color: #063852;
+    border-radius: 6px;
+    color: #F0810F;
 }

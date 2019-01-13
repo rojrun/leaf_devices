@@ -50,6 +50,9 @@ app.get('/api/cart', (req, res) => {
     res.send(data);
 });
 
+
+
+
 app.post('/api/send-message', (req, res) => {
     console.log('Data from client:', req.body);
     res.send({
