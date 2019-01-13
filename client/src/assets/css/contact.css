@@ -1,11 +1,34 @@
 .contact {
-    color: #1543DC;
+    color: #063852;
     font-size: 2em;
     top: 4%;
+}
+
+.contactButton {
+    background-color: #063852;
+    border-radius: 6px;
+    color: #F0810F;
 }
 
 .input-field {
     position: relative;
     margin-top: 0.5rem;
     margin-bottom: .5rem;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type="text"]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid black;
+    -webkit-box-shadow: 0 1px 0 0 black;
+    box-shadow: 0 1px 0 0 black;
+}
+
+input:focus {
+    border-bottom: 1px solid black !important;
+    box-shadow: 0 1px 0 0 black !important;
+}
+
+label.active {
+    color: black;
 }

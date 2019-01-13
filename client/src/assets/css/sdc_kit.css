@@ -3,19 +3,19 @@
 }
 
 .blue {
-    background-color: blue;
+    background-color: #1034A6;
 }
 
 .green {
-    background-color: green;
+    background-color: #0B6623;
 }
 
 .purple {
-    background-color: purple;
+    background-color: #7851A9;
 }
 
 .red {
-    background-color: red;
+    background-color: #C21807;
 }
 
 .card {
@@ -30,10 +30,41 @@
 
 .description {
     color: white;
+    font-size: 2em;
 }
 
 input[type=number]:not(.browser-default) {
-    background-color: #1543dc;
+    background-color: #F0810F;
+    box-shadow: none;
+    border-bottom: none;
+    border-radius: 6px;
+    color: #063852;
     height: 2rem;
+    margin-left: 3%;
     width: 20%;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.inputButtons, .inputSubmit {
+    background-color: #063852;
+    border-radius: 6px;
+    color: #F0810F;
+    margin-left: 3%;
+}
+
+.inputQuantity {
+    background-color: #063852;
+    color: #F0810F;
+    height: 5%;
+    width: 5%;
+}
+
+.quantityField {
+    bottom: 5%;
+    position: absolute;
 }

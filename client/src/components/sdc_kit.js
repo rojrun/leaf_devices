@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
+    state = {
+            productQuantity: 0
+        }
 
     data = [
         {
@@ -36,33 +39,51 @@ class SdcKit extends Component {
         }
     ];
 
-    minus(){
+    subtractCount = () =>{
+        if(this.state.productQuantity < 1){
+            this.setState({
+               productQuantity: 0
+            });
+        } else {
+            this.setState({
+                productQuantity: this.state.productQuantity - 1
+            });
+        }
+    }
+
+    addCount = () => {
+        this.setState({
+            productQuantity: this.state.productQuantity + 1
+        });
+    }
+
+    handleAddToCart = () => {
+        console.log('event', this.state.productQuantity);
 
     }
 
-    plus(){
-
-    }
 
     render() {
+        const {productQuantity} = this.state;
         const products = this.data.map(prod => {
             return (
                 <div className={prod.backgroundColor} href={prod.href}>
                     <div className="card col s6"></div>
-                    <div className=" col s6">
-                        <div className="description input-group-button">
+                    <div className="col s6">
+                        <div className="description">
                             {prod.description}
                         </div>
-                        <div className="row">
-                            <button type="button" className="btn-floating btn-small waves-effect waves-light"
+                        <div className="row quantityField">
+                            <button onClick={this.subtractCount} type="button" className="btn inputButtons waves-effect waves-light"
                                     data-quantity="minus" data-field="quantity">
                                 <i className="material-icons">-</i>
                             </button>
-                            <input type="number" name="quantity" value="0"/>
-                            <button type="button" className="btn-floating btn-small waves-effect waves-light"
+                            <input className="center" type="number" name="quantity" value={productQuantity}/>
+                            <button onClick={this.addCount} type="button" className="btn inputButtons waves-effect waves-light"
                                     data-quantity="add" data-field="quantity">
                                 <i className="material-icons">+</i>
                             </button>
+                            <button onClick={this.handleAddToCart} type="button" className="btn inputSubmit waves-effect waves-light">Add to Cart</button>
                         </div>
                     </div>
                 </div>
