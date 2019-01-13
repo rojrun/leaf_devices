@@ -68,10 +68,10 @@ class SdcKit extends Component {
                 </div>
             );
         });
-        {products}
 
         return (
             <div>
+                {products}
             </div>
         );
     }
