@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../assets/css/sdc_kit.css';
+import grinder from '../assets/images/grinder.jpg';
 
 class SdcKit extends Component {
     state = {
@@ -10,31 +11,31 @@ class SdcKit extends Component {
         {
             description: "The Smoke-Drink-Chill Kit: Black.",
             backgroundColor: "black carousel-item col s10",
-            img: "black",
+            img: "grinder",
             href: "#one!"
         },
         {
             description: "The Smoke-Drink-Chill Kit: Blue.",
             backgroundColor: "blue carousel-item col s10",
-            img: "blue",
+            img: "grinder",
             href: "#two!"
         },
         {
             description: "The Smoke-Drink-Chill Kit: Green.",
             backgroundColor: "green carousel-item col s10",
-            img: "green",
+            img: "grinder",
             href: "#three!"
         },
         {
             description: "The Smoke-Drink-Chill Kit: Purple.",
             backgroundColor: "purple carousel-item col s10",
-            img: "purple",
+            img: "grinder",
             href: "#four!"
         },
         {
             description: "The Smoke-Drink-Chill Kit: Red.",
             backgroundColor: "red carousel-item col s10",
-            img: "red",
+            img: "grinder",
             href: "#five!"
         }
     ];
@@ -68,7 +69,9 @@ class SdcKit extends Component {
         const products = this.data.map(prod => {
             return (
                 <div className={prod.backgroundColor} href={prod.href}>
-                    <div className="card col s6"></div>
+                    <div className="card col s6">
+                        <img className="prodImage" src={prod.img}/>
+                    </div>
                     <div className="col s6">
                         <div className="description">
                             {prod.description}
