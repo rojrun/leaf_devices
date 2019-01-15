@@ -11,7 +11,7 @@ class SdcKit extends Component {
         {
             description: "The Smoke-Drink-Chill Kit: Black.",
             backgroundColor: "black carousel-item col s10",
-            img: "grinder",
+            img: "../assets/images/grinder.jpg",
             href: "#one!"
         },
         {

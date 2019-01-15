@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/products', (req, res) => {
    const data = {
-       SELECT p.name, p.description, p.price, p.href, p.style FROM `products` AS p
+       // SELECT p.name, p.description, p.price, p.href, p.style FROM `products` AS p
    };
    res.send(data);
 });
