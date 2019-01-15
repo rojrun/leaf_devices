@@ -10,26 +10,52 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 // app.use(express.static(resolve(__dirname, 'client', 'dist')));
 
+
 app.get('/', (req, res) => {
     res.send('<h1>The server is working!</h1>');
 });
 
 app.get('/api/products', (req, res) => {
    const data = {
-       success: true,
-       message: 'Test API working!',
-       another: 'Property goes here'
+       SELECT p.name, p.description, p.price, p.href, p.style FROM `products` AS p
    };
    res.send(data);
 });
 
-app.get('/api/contact_us', (req, res) => {
-    const user = {
-        email: 'jim@mail.com',
-        name: 'Jim Bob',
-        username: 'Jimmy'
+app.get('/api/cart', (req, res) => {
+    const data = {
+        success: true,
+        message: 'Test API working!',
+        another: 'Property goes here'
     };
-    res.send(user);
+    res.send(data);
+});
+
+app.get('/api/checkout', (req, res) => {
+    const data = {
+        success: true,
+        message: 'Test API working!',
+        another: 'Property goes here'
+    };
+    res.send(data);
+})
+
+app.get('/api/payment', (req, res) => {
+    const data = {
+        success: true,
+        message: 'Test API working!',
+        another: 'Property goes here'
+    };
+    res.send(data);
+});
+
+app.get('/api/purchase_history', (req, res) => {
+    const data = {
+        success: true,
+        message: 'Test API working!',
+        another: 'Property goes here'
+    };
+    res.send(data);
 });
 
 app.get('/api/customer', (req, res) => {
@@ -41,14 +67,18 @@ app.get('/api/customer', (req, res) => {
     res.send(data);
 });
 
-app.get('/api/cart', (req, res) => {
-    const data = {
-        success: true,
-        message: 'Test API working!',
-        another: 'Property goes here'
+app.get('/api/contact_us', (req, res) => {
+    const user = {
+        email: 'jim@mail.com',
+        name: 'Jim Bob',
+        username: 'Jimmy'
     };
-    res.send(data);
+    res.send(user);
 });
+
+
+
+
 
 
 
