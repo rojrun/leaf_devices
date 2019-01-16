@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const PORT = process.env.PORT || 9000;
 // const { resolve } = require('path');
-
+const db = require('./db');
 const app = express();
 
 app.use(cors());
@@ -16,10 +16,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/products', (req, res) => {
-   const data = {
-       // SELECT p.name, p.description, p.price, p.href, p.style FROM `products` AS p
-   };
-   res.send(data);
+   db.query('SELECT p.name, p.description, p.price, p.href, p.style FROM `products` AS p', (error, results) => {
+       res.send({
+           results: results
+       });
+   });
+
 });
 
 app.get('/api/cart', (req, res) => {
