@@ -27,11 +27,11 @@ const App = () => (
                     <div className="col s2"></div>
                 </div>
                 <Route exact path="/" component={ProductCarousel}/>
-                <Route exact path="/contact" component={Contact}/>
-                <Route exact path="/cart" component={Cart}/>
-                <Route exact path="/checkout" component={Checkout}/>
-                <Route exact path="/create" component={Create}/>
-                <Route exact path="/login" component={Login}/>
+                <Route path="/contact" component={Contact}/>
+                <Route path="/cart" component={Cart}/>
+                <Route path="/checkout" component={Checkout}/>
+                <Route path="/create" component={Create}/>
+                <Route path="/login" component={Login}/>
             </div>
             <div className="col s2 back_ground">
                 <NavButtons/>

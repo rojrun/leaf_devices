@@ -4,7 +4,6 @@ import SdcKit from './sdc_kit';
 
 class ProductCarousel extends Component {
 
-
     componentDidMount() {
          this.instance = M.Carousel.init(this.carousel);
     }

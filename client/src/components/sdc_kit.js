@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {getProducts} from '../actions';
 import '../assets/css/sdc_kit.css';
 import grinder from '../assets/images/grinder.jpg';
 
@@ -7,35 +9,39 @@ class SdcKit extends Component {
             productQuantity: 0
         }
 
+    componentDidMount() {
+        this.props.getProducts();
+    }
+
     data = [
         {
             description: "The Smoke-Drink-Chill Kit: Black.",
             backgroundColor: "black carousel-item col s10",
-            img: "grinder",
+            img: grinder,
             href: "#one!"
         },
         {
             description: "The Smoke-Drink-Chill Kit: Blue.",
             backgroundColor: "blue carousel-item col s10",
-            img: "grinder",
+            img: grinder,
             href: "#two!"
         },
         {
             description: "The Smoke-Drink-Chill Kit: Green.",
             backgroundColor: "green carousel-item col s10",
-            img: "grinder",
+            img: grinder,
             href: "#three!"
         },
         {
             description: "The Smoke-Drink-Chill Kit: Purple.",
             backgroundColor: "purple carousel-item col s10",
-            img: "grinder",
+            img: grinder,
             href: "#four!"
         },
         {
             description: "The Smoke-Drink-Chill Kit: Red.",
             backgroundColor: "red carousel-item col s10",
-            img: "grinder",
+            img: grinder,
             href: "#five!"
         }
     ];
@@ -81,7 +87,7 @@ class SdcKit extends Component {
                                     data-quantity="minus" data-field="quantity">
                                 <i className="material-icons">-</i>
                             </button>
-                            <input className="center" type="number" name="quantity" value={productQuantity}/>
+                            <input className="center productQuantity" type="number" name="quantity" value={productQuantity}/>
                             <button onClick={this.addCount} type="button" className="btn inputButtons waves-effect waves-light"
                                     data-quantity="add" data-field="quantity">
                                 <i className="material-icons">+</i>
@@ -101,4 +107,14 @@ class SdcKit extends Component {
     }
 }
 
-export default SdcKit;
+function mapStateToProps(state){
+    console.log('Redux State:', state);
+    return {
+        products: state.products
+    }
+}
+
+
+export default connect(mapStateToProps, {
+    getProducts: getProducts
+})(SdcKit);
