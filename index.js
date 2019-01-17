@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/products', (req, res) => {
-   db.query('SELECT p.name, p.description, p.price, p.href, p.style FROM `products` AS p', (error, results) => {
+   db.query('SELECT p.name, p.description, p.price, p.href, p.style, p.image FROM `products` AS p', (error, results) => {
        res.send({
            results: results
        });

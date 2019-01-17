@@ -1,26 +1,30 @@
 .black {
     background-color: black;
+    border-radius: 6px;
 }
 
 .blue {
     background-color: #1034A6;
+    border-radius: 6px;
 }
 
 .green {
     background-color: #0B6623;
+    border-radius: 6px;
 }
 
 .purple {
     background-color: #7851A9;
+    border-radius: 6px;
 }
 
 .red {
     background-color: #C21807;
+    border-radius: 6px;
 }
 
 .card {
     background-color: white;
-
     height: 93%;
 }
 
