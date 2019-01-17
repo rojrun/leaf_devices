@@ -108,10 +108,13 @@ class SdcKit extends Component {
 }
 
 function mapStateToProps(state){
-
+    console.log('Redux State:', state);
+    return {
+        products: state.products
+    }
 }
 
 
-export default connect(null, {
+export default connect(mapStateToProps, {
     getProducts: getProducts
 })(SdcKit);
