@@ -10,72 +10,71 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 // app.use(express.static(resolve(__dirname, 'client', 'dist')));
 
-
-app.get('/', (req, res) => {
-    res.send('<h1>The server is working!</h1>');
-});
-
 app.get('/api/products', (req, res) => {
    db.query('SELECT p.name, p.description, p.price, p.href, p.style, p.image FROM `products` AS p', (error, results) => {
        res.send({
            results: results
        });
    });
-
 });
 
 app.get('/api/cart', (req, res) => {
-    const data = {
-        success: true,
-        message: 'Test API working!',
-        another: 'Property goes here'
-    };
-    res.send(data);
+    db.query('SELECT c.cart_id, c.quantity, p.name, p.price, c.quantity * p.price AS gross_price ' +
+        'FROM `products` AS p JOIN `cart` AS c ON p.id = c.product_id', (error, results) => {
+        res.send({
+            results: results
+        });
+    });
+});
+
+app.get('/api/cart-meta', (req, res) => {
+    db.query('', (error, results) => {
+        res.send({
+            results: results
+        });
+    });
 });
 
 app.get('/api/checkout', (req, res) => {
-    const data = {
-        success: true,
-        message: 'Test API working!',
-        another: 'Property goes here'
-    };
-    res.send(data);
-})
+    db.query('SELECT c.cart_id, c.quantity, p.name, p.price, c.quantity * p.price AS subtotal, tax, shipping,' +
+        ' subtotal + tax + shipping AS total, checkout_date FROM `cart` AS c ' +
+        'INNER JOIN `products` AS p INNER JOIN `checkout`', (error, results) => {
+        res.send({
+            results: results
+        });
+    });
+});
 
 app.get('/api/payment', (req, res) => {
-    const data = {
-        success: true,
-        message: 'Test API working!',
-        another: 'Property goes here'
-    };
-    res.send(data);
+    db.query('', (error, results) => {
+        res.send({
+            results: results
+        });
+    });
 });
 
 app.get('/api/purchase_history', (req, res) => {
-    const data = {
-        success: true,
-        message: 'Test API working!',
-        another: 'Property goes here'
-    };
-    res.send(data);
+    db.query('', (error, results) => {
+        res.send({
+            results: results
+        });
+    });
 });
 
 app.get('/api/customer', (req, res) => {
-    const data = {
-        success: true,
-        message: 'Test API working!',
-        another: 'Property goes here'
-    };
-    res.send(data);
+    db.query('', (error, results) => {
+        res.send({
+            results: results
+        });
+    });
 });
 
 app.get('/api/contact_us', (req, res) => {
-    const user = {
-        email: 'jim@mail.com',
-        name: 'Jim Bob',
-        username: 'Jimmy'
-    };
-    res.send(user);
+    db.query('', (error, results) => {
+        res.send({
+            results: results
+        });
+    });
 });
 
 

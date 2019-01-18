@@ -44,17 +44,21 @@ class SdcKitBlack extends Component {
     }
 
     render() {
-        const {productQuantityBlack} = this.state;
+        console.log("in render: ", this.props.products);
+        // const product = this.props.products[0];
+        // console.log("product: ", product);
 
+        const {productQuantityBlack} = this.state;
         return (
-            <div className={this.data.backgroundColor} href={this.data.href}>
+            <div className={this.data.style} href={this.data.href}>
                 <div className="card col s6">
-                    <img className="prodImage" src={this.data.img}/>
+                    <img className="prodImage" src={this.data.image}/>
                 </div>
                 <div className="col s6">
                     <div className="description">
-                        {this.data.description}
+                        {this.data.name}
                     </div>
+                    {/*<div>{this.data.price}</div>*/}
                     <div className="row quantityField">
                         <button onClick={this.subtractCount} type="button" className="btn inputButtons waves-effect waves-light"
                                 data-quantity="minus" data-field="quantity">
@@ -76,7 +80,7 @@ class SdcKitBlack extends Component {
 function mapStateToProps(state){
     console.log('Redux State:', state);
     return {
-        products: state.product.all
+        products: state.products.all
     }
 }
 

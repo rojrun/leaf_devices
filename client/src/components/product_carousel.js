@@ -9,7 +9,7 @@ import SdcKitRed from "./sdc_kit_red";
 class ProductCarousel extends Component {
 
     componentDidMount() {
-         this.instance = M.Carousel.init(this.carousel);
+        this.instance = M.Carousel.init(this.carousel);
     }
 
     render() {

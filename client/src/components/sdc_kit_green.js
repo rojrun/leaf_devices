@@ -44,6 +44,7 @@ class SdcKitGreen extends Component {
     }
 
     render() {
+        console.log("in render: ", this.props.products);
         const {productQuantityGreen} = this.state;
 
         return (
@@ -76,7 +77,7 @@ class SdcKitGreen extends Component {
 function mapStateToProps(state){
     console.log('Redux State:', state);
     return {
-        products: state.product.all
+        products: state.products.all
     }
 }
 

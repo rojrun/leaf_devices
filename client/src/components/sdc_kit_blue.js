@@ -13,12 +13,12 @@ class SdcKitBlue extends Component {
         this.props.getProducts();
     }
 
-    data = {
-        description: "The Smoke-Drink-Chill Kit: Blue.",
-        backgroundColor: "blue carousel-item col s10",
-        img: grinder,
-        href: "#two!"
-    }
+    // data = {
+    //     description: "The Smoke-Drink-Chill Kit: Blue.",
+    //     backgroundColor: "blue carousel-item col s10",
+    //     img: grinder,
+    //     href: "#two!"
+    // }
 
     subtractCount = () =>{
         if(this.state.productQuantityBlue < 1){
@@ -44,6 +44,7 @@ class SdcKitBlue extends Component {
     }
 
     render() {
+        console.log("in render: ", this.props.products);
         const {productQuantityBlue} = this.state;
 
         return (
@@ -76,7 +77,7 @@ class SdcKitBlue extends Component {
 function mapStateToProps(state){
     console.log('Redux State:', state);
     return {
-        products: state.product.all
+        products: state.products.all
     }
 }
 
