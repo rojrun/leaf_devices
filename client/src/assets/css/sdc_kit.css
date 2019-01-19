@@ -1,27 +1,43 @@
 .black {
     background-color: black;
+    border-radius: 6px;
 }
 
 .blue {
     background-color: #1034A6;
+    border-radius: 6px;
 }
 
 .green {
     background-color: #0B6623;
+    border-radius: 6px;
 }
 
 .purple {
     background-color: #7851A9;
+    border-radius: 6px;
 }
 
 .red {
     background-color: #C21807;
+    border-radius: 6px;
 }
 
 .card {
     background-color: white;
-
     height: 93%;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .card {
+        height: 50%;
+    }
+
+    .quantityField {
+        display: inline-flex;
+        left: 5%;
+        width: 95%;
+    }
 }
 
 .prodImage {
@@ -34,27 +50,29 @@
     height: 80%;
 }
 
-.description {
+.name {
+    color: white;
+    font-size: 2em;
+    margin-top: 16%;
+}
+
+.price {
     color: white;
     font-size: 2em;
 }
 
-input[type=number]:not(.browser-default) {
-    background-color: #F0810F;
-    box-shadow: none;
-    border-bottom: none;
-    border-radius: 6px;
-    color: #063852;
-    height: 2rem;
-    margin-left: 3%;
-    width: 20%;
-}
+/*input[type=number]:not(.browser-default) {*/
+    /*background-color: #F0810F;*/
+    /*box-shadow: none;*/
+    /*border-bottom: none;*/
+    /*border-radius: 6px;*/
+    /*color: #063852;*/
+    /*height: 2rem;*/
+    /*margin-left: 3%;*/
+    /*width: 20%;*/
+/*}*/
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+
 
 .inputButtons, .inputSubmit {
     background-color: #063852;
@@ -69,11 +87,11 @@ input[type=number]::-webkit-outer-spin-button {
     width: 5%;
 }
 
-.quantityField {
-    bottom: 5%;
-    position: absolute;
-}
-
 .productQuantity {
+    background-color: #F0810F;
     color: #063852;
+    height: 1%;
+    margin-left: 3%;
+    padding: 2% 5%;
+    width: 2%;
 }
