@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended: false}));
 // app.use(express.static(resolve(__dirname, 'client', 'dist')));
 
 app.get('/api/products', (req, res) => {
-   db.query('SELECT p.name, p.description, p.price, p.href, p.style, p.image FROM `products` AS p', (error, results) => {
+   db.query('SELECT p.id, p.name, p.description, p.price, p.href, p.style, p.image FROM `products` AS p', (error, results) => {
        res.send({
            results: results
        });
@@ -77,14 +77,24 @@ app.get('/api/contact_us', (req, res) => {
     });
 });
 
-
-
+app.post('/api/cart', (req, res) => {
+    db.query('INSERT INTO `cart` (product_id, quantity, price)\n' +
+        'VALUES ( ', (error, results) => {
+        res.send({
+            results: results
+        });
+});
 
 
 
 
 
 app.post('/api/send-message', (req, res) => {
+
+        res.send({
+            results: results
+        });
+    });
     console.log('Data from client:', req.body);
     res.send({
         success: true,

@@ -1,28 +1,51 @@
 import React, { Component } from 'react';
 import '../assets/css/product_carousel.css';
-import SdcKitBlack from './sdc_kit_black';
-import SdcKitBlue from "./sdc_kit_blue";
-import SdcKitGreen from "./sdc_kit_green";
-import SdcKitPurple from "./sdc_kit_purple";
-import SdcKitRed from "./sdc_kit_red";
+import SdcKit from './sdc_kit';
+import {connect} from "react-redux";
+import {getProducts} from "../actions";
 
 class ProductCarousel extends Component {
 
+
+
     componentDidMount() {
         this.instance = M.Carousel.init(this.carousel);
+        this.props.getProducts();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.products.length !== this.props.products.length){
+            this.instance = M.Carousel.init(this.carousel);
+        }
     }
 
     render() {
+
+        if(!this.props.products.length){
+            return <h1>Loading Products</h1>;
+        }
+
+        const products = this.props.products.map( (product) => {
+            console.log('Product:', product);
+            return <SdcKit key={product.href} product={product}/>
+        });
+
         return (
             <div ref={(element) => this.carousel = element} className="carousel">
-                <SdcKitBlack/>
-                <SdcKitBlue/>
-                <SdcKitGreen/>
-                <SdcKitPurple/>
-                <SdcKitRed/>
+                {products}
             </div>
         );
     }
 }
 
-export default ProductCarousel;
+function mapStateToProps(state){
+    console.log('Redux State:', state);
+    return {
+        products: state.products.all
+    }
+}
+
+
+export default connect(mapStateToProps, {
+    getProducts: getProducts
+})(ProductCarousel);
