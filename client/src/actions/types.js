@@ -1,4 +1,5 @@
 export default {
     PRODUCTS: "products",
-    CART: "cart"
+    ADDCART: "addCart",
+    GETCART: "getCart"
 };

@@ -28,8 +28,7 @@ const App = () => (
                 <Route path="/create" component={Create}/>
                 <Route path="/login" component={Login}/>
                 <div className="footer-copyright">
-                    <p>© 2019 Leaf Devices LLC.</p>
-                    <p>All rights reserved.</p>
+                    <p>© 2019 Leaf Devices LLC. All rights reserved.</p>
                 </div>
             </div>
             <div className="col s2 back_ground">

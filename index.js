@@ -19,8 +19,8 @@ app.get('/api/products', (req, res) => {
 });
 
 app.get('/api/cart', (req, res) => {
-    db.query('SELECT c.cart_id, c.quantity, p.name, p.price, c.quantity * p.price AS gross_price ' +
-        'FROM `products` AS p JOIN `cart` AS c ON p.id = c.product_id', (error, results) => {
+    db.query(`SELECT c.id, product_id, quantity, p.name, p.price, quantity * p.price AS gross_price 
+        FROM \`cart\` AS c INNER JOIN \`products\` AS p WHERE product_id = p.id ORDER BY id DESC LIMIT 1`, (error, results) => {
         res.send({
             results: results
         });
@@ -69,38 +69,41 @@ app.get('/api/customer', (req, res) => {
     });
 });
 
-app.get('/api/contact_us', (req, res) => {
-    db.query('', (error, results) => {
-        res.send({
-            results: results
-        });
-    });
-});
+// app.get('/api/contact_us', (req, res) => {
+//     db.query('', (error, results) => {
+//         res.send({
+//             results: results
+//         });
+//     });
+// });
 
 app.post('/api/cart', (req, res) => {
-    db.query('INSERT INTO `cart` (product_id, quantity, price)\n' +
-        'VALUES ( ', (error, results) => {
-        res.send({
-            results: results
-        });
-});
-
-
-
-
-
-app.post('/api/send-message', (req, res) => {
-
+    const {product_id, quantity} = req.body;
+    db.query(`INSERT INTO \`cart\` (product_id, quantity, price, gross_price)
+        SELECT ${product_id} AS product_id, ${quantity} AS quantity, price, price * ${quantity} AS gross_price
+        FROM \`products\` WHERE id=${product_id}`, (error, results) => {
+        if(error){
+            res.send('failed');
+            return;
+        }
         res.send({
             results: results
         });
     });
-    console.log('Data from client:', req.body);
-    res.send({
-        success: true,
-        dataReceived: req.body
-    });
 });
+
+// app.post('/api/send-message', (req, res) => {
+//     db.query('')
+//         res.send({
+//             results: results
+//         });
+//     });
+//     console.log('Data from client:', req.body);
+//     res.send({
+//         success: true,
+//         dataReceived: req.body
+//     });
+// });
 
 // app.get('*', (req, res) () => {
 //     res.sendFile(resolve(__dirname, 'client', 'dist', 'index.html'));

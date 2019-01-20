@@ -9,10 +9,21 @@ export function getProducts() {
     }
 }
 
-export function addToCart() {
-    const resp = axios.post('/api/cart');
+export function addToCart(id, productQuantity) {
+    const resp = axios.post('/api/cart', {
+        product_id: id,
+        quantity: productQuantity
+    });
     return {
-        type: types.CART,
+        type: types.ADDCART,
+        payload: resp
+    }
+}
+
+export function getCart() {
+    const resp = axios.get('/api/cart');
+    return {
+        type: types.GETCART,
         payload: resp
     }
 }
