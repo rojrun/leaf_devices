@@ -6,25 +6,8 @@ import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
     state = {
-        productQuantity: 0
+        productQuantity: 0,
     }
-
-    // data = {
-    //         name: "Smoke-Drink-Chill Kit: Black.",
-    //         backgroundColor: "black carousel-item col s10",
-    //         img: grinder,
-    //         href: "#one!",
-    //         price: "$24.99"
-    //     }
-
-    // componentDidMount() {
-    //     debugger;
-    //
-    // }
-
-    // componentDidUpdate() {
-    //     console.log("The weed component got the state", this.props);
-    // }
 
     subtractCount = () =>{
         if(this.state.productQuantity < 1){
@@ -45,16 +28,18 @@ class SdcKit extends Component {
     }
 
     handleAddToCart = () => {
-        console.log('Add to Cart button: ', this.state.productQuantity);
-        const quantity = this.state.productQuantity;
-        const {id} = this.props.product;
-        console.log('product_id: ', id);
-        this.props.addToCart(id, quantity);
+        // console.log('Add to Cart button: ', this.state.productQuantity);
+        const productQuantity = this.state.productQuantity;
+        console.log("productQuantity: ", productQuantity);
 
+        const {id} = this.props.product;
+        console.log("productId: ", id);
+
+        this.props.addToCart(id, productQuantity);
     }
 
     render() {
-        const { name, price, href, style, image } = this.props.product;
+        const { name, price, href, style, image, id } = this.props.product;
         console.log("products component: ", this.props.product);
 
         const {productQuantity} = this.state;
@@ -78,7 +63,7 @@ class SdcKit extends Component {
                             <i className="material-icons">-</i>
                         </button>
                         <span className="center productQuantity" type="number" name="quantity"
-                              value={productQuantity} onChange={() => {}}>{productQuantity}
+                              value={productQuantity} productId={id} onChange={() => {}}>{productQuantity}
                         </span>
                         <button onClick={this.addCount} type="button"
                                 className="btn inputButtons waves-effect waves-light"
@@ -95,5 +80,13 @@ class SdcKit extends Component {
     }
 }
 
-export default SdcKit;
+function mapStateToProps(state){
+    console.log('sdc kit -Redux State:', state);
+    return {
+        addCart: state.addCart.all
+    }
+}
 
+export default connect(mapStateToProps, { addToCart })(SdcKit);
+
+// export default SdcKit;

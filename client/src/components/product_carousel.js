@@ -6,8 +6,6 @@ import {getProducts} from "../actions";
 
 class ProductCarousel extends Component {
 
-
-
     componentDidMount() {
         this.instance = M.Carousel.init(this.carousel);
         this.props.getProducts();
@@ -20,7 +18,6 @@ class ProductCarousel extends Component {
     }
 
     render() {
-
         if(!this.props.products.length){
             return <h1>Loading Products</h1>;
         }
@@ -45,7 +42,4 @@ function mapStateToProps(state){
     }
 }
 
-
-export default connect(mapStateToProps, {
-    getProducts: getProducts
-})(ProductCarousel);
+export default connect(mapStateToProps, { getProducts })(ProductCarousel);
