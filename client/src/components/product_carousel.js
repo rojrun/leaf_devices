@@ -19,7 +19,11 @@ class ProductCarousel extends Component {
 
     render() {
         if(!this.props.products.length){
-            return <h1>Loading Products</h1>;
+            return (
+                <div className="status spin">
+                    LOADING PAGE
+                </div>
+            );
         }
 
         const products = this.props.products.map( (product) => {
