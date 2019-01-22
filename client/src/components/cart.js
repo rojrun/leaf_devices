@@ -40,7 +40,9 @@ class Cart extends Component {
                         {cart}
                     </tbody>
                 </table>
-                <button className="checkoutButton waves-effect waves-light btn">checkout</button>
+                <div className="row center">
+                    <button className="checkoutButton waves-effect waves-light btn">checkout</button>
+                </div>
             </div>
         );
 

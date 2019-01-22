@@ -21,7 +21,7 @@ app.get('/api/products', (req, res) => {
 
 app.get('/api/cart', (req, res) => {
     db.query(`SELECT c.id, product_id, quantity, p.name, p.price, quantity * p.price AS gross_price 
-        FROM \`cart\` AS c INNER JOIN \`products\` AS p WHERE product_id = p.id ORDER BY id DESC LIMIT 1`, (error, results) => {
+        FROM \`cart\` AS c INNER JOIN \`products\` AS p WHERE product_id = p.id AND customer_id = '1'`, (error, results) => {
         res.send({
             results: results
         });

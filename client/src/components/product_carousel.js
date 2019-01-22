@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../assets/css/product_carousel.css';
+import '../assets/css/dialog_box.css';
 import SdcKit from './sdc_kit';
 import {connect} from 'react-redux';
 import {getProducts} from '../actions';
