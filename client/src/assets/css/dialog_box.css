@@ -1,0 +1,29 @@
+.status {
+    background-image: url("../../../dist/logo_wo_text.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 0;
+    height: 70%;
+    width: 54%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 61%;
+    position: absolute;
+    -webkit-animation: spin 4s infinite linear;
+}
+
+/*@-webkit-keyframes spin {*/
+/*0%  {-webkit-transform: rotate(0deg);}*/
+/*100% {-webkit-transform: rotate(360deg);}*/
+/*}*/
+
+.comment {
+    top: 50%;
+    left: 50%;
+    transform: translate(-49%, 22%);
+    width: 30%;
+    font-size: 2em;
+    color: #F0810F;
+    position: absolute;
+}

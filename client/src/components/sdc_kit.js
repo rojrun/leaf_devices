@@ -6,7 +6,7 @@ import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
     state = {
-        productQuantity: 0,
+        productQuantity: 0
     }
 
     subtractCount = () =>{

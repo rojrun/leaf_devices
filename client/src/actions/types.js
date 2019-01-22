@@ -1,5 +1,6 @@
 export default {
     PRODUCTS: "products",
     ADDCART: "addCart",
-    GETCART: "getCart"
+    GETCART: "getCart",
+    ADDCONTACTUS: "addContactUs"
 };

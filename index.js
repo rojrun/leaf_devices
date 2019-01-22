@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const mysql = require('mysql');
 const PORT = process.env.PORT || 9000;
 // const { resolve } = require('path');
 const db = require('./db');
@@ -20,7 +21,7 @@ app.get('/api/products', (req, res) => {
 
 app.get('/api/cart', (req, res) => {
     db.query(`SELECT c.id, product_id, quantity, p.name, p.price, quantity * p.price AS gross_price 
-        FROM \`cart\` AS c INNER JOIN \`products\` AS p WHERE product_id = p.id ORDER BY id DESC LIMIT 1`, (error, results) => {
+        FROM \`cart\` AS c INNER JOIN \`products\` AS p WHERE product_id = p.id AND customer_id = '1'`, (error, results) => {
         res.send({
             results: results
         });
@@ -45,29 +46,29 @@ app.get('/api/checkout', (req, res) => {
     });
 });
 
-app.get('/api/payment', (req, res) => {
-    db.query('', (error, results) => {
-        res.send({
-            results: results
-        });
-    });
-});
-
-app.get('/api/purchase_history', (req, res) => {
-    db.query('', (error, results) => {
-        res.send({
-            results: results
-        });
-    });
-});
-
-app.get('/api/customer', (req, res) => {
-    db.query('', (error, results) => {
-        res.send({
-            results: results
-        });
-    });
-});
+// app.get('/api/payment', (req, res) => {
+//     db.query('', (error, results) => {
+//         res.send({
+//             results: results
+//         });
+//     });
+// });
+//
+// app.get('/api/purchase_history', (req, res) => {
+//     db.query('', (error, results) => {
+//         res.send({
+//             results: results
+//         });
+//     });
+// });
+//
+// app.get('/api/customer', (req, res) => {
+//     db.query('', (error, results) => {
+//         res.send({
+//             results: results
+//         });
+//     });
+// });
 
 // app.get('/api/contact_us', (req, res) => {
 //     db.query('', (error, results) => {
@@ -79,6 +80,7 @@ app.get('/api/customer', (req, res) => {
 
 app.post('/api/cart', (req, res) => {
     const {product_id, quantity} = req.body;
+
     db.query(`INSERT INTO \`cart\` (product_id, quantity, price, gross_price)
         SELECT ${product_id} AS product_id, ${quantity} AS quantity, price, price * ${quantity} AS gross_price
         FROM \`products\` WHERE id=${product_id}`, (error, results) => {
@@ -92,18 +94,23 @@ app.post('/api/cart', (req, res) => {
     });
 });
 
-// app.post('/api/send-message', (req, res) => {
-//     db.query('')
-//         res.send({
-//             results: results
-//         });
-//     });
-//     console.log('Data from client:', req.body);
-//     res.send({
-//         success: true,
-//         dataReceived: req.body
-//     });
-// });
+app.post('/api/contact-message', (req, res) => {
+    const { first_name, last_name, email, phone_number, message } = req.body;
+
+    const sql = 'INSERT INTO `contact_us` (first_name, last_name, email, phone_number, message) VALUES (?, ?, ?, ?, ?)';
+    const inserts = [first_name, last_name, email, phone_number, message];
+    const formattedSql = mysql.format(sql, inserts);
+
+    db.query(formattedSql, (error, results) => {
+        if(error){
+            res.send('failed');
+            return;
+        }
+        res.send({
+            results: results
+        });
+    });
+});
 
 // app.get('*', (req, res) () => {
 //     res.sendFile(resolve(__dirname, 'client', 'dist', 'index.html'));
