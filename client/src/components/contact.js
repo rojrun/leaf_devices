@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../assets/css/contact.css';
-import {addToCart} from "../actions";
+import {addContactMessage} from "../actions";
+// import DialogBox from "./dialog_box";
 
 class Contact extends Component {
     state = {
@@ -9,14 +10,24 @@ class Contact extends Component {
         your_lname: "",
         your_email: "",
         your_phone_number: "",
-        your_message: ""
+        your_message: "",
+        messageStatus: false,
+        messageComment: ""
     }
 
     handleSaveForm = async (e) => {
-        console.log('Contact form:', this.props);
+        console.log('Contact form:', this.state);
+        console.log('handleSaveForm:', this.props);
         e.preventDefault();
-        // await this.props.add(this.state);
-        // this.props.history.push('/');
+        this.setState({
+            messageStatus: true,
+            messageComment: "MESSAGE SENT"
+        });
+        const { your_fname, your_lname, your_email, your_phone_number, your_message } = this.state;
+        await this.props.addContactMessage( your_fname, your_lname, your_email, your_phone_number, your_message );
+        setTimeout( () => {
+            this.props.history.push('/')
+        }, 2000);
     }
 
     cancel = () => {
@@ -25,12 +36,24 @@ class Contact extends Component {
             your_lname: "",
             your_email: "",
             your_phone_number: "",
-            your_message: ""
+            your_message: "",
+            messageStatus: false,
+            messageComment: ""
         });
     }
 
     render(){
-        const {your_fname, your_lname, your_email, your_phone_number, your_message} = this.state;
+        const {your_fname, your_lname, your_email, your_phone_number, your_message, messageComment } = this.state;
+
+        // if(this.state.messageStatus){
+        //     return <DialogBox message={messageComment}/>
+        // }
+        if(this.state.messageStatus){
+            return (
+                <div>MESSAGE SENT</div>
+            )
+        }
+
         return (
             <div>
                 <form onSubmit={this.handleSaveForm} className="col s12">
@@ -80,10 +103,10 @@ class Contact extends Component {
 function mapStateToProps(state){
     console.log('contact form- Redux State:', state);
     return {
-        addCart: state.addCart.all
+        addContactUs: state.addContactUs.all
     }
 }
 
-export default connect(mapStateToProps, { addToCart })(Contact);
+export default connect(mapStateToProps, { addContactMessage })(Contact);
 
 // export default Contact;

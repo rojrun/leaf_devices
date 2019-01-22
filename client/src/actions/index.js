@@ -27,3 +27,17 @@ export function getCart() {
         payload: resp
     }
 }
+
+export function addContactMessage( your_fname, your_lname, your_email, your_phone_number, your_message ) {
+    const resp = axios.post('/api/contact-message', {
+        first_name: your_fname,
+        last_name: your_lname,
+        email: your_email,
+        phone_number: your_phone_number,
+        message: your_message
+    });
+    return {
+        type: types.ADDCONTACTUS,
+        payload: resp
+    }
+}

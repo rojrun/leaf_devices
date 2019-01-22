@@ -46,10 +46,10 @@ class SdcKit extends Component {
 
         return (
             <div className={`carousel-item col s10 ${style}`} href={href}>
-                <div className="card col s12 l6">
+                <div className="card col s12">
                     <img className="prodImage" src={image}/>
                 </div>
-                <div className="center col s12 l6">
+                <div className="center col s12">
                     <div className="name">
                         {name}
                     </div>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../assets/css/product_carousel.css';
 import SdcKit from './sdc_kit';
-import {connect} from "react-redux";
-import {getProducts} from "../actions";
+import {connect} from 'react-redux';
+import {getProducts} from '../actions';
 
 class ProductCarousel extends Component {
 
@@ -21,7 +21,7 @@ class ProductCarousel extends Component {
         if(!this.props.products.length){
             return (
                 <div className="status spin">
-                    LOADING PAGE
+                    <div className="center comment">LOADING PAGE</div>
                 </div>
             );
         }
