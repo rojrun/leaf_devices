@@ -20,6 +20,15 @@ export function addToCart(id, productQuantity) {
     }
 }
 
+export function addCartMeta() {
+    const resp = axios.post('/api/cart-meta', {});
+    return {
+        type: types.ADDCARTMETA,
+        payload: resp
+    }
+}
+
+
 export function getCart() {
     const resp = axios.get('/api/cart');
     return {

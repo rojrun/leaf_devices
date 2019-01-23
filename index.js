@@ -28,13 +28,13 @@ app.get('/api/cart', (req, res) => {
     });
 });
 
-app.get('/api/cart-meta', (req, res) => {
-    db.query('', (error, results) => {
-        res.send({
-            results: results
-        });
-    });
-});
+// app.get('/api/cart-meta', (req, res) => {
+//     db.query(`SELECT customer_id, total_quantity, subtotal FROM \`cart_meta\` WHERE customer_id = '1'`, (error, results) => {
+//         res.send({
+//             results: results
+//         });
+//     });
+// });
 
 app.get('/api/checkout', (req, res) => {
     db.query('SELECT c.cart_id, c.quantity, p.name, p.price, c.quantity * p.price AS subtotal, tax, shipping,' +
@@ -94,11 +94,49 @@ app.post('/api/cart', (req, res) => {
     });
 });
 
+
+// INSERT INTO `cart_meta` (customer_id, total_quantity, subtotal)
+// SELECT c.customer_id AS customer_id, SUM(c.quantity) AS total_quantity, SUM(c.gross_price) AS subtotal
+// FROM `cart` AS c
+// WHERE c.customer_id = '1'
+
+app.post('/api/cart-meta', (req, res) => {
+    console.log('cart-meta post: ', req.body);
+    // const {  } = req.body;
+
+    // const sql = 'INSERT INTO `cart_meta` (customer_id, total_quantity, subtotal) VALUES (?, ?, ?) FROM `cart` AS c';
+    // const inserts = [ 1, SUM(c.quantity) AS total_quantity, SUM(c.gross_price) AS subtotal ];
+    // const formattedSql = mysql.format(sql, inserts);
+
+    db.query(`INSERT INTO \`cart_meta\` (customer_id, total_quantity, subtotal)
+        SELECT c.customer_id AS customer_id, SUM(c.quantity) AS total_quantity, SUM(c.gross_price) AS subtotal
+        FROM \`cart\` AS c WHERE c.customer_id = '1'`, (error, results) => {
+        if(error){
+            res.send('failed');
+            return;
+        }
+        res.send({
+            results: results
+        });
+    });
+
+
+    // db.query(formattedSql, (error, results) => {
+    //     if(error){
+    //         res.send('failed');
+    //         return;
+    //     }
+    //     res.send({
+    //         results: results
+    //     });
+    // });
+});
+
 app.post('/api/contact-message', (req, res) => {
     const { first_name, last_name, email, phone_number, message } = req.body;
 
     const sql = 'INSERT INTO `contact_us` (first_name, last_name, email, phone_number, message) VALUES (?, ?, ?, ?, ?)';
-    const inserts = [first_name, last_name, email, phone_number, message];
+    const inserts = [ first_name, last_name, email, phone_number, message ];
     const formattedSql = mysql.format(sql, inserts);
 
     db.query(formattedSql, (error, results) => {
