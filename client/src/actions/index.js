@@ -21,7 +21,7 @@ export function addToCart(id, productQuantity) {
 }
 
 export function addCartMeta() {
-    const resp = axios.post('/api/cart-meta', {});
+    const resp = axios.post('/api/cart-meta');
     return {
         type: types.ADDCARTMETA,
         payload: resp

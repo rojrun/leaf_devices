@@ -3,8 +3,13 @@ import '../assets/css/dialog_box.css';
 import SdcKit from './sdc_kit';
 import {connect} from 'react-redux';
 import {getProducts} from '../actions';
+import DialogBox from './dialog_box';
 
 class ProductCarousel extends Component {
+
+    // state = {
+    //     messageComment: ""
+    // }
 
     componentDidMount() {
         this.instance = M.Carousel.init(this.carousel);
@@ -19,6 +24,9 @@ class ProductCarousel extends Component {
 
     render() {
         if(!this.props.products.length){
+            // this.setState({
+            //     messageComment: "LOADING PAGE"
+            // });
             return (
                 <div className="status spin">
                     <div className="center comment">LOADING PAGE</div>
