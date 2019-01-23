@@ -25,51 +25,43 @@ class Cart extends Component {
             );
         });
 
+        // const cartMeta = this.props;
+
+
         return (
             <div className="col s12">
                 <div className="cart center">CART</div>
                 <table className="striped responsive-table">
                     <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th className="right-align">Price</th>
-                    </tr>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th className="right-align">Price</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {cart}
                     </tbody>
+
+                    <thead>
+                        <tr>
+                            <th>Total Quantity: </th>
+                            <th>Subtotal: </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>5</td>
+                            <td>$100</td>
+                        </tr>
+                    </tbody>
+
                 </table>
                 <div className="row center">
                     <button className="checkoutButton waves-effect waves-light btn">checkout</button>
                 </div>
             </div>
         );
-
-
-        // return (
-        //     <div className="col s12">
-        //         <div className="cart center">CART</div>
-        //         <table className="striped responsive-table">
-        //             <thead>
-        //             <tr>
-        //                 <th>Product</th>
-        //                 <th>Quantity</th>
-        //                 <th className="right-align">Price</th>
-        //             </tr>
-        //             </thead>
-        //             <tbody>
-        //                 <tr>
-        //                     <td>{item.name}</td>
-        //                     <td>{item.quantity}</td>
-        //                     <td className="right-align">${item.price/100}</td>
-        //                 </tr>
-        //             </tbody>
-        //         </table>
-        //         <button className="checkoutButton waves-effect waves-light btn">checkout</button>
-        //     </div>
-        // );
-        // });
     }
 }
 
