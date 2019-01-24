@@ -37,6 +37,15 @@ export function getCart() {
     }
 }
 
+export function getCartMeta() {
+    console.log('Get Cart Meta Data Called')
+    const resp = axios.get('/api/cart-meta');
+    return {
+        type: types.GETCARTMETA,
+        payload: resp
+    }
+}
+
 export function addContactMessage( your_fname, your_lname, your_email, your_phone_number, your_message ) {
     const resp = axios.post('/api/contact-message', {
         first_name: your_fname,

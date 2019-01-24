@@ -5,6 +5,7 @@ import addCartReducer from './addCart_reducer';
 import getCartReducer from './getCart_reducer';
 import addContactUsReducer from './contact_reducer';
 import addCartMetaReducer from './addCartMeta_reducer';
+import getCartMetaReducer from './getCartMeta_reducer';
 
 const rootReducer = combineReducers({
     // form: formReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     addCart: addCartReducer,
     getCart: getCartReducer,
     addContactUs: addContactUsReducer,
-    addCartMeta: addCartMetaReducer
+    addCartMeta: addCartMetaReducer,
+    getCartMeta: getCartMetaReducer
 });
 
 export default rootReducer;

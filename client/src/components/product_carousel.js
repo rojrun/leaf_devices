@@ -3,7 +3,7 @@ import '../assets/css/dialog_box.css';
 import SdcKit from './sdc_kit';
 import {connect} from 'react-redux';
 import {getProducts} from '../actions';
-import DialogBox from './dialog_box';
+// import DialogBox from './dialog_box';
 
 class ProductCarousel extends Component {
 

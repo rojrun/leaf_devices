@@ -1,17 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getCart} from '../actions';
+import {getCart, addCartMeta, getCartMeta} from '../actions';
 import '../assets/css/cart.css';
 
 class Cart extends Component {
-    componentDidMount() {
-        this.props.getCart();
+    async componentDidMount() {
+        await this.props.getCart();
+        await this.props.addCartMeta();
+        await this.props.getCartMeta();
     }
 
     render() {
         console.log("props in CART:", this.props.cart);
         if(!this.props.cart.length){
-            return <h1>Your CART is empty</h1>;
+            return (
+                <div className="status spin">
+                    <div className="center comment">CART EMPTY</div>
+                </div>
+            );
         }
 
         const cart = this.props.cart.map( (item) => {
@@ -25,8 +31,16 @@ class Cart extends Component {
             );
         });
 
-        // const cartMeta = this.props;
-
+        console.log("props in CARTMETA:", this.props.cartMeta);
+        const meta = this.props.cartMeta.map( (sum) => {
+            return (
+                <tr>
+                    <td>{sum.total_quantity}</td>
+                    <td>{sum.subtotal}</td>
+                </tr>
+            );
+        });
+        // const { total_quantity, subtotal } = this.props.cartMeta;
 
         return (
             <div className="col s12">
@@ -51,8 +65,7 @@ class Cart extends Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>5</td>
-                            <td>$100</td>
+                            {meta}
                         </tr>
                     </tbody>
 
@@ -68,8 +81,9 @@ class Cart extends Component {
 function mapStateToProps(state){
     console.log('Redux State from Cart Component:', state);
     return {
-        cart: state.getCart.all
+        cart: state.getCart.all,
+        cartMeta: state.getCartMeta.all
     }
 }
 
-export default connect(mapStateToProps, { getCart })(Cart);
+export default connect(mapStateToProps, { getCart, addCartMeta, getCartMeta })(Cart);

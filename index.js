@@ -28,13 +28,13 @@ app.get('/api/cart', (req, res) => {
     });
 });
 
-// app.get('/api/cart-meta', (req, res) => {
-//     db.query(`SELECT customer_id, total_quantity, subtotal FROM \`cart_meta\` WHERE customer_id = '1'`, (error, results) => {
-//         res.send({
-//             results: results
-//         });
-//     });
-// });
+app.get('/api/cart-meta', (req, res) => {
+    db.query(`SELECT customer_id, total_quantity, subtotal FROM \`cart_meta\` WHERE customer_id = '1'`, (error, results) => {
+        res.send({
+            results: results
+        });
+    });
+});
 
 app.get('/api/checkout', (req, res) => {
     db.query('SELECT c.cart_id, c.quantity, p.name, p.price, c.quantity * p.price AS subtotal, tax, shipping,' +
@@ -45,30 +45,6 @@ app.get('/api/checkout', (req, res) => {
         });
     });
 });
-
-// app.get('/api/payment', (req, res) => {
-//     db.query('', (error, results) => {
-//         res.send({
-//             results: results
-//         });
-//     });
-// });
-//
-// app.get('/api/purchase_history', (req, res) => {
-//     db.query('', (error, results) => {
-//         res.send({
-//             results: results
-//         });
-//     });
-// });
-//
-// app.get('/api/customer', (req, res) => {
-//     db.query('', (error, results) => {
-//         res.send({
-//             results: results
-//         });
-//     });
-// });
 
 // app.get('/api/contact_us', (req, res) => {
 //     db.query('', (error, results) => {
@@ -81,8 +57,8 @@ app.get('/api/checkout', (req, res) => {
 app.post('/api/cart', (req, res) => {
     const {product_id, quantity} = req.body;
 
-    db.query(`INSERT INTO \`cart\` (product_id, quantity, price, gross_price)
-        SELECT ${product_id} AS product_id, ${quantity} AS quantity, price, price * ${quantity} AS gross_price
+    db.query(`INSERT INTO \`cart\` (customer_id, product_id, quantity, price, gross_price)
+        SELECT '1' AS customer_id, ${product_id} AS product_id, ${quantity} AS quantity, price, price * ${quantity} AS gross_price
         FROM \`products\` WHERE id=${product_id}`, (error, results) => {
         if(error){
             res.send('failed');
@@ -94,20 +70,32 @@ app.post('/api/cart', (req, res) => {
     });
 });
 
-
-// INSERT INTO `cart_meta` (customer_id, total_quantity, subtotal)
-// SELECT c.customer_id AS customer_id, SUM(c.quantity) AS total_quantity, SUM(c.gross_price) AS subtotal
-// FROM `cart` AS c
-// WHERE c.customer_id = '1'
+// app.post('/api/cart-meta', (req, res) => {
+//     console.log('cart-meta post: ', req.body);
+//
+//     db.query(`SELECT * FROM \`cart_meta\` WHERE \`customer_id\` = 1`, (error, results) => {
+//         if(!results.length){
+//             db.query(`INSERT INTO \`cart_meta\` (customer_id, total_quantity, subtotal)
+//         SELECT c.customer_id AS customer_id, SUM(c.quantity) AS total_quantity, SUM(c.gross_price) AS subtotal
+//         FROM \`cart\` AS c WHERE c.customer_id = '1'`, (error, results) => {
+//                 if(error){
+//                     res.send('failed');
+//                     return;
+//                 }
+//                 res.send({
+//                     results: results
+//                 });
+//             });
+//         }
+//
+//         res.send({
+//             results: results
+//         })
+//     })
+// });
 
 app.post('/api/cart-meta', (req, res) => {
     console.log('cart-meta post: ', req.body);
-    // const {  } = req.body;
-
-    // const sql = 'INSERT INTO `cart_meta` (customer_id, total_quantity, subtotal) VALUES (?, ?, ?) FROM `cart` AS c';
-    // const inserts = [ 1, SUM(c.quantity) AS total_quantity, SUM(c.gross_price) AS subtotal ];
-    // const formattedSql = mysql.format(sql, inserts);
-
     db.query(`INSERT INTO \`cart_meta\` (customer_id, total_quantity, subtotal)
         SELECT c.customer_id AS customer_id, SUM(c.quantity) AS total_quantity, SUM(c.gross_price) AS subtotal
         FROM \`cart\` AS c WHERE c.customer_id = '1'`, (error, results) => {
@@ -119,18 +107,26 @@ app.post('/api/cart-meta', (req, res) => {
             results: results
         });
     });
-
-
-    // db.query(formattedSql, (error, results) => {
-    //     if(error){
-    //         res.send('failed');
-    //         return;
-    //     }
-    //     res.send({
-    //         results: results
-    //     });
-    // });
 });
+
+// INSERT INTO `checkout` (customer_id, subtotal, tax, shipping, total)
+// SELECT c.customer_id AS customer_id, SUM(c.gross_price) AS subtotal, subtotal * 0.0775 AS tax, 0 AS shipping, subtotal + tax + shipping AS total
+// FROM `cart` AS c
+
+// app.post('/api/checkout', (req, res) => {
+//     db.query(`INSERT INTO \`checkout\` (customer_id, subtotal, tax, shipping, total)
+//         SELECT c.customer_id AS customer_id, SUM(c.gross_price) AS subtotal,
+//         subtotal * 0.0775 AS tax, 0 AS shipping, subtotal + tax + shipping AS total
+//         FROM \`cart\` AS c`, (error, results) => {
+//         if(error){
+//             res.send('failed');
+//             return;
+//         }
+//         res.send({
+//             results: results
+//         });
+//     });
+// });
 
 app.post('/api/contact-message', (req, res) => {
     const { first_name, last_name, email, phone_number, message } = req.body;

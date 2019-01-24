@@ -3,5 +3,6 @@ export default {
     ADDCART: "addCart",
     GETCART: "getCart",
     ADDCONTACTUS: "addContactUs",
-    ADDCARTMETA: "addCartMeta"
+    ADDCARTMETA: "addCartMeta",
+    GETCARTMETA: "getCartMeta"
 };

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../assets/css/contact.css';
+import '../assets/css/dialog_box.css';
 import {addContactMessage} from "../actions";
 // import DialogBox from "./dialog_box";
 
@@ -16,8 +17,6 @@ class Contact extends Component {
     }
 
     handleSaveForm = async (e) => {
-        console.log('Contact form:', this.state);
-        console.log('handleSaveForm:', this.props);
         e.preventDefault();
         this.setState({
             messageStatus: true,
@@ -27,7 +26,7 @@ class Contact extends Component {
         await this.props.addContactMessage( your_fname, your_lname, your_email, your_phone_number, your_message );
         setTimeout( () => {
             this.props.history.push('/')
-        }, 2000);
+        }, 2100);
     }
 
     cancel = () => {
@@ -50,8 +49,10 @@ class Contact extends Component {
         // }
         if(this.state.messageStatus){
             return (
-                <div>MESSAGE SENT</div>
-            )
+                <div className="status spin">
+                    <div className="center comment">MESSAGE SENT</div>
+                </div>
+            );
         }
 
         return (
@@ -108,5 +109,3 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps, { addContactMessage })(Contact);
-
-// export default Contact;
