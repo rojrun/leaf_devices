@@ -10,6 +10,8 @@ class Cart extends Component {
         await this.props.getCartMeta();
     }
 
+
+
     render() {
         console.log("props in CART:", this.props.cart);
         if(!this.props.cart.length){
@@ -32,15 +34,9 @@ class Cart extends Component {
         });
 
         console.log("props in CARTMETA:", this.props.cartMeta);
-        const meta = this.props.cartMeta.map( (sum) => {
-            return (
-                <tr>
-                    <td>{sum.total_quantity}</td>
-                    <td>{sum.subtotal}</td>
-                </tr>
-            );
-        });
-        // const { total_quantity, subtotal } = this.props.cartMeta;
+        const { total_quantity, subtotal } = this.props.cartMeta[0];
+        console.log("total_quantity: ", total_quantity);
+        console.log("subtotal: ", subtotal);
 
         return (
             <div className="col s12">
@@ -60,15 +56,13 @@ class Cart extends Component {
                     <thead>
                         <tr>
                             <th>Total Quantity: </th>
+                            <td>{total_quantity}</td>
+                        </tr>
+                        <tr>
                             <th>Subtotal: </th>
+                            <td>{subtotal}</td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            {meta}
-                        </tr>
-                    </tbody>
-
                 </table>
                 <div className="row center">
                     <button className="checkoutButton waves-effect waves-light btn">checkout</button>
