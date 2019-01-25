@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {addToCart} from '../actions';
+import {addToCartMeta, makeCart, getCart} from '../actions';
 import '../assets/css/sdc_kit.css';
-
 
 class SdcKit extends Component {
     state = {
@@ -25,23 +24,26 @@ class SdcKit extends Component {
         this.setState({
             productQuantity: this.state.productQuantity + 1
         });
+        console.log("addCount state:", this.state);
     }
 
     handleAddToCart = () => {
-        // console.log('Add to Cart button: ', this.state.productQuantity);
+        console.log("at handleAddToCart state:", this.state);
+        console.log("at handleToCart props:", this.props);
         const productQuantity = this.state.productQuantity;
-        console.log("productQuantity: ", productQuantity);
-
         const {id} = this.props.product;
-        console.log("productId: ", id);
+        // if(!this.props.getCart.length){
+        //     this.props.makeCart();
+        //     this.props.getCart();
+        // }
 
-        this.props.addToCart(id, productQuantity);
-    }
+        if(productQuantity > 0) {
+            this.props.addToCartMeta(id, productQuantity);
+        }
+    };
 
     render() {
         const { name, price, href, style, image, id } = this.props.product;
-        console.log("products component: ", this.props.product);
-
         const {productQuantity} = this.state;
 
         return (
@@ -59,16 +61,14 @@ class SdcKit extends Component {
                     <div className="center row quantityField">
                         <button onClick={this.subtractCount} type="button"
                                 className="btn inputButtons waves-effect waves-light"
-                                data-quantity="minus" data-field="quantity">
-                            <i className="material-icons">-</i>
+                                data-quantity="minus" data-field="quantity">-
                         </button>
                         <span className="center productQuantity" type="number" name="quantity"
-                              value={productQuantity} productId={id} onChange={() => {}}>{productQuantity}
+                              value={productQuantity} product_id={id} onChange={() => {}}>{productQuantity}
                         </span>
                         <button onClick={this.addCount} type="button"
                                 className="btn inputButtons waves-effect waves-light"
-                                data-quantity="add" data-field="quantity">
-                            <i className="material-icons">+</i>
+                                data-quantity="add" data-field="quantity">+
                         </button>
                         <button onClick={this.handleAddToCart} type="button"
                                 className="btn inputSubmit waves-effect waves-light">Add to Cart
@@ -83,10 +83,10 @@ class SdcKit extends Component {
 function mapStateToProps(state){
     console.log('sdc kit -Redux State:', state);
     return {
-        addCart: state.addCart.all
+        addToCartMeta: state.addToCartMeta.single,
+        makeCart: state.makeCart.all,
+        getCart: state.getCart
     }
 }
 
-export default connect(mapStateToProps, { addToCart })(SdcKit);
-
-// export default SdcKit;
+export default connect(mapStateToProps, { addToCartMeta, makeCart, getCart })(SdcKit);

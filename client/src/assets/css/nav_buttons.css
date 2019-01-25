@@ -6,3 +6,12 @@
     margin: 3% auto;
     width: 100%;
 }
+
+.iconButtons {
+    background-color: #063852;
+    color: #F0810F;
+    font-size: 2em;
+    margin-top: 21%;
+    padding: 14%;
+    sizes: 2em;
+}

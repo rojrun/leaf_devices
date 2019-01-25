@@ -11,24 +11,24 @@
 }
 
 .input-field {
-    position: relative;
-    margin-top: 0.5rem;
-    margin-bottom: .5rem;
+    margin-top: 1px;
 }
 
-input:not([type]):focus:not([readonly]),
-input[type="text"]:not(.browser-default):focus:not([readonly]),
-textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid black;
-    -webkit-box-shadow: 0 1px 0 0 black;
-    box-shadow: 0 1px 0 0 black;
+.input-field[type=text] {
+    color: #063852;
+    position: relative;
+}
+
+input{
+    border-bottom: 1px solid #063852 !important;
+    box-shadow: 0 1px 0 0 #063852 !important;
 }
 
 input:focus {
-    border-bottom: 1px solid black !important;
-    box-shadow: 0 1px 0 0 black !important;
+    border-bottom: 1px solid #063852 !important;
+    box-shadow: 0 1px 0 0 #063852 !important;
 }
 
 label.active {
-    color: black;
+    color: #063852;
 }

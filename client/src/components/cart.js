@@ -8,25 +8,33 @@ class Cart extends Component {
         this.props.getCart();
     }
 
+
+
     render() {
-        console.log("props in CART:", this.props.cart);
         if(!this.props.cart.length){
-            return <h1>Your CART is empty</h1>;
+            return (
+                <div className="status spin">
+                    <div className="center comment cart_empty">CART EMPTY</div>
+                </div>
+            );
         }
 
-        const cart = this.props.cart.map( (item) => {
-            console.log("item:", item);
+        let total = 0;
+        let itemCount = 0;
+
+        const cart = this.props.cart.map( (item, i) => {
+            // console.log("item:", item);
+
+            total += item.price * item.quantity;
+            itemCount += item.quantity;
             return (
-                <tr>
+                <tr key={i}>
                     <td>{item.name}</td>
                     <td>{item.quantity}</td>
-                    <td className="right-align">${item.price/100}</td>
+                    <td>${item.price/100}</td>
                 </tr>
             );
         });
-
-        // const cartMeta = this.props;
-
 
         return (
             <div className="col s12">
@@ -36,29 +44,17 @@ class Cart extends Component {
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
-                            <th className="right-align">Price</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         {cart}
                     </tbody>
-
-                    <thead>
-                        <tr>
-                            <th>Total Quantity: </th>
-                            <th>Subtotal: </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>5</td>
-                            <td>$100</td>
-                        </tr>
-                    </tbody>
-
                 </table>
-                <div className="row center">
+                <div className="checkout container">
+                    <div className="total">Count Total: {itemCount}</div>
                     <button className="checkoutButton waves-effect waves-light btn">checkout</button>
+                    <div className="total">Total: ${total/100}</div>
                 </div>
             </div>
         );
@@ -68,7 +64,8 @@ class Cart extends Component {
 function mapStateToProps(state){
     console.log('Redux State from Cart Component:', state);
     return {
-        cart: state.getCart.all
+        // cart: state.makeCart.all,
+        cart: state.getCartMeta.single
     }
 }
 

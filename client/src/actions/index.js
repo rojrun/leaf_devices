@@ -9,30 +9,27 @@ export function getProducts() {
     }
 }
 
-export function addToCart(id, productQuantity) {
-    const resp = axios.post('/api/cart', {
-        product_id: id,
-        quantity: productQuantity
-    });
-    return {
-        type: types.ADDCART,
-        payload: resp
-    }
-}
-
-export function addCartMeta() {
-    const resp = axios.post('/api/cart-meta', {});
-    return {
-        type: types.ADDCARTMETA,
-        payload: resp
-    }
-}
-
-
 export function getCart() {
     const resp = axios.get('/api/cart');
     return {
         type: types.GETCART,
+        payload: resp
+    }
+}
+
+export function makeCart() {
+    const resp = axios.post('/api/cart');
+    return {
+        type: types.MAKECART,
+        payload: resp
+    }
+}
+
+export function getCartMeta() {
+    console.log('Get Cart Meta Data Called')
+    const resp = axios.get('/api/cart-meta');
+    return {
+        type: types.GETCARTMETA,
         payload: resp
     }
 }
@@ -47,6 +44,17 @@ export function addContactMessage( your_fname, your_lname, your_email, your_phon
     });
     return {
         type: types.ADDCONTACTUS,
+        payload: resp
+    }
+}
+
+export function addToCartMeta(id, productQuantity) {
+    const resp = axios.post('/api/cart-meta', {
+        product_id: id,
+        quantity: productQuantity
+    });
+    return {
+        type: types.ADDTOCARTMETA,
         payload: resp
     }
 }
