@@ -7,6 +7,11 @@
     background-color: #063852;
     border-radius: 6px;
     color: #F0810F;
-    margin-top: 2%;
-    width: 46%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.total {
+    color: #063852;
+    display: inline-block;
 }

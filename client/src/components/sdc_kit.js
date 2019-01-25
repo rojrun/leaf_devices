@@ -32,12 +32,15 @@ class SdcKit extends Component {
         console.log("at handleToCart props:", this.props);
         const productQuantity = this.state.productQuantity;
         const {id} = this.props.product;
-        if(!this.props.getCart.length){
-            this.props.makeCart();
-            this.props.getCart();
+        // if(!this.props.getCart.length){
+        //     this.props.makeCart();
+        //     this.props.getCart();
+        // }
+
+        if(productQuantity > 0) {
+            this.props.addToCartMeta(id, productQuantity);
         }
-        this.props.addToCartMeta(productQuantity, id);
-    }
+    };
 
     render() {
         const { name, price, href, style, image, id } = this.props.product;
@@ -61,7 +64,7 @@ class SdcKit extends Component {
                                 data-quantity="minus" data-field="quantity">-
                         </button>
                         <span className="center productQuantity" type="number" name="quantity"
-                              value={productQuantity} productId={id} onChange={() => {}}>{productQuantity}
+                              value={productQuantity} product_id={id} onChange={() => {}}>{productQuantity}
                         </span>
                         <button onClick={this.addCount} type="button"
                                 className="btn inputButtons waves-effect waves-light"
@@ -80,7 +83,7 @@ class SdcKit extends Component {
 function mapStateToProps(state){
     console.log('sdc kit -Redux State:', state);
     return {
-        addToCartMeta: state.addToCartMeta.all,
+        addToCartMeta: state.addToCartMeta.single,
         makeCart: state.makeCart.all,
         getCart: state.getCart
     }

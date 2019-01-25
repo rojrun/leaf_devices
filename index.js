@@ -20,7 +20,14 @@ app.get('/api/products', (req, res) => {
 });
 
 app.get('/api/cart', (req, res) => {
-    db.query(`SELECT c.id, customer_id FROM \`cart\` AS c`, (error, results) => {
+
+    const query = `SELECT p.name, p.price, i.quantity FROM cart AS c JOIN products AS p JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete"`;
+
+
+    db.query(query, (error, results) => {
+        console.log('Error:', error);
+        console.log('Results:', results);
+
         res.send({
             results: results
         });
@@ -56,18 +63,64 @@ app.get('/api/checkout', (req, res) => {
 
 app.post('/api/cart-meta', (req, res) => {
     const {product_id, quantity} = req.body;
-    db.query(`INSERT INTO \`cart-meta\` (cart_id, customer_id, product_id, product_name, quantity, price, gross_price)
-        SELECT c.id AS cart_id, c.customer_id AS customer_id, ${product_id} AS product_id, ${quantity} AS quantity, 
-          p.price AS price, p.price * ${quantity} AS gross_price FROM \`products\` AS p, \`cart\` AS c 
-        WHERE cart_id=${c.id}`, (error, results) => {
-        if(error){
-            res.send('failed');
+
+    db.query('SELECT * FROM `cart` WHERE `customer_id`=1 AND `status`="incomplete"', (error, result) => {
+        console.log('Cart Result:', result);
+
+        const inserSql = 'INSERT INTO `cart_meta` (`cart_id`, `customer_id`, `product_id`, `quantity`) VALUES (?, ?, ?, ?)';
+
+        if(!result.length){
+            db.query('INSERT INTO `cart` (customer_id, status) VALUES (1, "incomplete")', (error, result) => {
+                console.log(error);
+                console.log('Added cart:', result);
+
+                const cartId = result.insertId;
+
+                const inserts = [cartId, 1, product_id, quantity];
+
+                const sql = mysql.format(inserSql, inserts);
+
+                db.query(sql, (err, result) => {
+
+                    console.log('Added cart-meta:', result);
+
+                    res.send({
+                        success: true
+                    });
+                });
+            });
+
             return;
         }
-        res.send({
-            results: results
+
+        const [cart] = result;
+
+        const inserts = [cart.id, 1, product_id, quantity];
+
+        const sql = mysql.format(inserSql, inserts);
+
+        db.query(sql, (err, result) => {
+
+            console.log('Added cart-meta:', result);
+
+            res.send({
+                success: true
+            });
         });
     });
+
+    // db.query(`INSERT INTO \`cart-meta\` (cart_id, customer_id, product_id, product_name, quantity, price, gross_price)
+    //     SELECT c.id AS cart_id, c.customer_id AS customer_id, ${product_id} AS product_id, ${quantity} AS quantity,
+    //       p.price AS price, p.price * ${quantity} AS gross_price FROM \`products\` AS p, \`cart\` AS c
+    //     WHERE cart_id=${c.id}`, (error, results) => {
+    //     if(error){
+    //         res.send('failed');
+    //         return;
+    //     }
+    //     res.send({
+    //         results: results
+    //     });
+    // });
 });
 
 app.post('/api/cart', (req, res) => {

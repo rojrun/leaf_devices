@@ -1,21 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {makeCart} from '../actions';
+import {getCart} from '../actions';
 import '../assets/css/cart.css';
 
 class Cart extends Component {
     componentDidMount() {
-
-
-        // await this.props.getCart();
-    //     await this.props.addCartMeta();
-    //     await this.props.getCartMeta();
+        this.props.getCart();
     }
 
 
 
     render() {
-        console.log("props in CART:", this.props.cart);
         if(!this.props.cart.length){
             return (
                 <div className="status spin">
@@ -24,21 +19,22 @@ class Cart extends Component {
             );
         }
 
-        const cart = this.props.cart.map( (item) => {
-            console.log("item:", item);
+        let total = 0;
+        let itemCount = 0;
+
+        const cart = this.props.cart.map( (item, i) => {
+            // console.log("item:", item);
+
+            total += item.price * item.quantity;
+            itemCount += item.quantity;
             return (
-                <tr>
+                <tr key={i}>
                     <td>{item.name}</td>
                     <td>{item.quantity}</td>
-                    <td className="right-align">${item.price/100}</td>
+                    <td>${item.price/100}</td>
                 </tr>
             );
         });
-
-        console.log("props in CARTMETA:", this.props.cartMeta);
-        // const { total_quantity, subtotal } = this.props.cartMeta[0];
-        // console.log("total_quantity: ", total_quantity);
-        // console.log("subtotal: ", subtotal);
 
         return (
             <div className="col s12">
@@ -48,26 +44,17 @@ class Cart extends Component {
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
-                            <th className="right-align">Price</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         {cart}
                     </tbody>
-
-                    <thead>
-                        {/*<tr>*/}
-                            {/*<th>Total Quantity: </th>*/}
-                            {/*<td>{total_quantity}</td>*/}
-                        {/*</tr>*/}
-                        {/*<tr>*/}
-                            {/*<th>Subtotal: </th>*/}
-                            {/*<td>{subtotal}</td>*/}
-                        {/*</tr>*/}
-                    </thead>
                 </table>
-                <div className="row center">
+                <div className="checkout container">
+                    <div className="total">Count Total: {itemCount}</div>
                     <button className="checkoutButton waves-effect waves-light btn">checkout</button>
+                    <div className="total">Total: ${total/100}</div>
                 </div>
             </div>
         );
@@ -77,10 +64,9 @@ class Cart extends Component {
 function mapStateToProps(state){
     console.log('Redux State from Cart Component:', state);
     return {
-        cart: state.makeCart.all,
-        // cartMeta: state.getCartMeta.all
+        // cart: state.makeCart.all,
+        cart: state.getCartMeta.single
     }
 }
 
-// export default connect(mapStateToProps, { getCart, addCartMeta, getCartMeta })(Cart);
-export default connect(mapStateToProps, { makeCart})(Cart);
+export default connect(mapStateToProps, { getCart })(Cart);
