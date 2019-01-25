@@ -1,8 +1,9 @@
 export default {
     PRODUCTS: "products",
     ADDCART: "addCart",
+    MAKECART: "makeCart",
     GETCART: "getCart",
     ADDCONTACTUS: "addContactUs",
-    ADDCARTMETA: "addCartMeta",
+    ADDTOCARTMETA: "addCartToMeta",
     GETCARTMETA: "getCartMeta"
 };

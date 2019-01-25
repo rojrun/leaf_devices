@@ -62,29 +62,29 @@ class Contact extends Component {
                     <div className="row">
                         <div className="input-field col s6">
                             <input onChange={(e) => this.setState({your_fname: e.target.value})} value={your_fname} id="your_fname" type="text" className="validate" autoComplete="off"/>
-                            <label htmlFor="your_fname">Your First Name</label>
+                            <label htmlFor="your_fname" className="blue-text text-darken-4">Your First Name</label>
                         </div>
                         <div className="input-field col s6">
                             <input onChange={(e) => this.setState({your_lname: e.target.value})} value={your_lname} id="your_lname" type="text" className="validate" autoComplete="off"/>
-                            <label htmlFor="your_lname">Your Last Name</label>
+                            <label htmlFor="your_lname" className="blue-text text-darken-4">Your Last Name</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
                             <input onChange={(e) => this.setState({your_email: e.target.value})} value={your_email} id="your_email" type="text" className="validate" autoComplete="off"/>
-                            <label htmlFor="your_email">Your Email</label>
+                            <label htmlFor="your_email" className="blue-text text-darken-4">Your Email</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
                             <input onChange={(e) => this.setState({your_phone_number: e.target.value})} value={your_phone_number} id="your_phone_number" type="text" className="validate" autoComplete="off"/>
-                            <label htmlFor="your_phone_number">Your Phone Number</label>
+                            <label htmlFor="your_phone_number" className="blue-text text-darken-4">Your Phone Number</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
                             <input onChange={(e) => this.setState({your_message: e.target.value})} value={your_message} id="your_message" type="text" className="validate" autoComplete="off"/>
-                            <label htmlFor="your_message">Your Message</label>
+                            <label htmlFor="your_message" className="blue-text text-darken-4">Your Message</label>
                         </div>
                     </div>
                     <div className="row">

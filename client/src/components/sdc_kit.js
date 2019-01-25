@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {addToCart} from '../actions';
+import {addToCartMeta, makeCart, getCart} from '../actions';
 import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
@@ -32,7 +32,11 @@ class SdcKit extends Component {
         console.log("at handleToCart props:", this.props);
         const productQuantity = this.state.productQuantity;
         const {id} = this.props.product;
-        this.props.addToCart(id, productQuantity);
+        if(!this.props.getCart.length){
+            this.props.makeCart();
+            this.props.getCart();
+        }
+        this.props.addToCartMeta(productQuantity, id);
     }
 
     render() {
@@ -76,8 +80,10 @@ class SdcKit extends Component {
 function mapStateToProps(state){
     console.log('sdc kit -Redux State:', state);
     return {
-        addCart: state.addCart.all
+        addToCartMeta: state.addToCartMeta.all,
+        makeCart: state.makeCart.all,
+        getCart: state.getCart
     }
 }
 
-export default connect(mapStateToProps, { addToCart })(SdcKit);
+export default connect(mapStateToProps, { addToCartMeta, makeCart, getCart })(SdcKit);
