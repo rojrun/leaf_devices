@@ -20,14 +20,10 @@ app.get('/api/products', (req, res) => {
 });
 
 app.get('/api/cart', (req, res) => {
-
-    const query = `SELECT p.name, p.price, i.quantity FROM cart AS c JOIN products AS p JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete"`;
-
-
+    const query = `SELECT p.name, p.price, i.quantity FROM cart AS c JOIN products AS p JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=1`;
     db.query(query, (error, results) => {
         console.log('Error:', error);
         console.log('Results:', results);
-
         res.send({
             results: results
         });
@@ -44,9 +40,7 @@ app.get('/api/cart-meta', (req, res) => {
 });
 
 app.get('/api/checkout', (req, res) => {
-    db.query('SELECT c.cart_id, c.quantity, p.name, p.price, c.quantity * p.price AS subtotal, tax, shipping,' +
-        ' subtotal + tax + shipping AS total, checkout_date FROM `cart` AS c ' +
-        'INNER JOIN `products` AS p INNER JOIN `checkout`', (error, results) => {
+    db.query(`SELECT subtotal, tax, shipping, total FROM  \`checkout\``, (error, results) => {
         res.send({
             results: results
         });
@@ -108,19 +102,6 @@ app.post('/api/cart-meta', (req, res) => {
             });
         });
     });
-
-    // db.query(`INSERT INTO \`cart-meta\` (cart_id, customer_id, product_id, product_name, quantity, price, gross_price)
-    //     SELECT c.id AS cart_id, c.customer_id AS customer_id, ${product_id} AS product_id, ${quantity} AS quantity,
-    //       p.price AS price, p.price * ${quantity} AS gross_price FROM \`products\` AS p, \`cart\` AS c
-    //     WHERE cart_id=${c.id}`, (error, results) => {
-    //     if(error){
-    //         res.send('failed');
-    //         return;
-    //     }
-    //     res.send({
-    //         results: results
-    //     });
-    // });
 });
 
 app.post('/api/cart', (req, res) => {
@@ -135,40 +116,47 @@ app.post('/api/cart', (req, res) => {
     });
 });
 
+app.post('/api/checkout', (req, res) => {
+    const user_id = 1;
 
-// app.post('/api/cart-meta', (req, res) => {
-//     console.log('cart-meta post: ', req.body);
-//     db.query(`INSERT INTO \`cart_meta\` (customer_id, total_quantity, subtotal)
-//         SELECT c.customer_id AS customer_id, SUM(c.quantity) AS total_quantity, SUM(c.gross_price) AS subtotal
-//         FROM \`cart\` AS c WHERE c.customer_id = '1'`, (error, results) => {
-//         if(error){
-//             res.send('failed');
-//             return;
-//         }
-//         res.send({
-//             results: results
-//         });
-//     });
-// });
+    const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${user_id}`;
 
-// INSERT INTO `checkout` (customer_id, subtotal, tax, shipping, total)
-// SELECT c.customer_id AS customer_id, SUM(c.gross_price) AS subtotal, subtotal * 0.0775 AS tax, 0 AS shipping, subtotal + tax + shipping AS total
-// FROM `cart` AS c
+    db.query(query, (error, results) => {
+        if(error){
+            res.send('failed');
+            return;
+        }
 
-// app.post('/api/checkout', (req, res) => {
-//     db.query(`INSERT INTO \`checkout\` (customer_id, subtotal, tax, shipping, total)
-//         SELECT c.customer_id AS customer_id, SUM(c.gross_price) AS subtotal,
-//         subtotal * 0.0775 AS tax, 0 AS shipping, subtotal + tax + shipping AS total
-//         FROM \`cart\` AS c`, (error, results) => {
-//         if(error){
-//             res.send('failed');
-//             return;
-//         }
-//         res.send({
-//             results: results
-//         });
-//     });
-// });
+        console.log('Results:', results);
+
+        if(results.length){
+            let subTotal = 0;
+            let cartId = results[0].cartId;
+            const tax = .0775;
+            const shipping = 3;
+
+
+            results.map(item => {
+                subTotal += item.quantity * item.price;
+            });
+
+            const total = (subTotal * tax) + subTotal + shipping;
+
+            const sql = `INSERT INTO ?? (cart_id, customer_id, subtotal, tax, shipping, total, checkout_date) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+            const inserts = [ 'checkout', cartId, user_id, subTotal, subTotal * tax, shipping, total, new Date() ];
+
+            const checkoutAdd = mysql.format(sql, inserts);
+
+            db.query(checkoutAdd, (err, results) => {
+                console.log('Results:', results);
+
+                res.send('It Worked!');
+            });
+        } else {
+            res.status(422).send('No items in cart');
+        }
+    });
+});
 
 app.post('/api/contact-message', (req, res) => {
     const { first_name, last_name, email, phone_number, message } = req.body;

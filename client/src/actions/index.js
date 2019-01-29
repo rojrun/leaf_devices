@@ -17,19 +17,28 @@ export function getCart() {
     }
 }
 
-export function makeCart() {
-    const resp = axios.post('/api/cart');
+export function getCartMeta() {
+    console.log('Get Cart Meta Data Called');
+    const resp = axios.get('/api/cart-meta');
     return {
-        type: types.MAKECART,
+        type: types.GETCARTMETA,
         payload: resp
     }
 }
 
-export function getCartMeta() {
-    console.log('Get Cart Meta Data Called')
-    const resp = axios.get('/api/cart-meta');
+export function getCheckout() {
+    console.log('getCheckout data called');
+    const resp = axios.get('/api/checkout');
     return {
-        type: types.GETCARTMETA,
+        type: types.GETCHECKOUT,
+        payload: resp
+    }
+}
+
+export function makeCart() {
+    const resp = axios.post('/api/cart');
+    return {
+        type: types.MAKECART,
         payload: resp
     }
 }
@@ -55,6 +64,16 @@ export function addToCartMeta(id, productQuantity) {
     });
     return {
         type: types.ADDTOCARTMETA,
+        payload: resp
+    }
+}
+
+export function addToCheckout(subTotal) {
+    const resp = axios.post('/api/checkout', {
+        subtotal: subTotal
+    });
+    return {
+        type: types.ADDTOCHECKOUT,
         payload: resp
     }
 }

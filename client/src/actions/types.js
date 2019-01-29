@@ -5,5 +5,7 @@ export default {
     GETCART: "getCart",
     ADDCONTACTUS: "addContactUs",
     ADDTOCARTMETA: "addCartToMeta",
-    GETCARTMETA: "getCartMeta"
+    GETCARTMETA: "getCartMeta",
+    ADDTOCHECKOUT: "addToCheckout",
+    GETCHECKOUT: "getCheckout"
 };
