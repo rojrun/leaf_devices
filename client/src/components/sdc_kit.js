@@ -28,14 +28,8 @@ class SdcKit extends Component {
     }
 
     handleAddToCart = () => {
-        console.log("at handleAddToCart state:", this.state);
-        console.log("at handleToCart props:", this.props);
         const productQuantity = this.state.productQuantity;
         const {id} = this.props.product;
-        // if(!this.props.getCart.length){
-        //     this.props.makeCart();
-        //     this.props.getCart();
-        // }
 
         if(productQuantity > 0) {
             this.props.addToCartMeta(id, productQuantity);

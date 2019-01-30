@@ -40,9 +40,9 @@ app.get('/api/cart-meta', (req, res) => {
 });
 
 app.get('/api/checkout', (req, res) => {
-    db.query(`SELECT subtotal, tax, shipping, total FROM  \`checkout\``, (error, results) => {
+    db.query(`SELECT total_quantity, subtotal, tax, shipping, total FROM  \`checkout\``, (error, results) => {
         res.send({
-            results: results
+            results: results[0] || {}
         });
     });
 });
@@ -130,25 +130,27 @@ app.post('/api/checkout', (req, res) => {
         console.log('Results:', results);
 
         if(results.length){
+            let totalQuantity = 0;
             let subTotal = 0;
             let cartId = results[0].cartId;
             const tax = .0775;
-            const shipping = 3;
+            const shipping = 300;
 
 
-            results.map(item => {
+            results.map( item => {
+                totalQuantity += item.quantity;
                 subTotal += item.quantity * item.price;
             });
 
             const total = (subTotal * tax) + subTotal + shipping;
 
-            const sql = `INSERT INTO ?? (cart_id, customer_id, subtotal, tax, shipping, total, checkout_date) VALUES (?, ?, ?, ?, ?, ?, ?)`;
-            const inserts = [ 'checkout', cartId, user_id, subTotal, subTotal * tax, shipping, total, new Date() ];
+            const sql = `INSERT INTO ?? (cart_id, customer_id, total_quantity, subtotal, tax, shipping, total, checkout_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+            const inserts = [ 'checkout', cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping, total, new Date() ];
 
             const checkoutAdd = mysql.format(sql, inserts);
 
             db.query(checkoutAdd, (err, results) => {
-                console.log('Results:', results);
+                console.log('Post to checkout Results:', results);
 
                 res.send('It Worked!');
             });
