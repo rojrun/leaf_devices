@@ -30,7 +30,7 @@ export function getCheckout() {
     console.log('getCheckout data called');
     const resp = axios.get('/api/checkout');
     return {
-        type: types.GETCHECKOUT,
+        type: types.SUMMARY,
         payload: resp
     }
 }

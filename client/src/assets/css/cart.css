@@ -3,12 +3,10 @@
     font-size: 2em;
 }
 
-.checkoutButton {
-    background-color: #063852;
-    border-radius: 6px;
-    color: #F0810F;
-    margin-left: 5%;
-    margin-right: 5%;
+.checkout {
+    color: #1543DC;
+    font-size: 2em;
+    top: 4%;
 }
 
 .total {
