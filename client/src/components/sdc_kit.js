@@ -24,7 +24,6 @@ class SdcKit extends Component {
         this.setState({
             productQuantity: this.state.productQuantity + 1
         });
-        console.log("addCount state:", this.state);
     }
 
     handleAddToCart = () => {

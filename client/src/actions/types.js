@@ -7,5 +7,6 @@ export default {
     ADDTOCARTMETA: "addCartToMeta",
     GETCARTMETA: "getCartMeta",
     ADDTOCHECKOUT: "addToCheckout",
-    SUMMARY: "summary"
+    SUMMARY: "summary",
+    UPDATECARTMETAQUANTITY: "updateCartMetaQuantity"
 };

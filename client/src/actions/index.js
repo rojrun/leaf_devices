@@ -77,3 +77,13 @@ export function addToCheckout(subTotal) {
         payload: resp
     }
 }
+
+export function updateCartMetaQuantity(cartMetaId, productQuantity) {
+    const resp = axios.put('/api/cart-meta/product/' + {cartMetaId}, {
+        quantity: productQuantity
+    });
+    return {
+        type: types.UPDATECARTMETAQUANTITY,
+        payload: resp
+    }
+}
