@@ -8,7 +8,7 @@ class SdcKit extends Component {
         productQuantity: 0
     }
 
-    subtractCount = () =>{
+    handleSubtractCount = () =>{
         if(this.state.productQuantity < 1){
             this.setState({
                productQuantity: 0
@@ -20,7 +20,7 @@ class SdcKit extends Component {
         }
     }
 
-    addCount = () => {
+    handleAddCount = () => {
         this.setState({
             productQuantity: this.state.productQuantity + 1
         });
@@ -52,14 +52,14 @@ class SdcKit extends Component {
                         ${price/100}
                     </div>
                     <div className="center row quantityField">
-                        <button onClick={this.subtractCount} type="button"
+                        <button onClick={this.handleSubtractCount} type="button"
                                 className="btn inputButtons waves-effect waves-light"
                                 data-quantity="minus" data-field="quantity">-
                         </button>
                         <span className="center productQuantity" type="number" name="quantity"
                               value={productQuantity} product_id={id} onChange={() => {}}>{productQuantity}
                         </span>
-                        <button onClick={this.addCount} type="button"
+                        <button onClick={this.handleAddCount} type="button"
                                 className="btn inputButtons waves-effect waves-light"
                                 data-quantity="add" data-field="quantity">+
                         </button>

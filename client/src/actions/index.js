@@ -87,3 +87,15 @@ export function updateCartMetaQuantity(cartMetaId, productQuantity) {
         payload: resp
     }
 }
+
+export function deleteCartMetaItem(cartMetaId) {
+    const resp = axios.delete('/api/cart-meta/product/' + {cartMetaId}, {
+        data: {
+            id: cartMetaId
+        }
+    });
+    return {
+        type: types.DELETECARTMETAITEM,
+        payload: resp
+    }
+}

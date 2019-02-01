@@ -1,36 +1,46 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getCart} from '../actions';
+import {getCart, deleteCartMetaItem, updateCartMetaQuantity} from '../actions';
 import Summary from './summary';
 import '../assets/css/cart.css';
 
 class Cart extends Component {
-        componentDidMount() {
+    componentDidMount() {
         this.props.getCart();
     }
 
-    // subtractCount = () =>{
-    //     if(this.state.productQuantity < 1){
-    //         this.setState({
-    //             productQuantity: 0
-    //         });
-    //     } else {
-    //         this.setState({
-    //             productQuantity: this.state.productQuantity - 1
-    //         });
-    //     }
-    // }
-    //
-    // addCount = () => {
-    //     this.setState({
-    //         productQuantity: this.state.productQuantity + 1
-    //     });
-    // }
+    handleSubtractCount = (id, quantity) => {
+        if(quantity < 1) {
+            quantity = 0;
+        } else {
+            quantity--;
+        }
+        this.props.updateCartMetaQuantity(id, quantity);
+        this.props.getCart();
+        // if(this.state.productQuantity < 1){
+        //     this.setState({
+        //         productQuantity: 0
+        //     });
+        // } else {
+        //     this.setState({
+        //         productQuantity: this.state.productQuantity - 1
+        //     });
+        // }
+    }
 
-    removeItem() {
-        //remove item with cart-meta id
-        //DELETE FROM `cart_meta` WHERE id=22
+    handleAddCount = (id, quantity) => {
+        quantity++;
+        this.props.updateCartMetaQuantity(id, quantity);
+        this.props.getCart();
+        // this.setState({
+        //     productQuantity: this.state.productQuantity + 1
+        // });
+    }
+
+    handleDeleteItem = (id) => {
+        this.props.deleteCartMetaItem(id);
+        this.props.getCart();
     }
 
     render() {
@@ -43,26 +53,23 @@ class Cart extends Component {
         }
 
         const cart = this.props.cart.map( (item, i) => {
-            // this.setState({
-            //     productQuantity: item.quantity
-            // });
-
+            const {id, quantity, name, price} = item;
             return (
                 <tr key={i}>
-                    <td onClick={this.removeItem} className="material-icons clear">clear</td>
-                    <td>{item.name}</td>
+                    <td onClick={ () => this.handleDeleteItem(id) }  className="material-icons clear">clear</td>
+                    <td>{name}</td>
                     <td className="row center">
-                        <button onClick={this.subtractCount} type="button"
+                        <button onClick={ () => this.handleSubtractCount(id, quantity) } type="button"
                                 className="btn inputButtons waves-effect waves-light"
                                 data-quantity="add" data-field="quantity">-
                         </button>
-                        {item.quantity}
-                        <button onClick={this.addCount} type="button"
+                        {quantity}
+                        <button onClick={ () => this.handleAddCount(id, quantity) } type="button"
                                 className="btn inputButtons waves-effect waves-light"
                                 data-quantity="add" data-field="quantity">+
                         </button>
                     </td>
-                    <td className="right-align">${item.price/100}</td>
+                    <td className="right-align">${price/100}</td>
                 </tr>
             );
         });
@@ -87,7 +94,6 @@ class Cart extends Component {
                         </table>
                         <div className="row center">
                             <Link className="btn inputButtons waves-effect waves-light shop_update" to="/">back to shopping</Link>
-                            <button className="btn inputButtons waves-effect waves-light shop_update" type="button">update</button>
                         </div>
                     </div>
                     <div className="col s4">
@@ -108,4 +114,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { getCart })(Cart);
+export default connect(mapStateToProps, { getCart, deleteCartMetaItem, updateCartMetaQuantity })(Cart);

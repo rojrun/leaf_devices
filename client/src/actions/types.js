@@ -8,5 +8,6 @@ export default {
     GETCARTMETA: "getCartMeta",
     ADDTOCHECKOUT: "addToCheckout",
     SUMMARY: "summary",
-    UPDATECARTMETAQUANTITY: "updateCartMetaQuantity"
+    UPDATECARTMETAQUANTITY: "updateCartMetaQuantity",
+    DELETECARTMETAITEM: "deleteCartMetaItem"
 };

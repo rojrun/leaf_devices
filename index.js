@@ -20,10 +20,8 @@ app.get('/api/products', (req, res) => {
 });
 
 app.get('/api/cart', (req, res) => {
-    const query = `SELECT p.name, p.price, i.quantity FROM cart AS c JOIN products AS p JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=1`;
+    const query = `SELECT i.id AS id, p.name, p.price, i.quantity FROM cart AS c JOIN products AS p JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=1`;
     db.query(query, (error, results) => {
-        console.log('Error:', error);
-        console.log('Results:', results);
         res.send({
             results: results
         });
@@ -43,8 +41,8 @@ app.post('/api/cart', (req, res) => {
 });
 
 app.get('/api/cart-meta', (req, res) => {
-    db.query(`SELECT c.id AS cart_id, c.customer_id AS customer_id, p.id AS product_id, p.name AS product_name,
-        quantity, p.price AS price, quantity * price AS gross_price FROM \`cart\` AS c, \`products\` AS p, \`cart-meta\`  `, (error, results) => {
+    db.query(`SELECT cm.id AS id, c.id AS cart_id, c.customer_id AS customer_id, p.id AS product_id, p.name AS product_name,
+        quantity, p.price AS price, quantity * price AS gross_price FROM \`cart\` AS c, \`products\` AS p, \`cart_meta\` AS cm`, (error, results) => {
         res.send({
             results: results
         });
@@ -83,9 +81,22 @@ app.post('/api/cart-meta', (req, res) => {
     });
 });
 
+app.delete('/api/cart-meta/product/:id', (req, res) => {
+    const {id} = req.body;
+    if(typeof id !== "number"){
+        res.send(422);
+    }
+    db.query(`DELETE FROM \`cart_meta\` WHERE id = ${id}`, (error, results) => {
+        res.send({
+            results: results
+        });
+    });
+});
+
 app.put('/api/cart-meta/product/:id', (req, res) => {
-    const {} = req.body;
-    db.query(`UPDATE \`cart_meta\` SET \`quantity\`=5 WHERE \`id\`=22`, (error, results) => {
+    console.log('put cartmeta row: ', req.body);
+    const {quantity} = req.body;
+    db.query(`UPDATE \`cart_meta\` SET \`quantity\` = ${quantity} WHERE \`id\`= ${quantity}`, (error, results) => {
         res.send({
             results: results
         });
