@@ -34,3 +34,11 @@ table.rounded tr:last-child td:first-child {
 table.rounded tr:last-child td:last-child {
     border-radius: 0 0 6px 0;
 }
+
+.cartAddBtn {
+    margin-left: 8%;
+}
+
+.cartMinusBtn {
+    margin-right: 8%;
+}

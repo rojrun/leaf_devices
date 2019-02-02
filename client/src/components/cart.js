@@ -18,24 +18,12 @@ class Cart extends Component {
         }
         this.props.updateCartMetaQuantity(id, quantity);
         this.props.getCart();
-        // if(this.state.productQuantity < 1){
-        //     this.setState({
-        //         productQuantity: 0
-        //     });
-        // } else {
-        //     this.setState({
-        //         productQuantity: this.state.productQuantity - 1
-        //     });
-        // }
     }
 
     handleAddCount = (id, quantity) => {
         quantity++;
         this.props.updateCartMetaQuantity(id, quantity);
         this.props.getCart();
-        // this.setState({
-        //     productQuantity: this.state.productQuantity + 1
-        // });
     }
 
     handleDeleteItem = (id) => {
@@ -60,12 +48,12 @@ class Cart extends Component {
                     <td>{name}</td>
                     <td className="row center">
                         <button onClick={ () => this.handleSubtractCount(id, quantity) } type="button"
-                                className="btn inputButtons waves-effect waves-light"
+                                className="btn inputButtons cartMinusBtn waves-effect waves-light"
                                 data-quantity="add" data-field="quantity">-
                         </button>
                         {quantity}
                         <button onClick={ () => this.handleAddCount(id, quantity) } type="button"
-                                className="btn inputButtons waves-effect waves-light"
+                                className="btn inputButtons cartAddBtn waves-effect waves-light"
                                 data-quantity="add" data-field="quantity">+
                         </button>
                     </td>

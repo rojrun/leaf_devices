@@ -95,23 +95,23 @@ app.delete('/api/cart-meta/product/:id', (req, res) => {
 
 app.put('/api/cart-meta/product/:id', (req, res) => {
     console.log('put cartmeta row: ', req.body);
-    const {quantity} = req.body;
-    db.query(`UPDATE \`cart_meta\` SET \`quantity\` = ${quantity} WHERE \`id\`= ${quantity}`, (error, results) => {
+    const {id, quantity} = req.body;
+    db.query(`UPDATE \`cart_meta\` SET \`quantity\` = ${quantity} WHERE \`id\`= ${id}`, (error, results) => {
         res.send({
             results: results
         });
     });
 });
 
-app.get('/api/checkout', (req, res) => {
-    db.query(`SELECT total_quantity, subtotal, tax, shipping, total FROM  \`checkout\``, (error, results) => {
+app.get('/api/summary', (req, res) => {
+    db.query(`SELECT total_quantity, subtotal, tax, shipping, total FROM  \`summary\``, (error, results) => {
         res.send({
             results: results[0] || {}
         });
     });
 });
 
-app.post('/api/checkout', (req, res) => {
+app.post('/api/summary', (req, res) => {
     const user_id = 1;
 
     const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${user_id}`;
@@ -137,12 +137,12 @@ app.post('/api/checkout', (req, res) => {
             });
 
             const total = (subTotal * tax) + subTotal + shipping;
-            const sql = `INSERT INTO ?? (cart_id, customer_id, total_quantity, subtotal, tax, shipping, total, checkout_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-            const inserts = [ 'checkout', cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping, total, new Date() ];
-            const checkoutAdd = mysql.format(sql, inserts);
+            const sql = `INSERT INTO ?? (cart_id, customer_id, total_quantity, subtotal, tax, shipping, total, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+            const inserts = [ 'summary', cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping, total, new Date() ];
+            const summaryAdd = mysql.format(sql, inserts);
 
-            db.query(checkoutAdd, (err, results) => {
-                console.log('Post to checkout Results:', results);
+            db.query(summaryAdd, (err, results) => {
+                console.log('Post to summary Results:', results);
 
                 res.send('It Worked!');
             });

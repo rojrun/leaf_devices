@@ -7,8 +7,8 @@ const DEFAULT_STATE = {
 
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type){
-        case types.ADDTOCHECKOUT:
-            console.log("ADDTOCHECKOUT:", action.payload.data.results);
+        case types.ADDTOSUMMARY:
+            console.log("ADDTOSUMMARY:", action.payload.data.results);
             return {...state, single: action.payload.data.results};
         default:
             return state;
