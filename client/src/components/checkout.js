@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../assets/css/checkout.css';
-import { addToCheckout } from '../actions';
+
 
 class Checkout extends Component {
 

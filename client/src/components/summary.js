@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../assets/css/summary.css';
-import {addToCheckout, getCheckout} from '../actions';
+import {addToSummary, getSummary} from '../actions';
 
 class Summary extends Component {
 
     componentDidMount() {
-        this.props.getCheckout();
+        this.props.addToSummary();
+        this.props.getSummary();
     }
 
     handleCheckout = () => {
-        this.props.addToCheckout();
+
     }
 
     render() {
@@ -37,4 +38,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { addToCheckout, getCheckout })(Summary);
+export default connect(mapStateToProps, { addToSummary, getSummary })(Summary);

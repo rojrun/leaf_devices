@@ -6,6 +6,8 @@ export default {
     ADDCONTACTUS: "addContactUs",
     ADDTOCARTMETA: "addCartToMeta",
     GETCARTMETA: "getCartMeta",
-    ADDTOCHECKOUT: "addToCheckout",
-    SUMMARY: "summary"
+    ADDTOSUMMARY: "addToSummary",
+    SUMMARY: "summary",
+    UPDATECARTMETAQUANTITY: "updateCartMetaQuantity",
+    DELETECARTMETAITEM: "deleteCartMetaItem"
 };

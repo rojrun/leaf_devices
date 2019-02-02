@@ -26,9 +26,9 @@ export function getCartMeta() {
     }
 }
 
-export function getCheckout() {
-    console.log('getCheckout data called');
-    const resp = axios.get('/api/checkout');
+export function getSummary() {
+    console.log('getSummary (getCheckout) data called');
+    const resp = axios.get('/api/summary');
     return {
         type: types.SUMMARY,
         payload: resp
@@ -68,12 +68,34 @@ export function addToCartMeta(id, productQuantity) {
     }
 }
 
-export function addToCheckout(subTotal) {
-    const resp = axios.post('/api/checkout', {
-        subtotal: subTotal
+export function addToSummary() {
+    console.log('addToSummary axios post');
+    const resp = axios.post('/api/summary');
+    return {
+        type: types.ADDTOSUMMARY,
+        payload: resp
+    }
+}
+
+export function updateCartMetaQuantity(cartMetaId, productQuantity) {
+    const resp = axios.put('/api/cart-meta/product/' + {cartMetaId}, {
+        id: cartMetaId,
+        quantity: productQuantity
     });
     return {
-        type: types.ADDTOCHECKOUT,
+        type: types.UPDATECARTMETAQUANTITY,
+        payload: resp
+    }
+}
+
+export function deleteCartMetaItem(cartMetaId) {
+    const resp = axios.delete('/api/cart-meta/product/' + {cartMetaId}, {
+        data: {
+            id: cartMetaId
+        }
+    });
+    return {
+        type: types.DELETECARTMETAITEM,
         payload: resp
     }
 }

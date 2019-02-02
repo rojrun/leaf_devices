@@ -46,8 +46,6 @@
     .price {
 
     }
-
-
 }
 
 .prodImage {
@@ -71,19 +69,6 @@
     font-size: 2em;
 }
 
-/*input[type=number]:not(.browser-default) {*/
-    /*background-color: #F0810F;*/
-    /*box-shadow: none;*/
-    /*border-bottom: none;*/
-    /*border-radius: 6px;*/
-    /*color: #063852;*/
-    /*height: 2rem;*/
-    /*margin-left: 3%;*/
-    /*width: 20%;*/
-/*}*/
-
-
-
 .inputButtons, .inputSubmit {
     background-color: #063852;
     border-radius: 6px;
@@ -104,4 +89,8 @@
     margin-left: 3%;
     padding: 2% 5%;
     width: 2%;
+}
+
+.btn:hover {
+    background-color: #006400;
 }
