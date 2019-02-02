@@ -111,10 +111,45 @@ app.get('/api/summary', (req, res) => {
     });
 });
 
+
+// app.post('/api/summary', (req, res) => {
+//     const user_id = 1;
+//
+//     db.query(`SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p
+//         JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${user_id}`, (error, result) => {
+//         const inserSql = 'INSERT INTO `cart_meta` (`cart_id`, `customer_id`, `product_id`, `quantity`) VALUES (?, ?, ?, ?)';
+//
+//         if(!result.length){
+//             db.query('INSERT INTO `cart` (customer_id, status) VALUES (1, "incomplete")', (error, result) => {
+//                 const cartId = result.insertId;
+//                 const inserts = [cartId, 1, product_id, quantity];
+//                 const sql = mysql.format(inserSql, inserts);
+//
+//                 db.query(sql, (err, result) => {
+//                     res.send({
+//                         success: true
+//                     });
+//                 });
+//             });
+//             return;
+//         }
+//         const [cart] = result;
+//         const inserts = [cart.id, 1, product_id, quantity];
+//         const sql = mysql.format(inserSql, inserts);
+//         db.query(sql, (err, result) => {
+//             console.log('Added cart-meta:', result);
+//             res.send({
+//                 success: true
+//             });
+//         });
+//     });
+// });
+
 app.post('/api/summary', (req, res) => {
     const user_id = 1;
 
-    const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${user_id}`;
+    const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p 
+        JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${user_id}`;
 
     db.query(query, (error, results) => {
         if(error){
