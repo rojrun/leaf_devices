@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getCart, deleteCartMetaItem, updateCartMetaQuantity} from '../actions';
+import {getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary} from '../actions';
 import Summary from './summary';
 import '../assets/css/cart.css';
 
@@ -18,17 +18,29 @@ class Cart extends Component {
         }
         this.props.updateCartMetaQuantity(id, quantity);
         this.props.getCart();
+
+        const summary_id = this.props.summary.id;
+        this.props.updateSummary(summary_id);
+        this.props.getSummary();
     }
 
     handleAddCount = (id, quantity) => {
         quantity++;
         this.props.updateCartMetaQuantity(id, quantity);
         this.props.getCart();
+
+        const summary_id = this.props.summary.id;
+        this.props.updateSummary(summary_id);
+        this.props.getSummary();
     }
 
-    handleDeleteItem = (id) => {
-        this.props.deleteCartMetaItem(id);
+    handleDeleteItem = (id, quantity) => {
+        this.props.deleteCartMetaItem(id, quantity);
         this.props.getCart();
+
+        const summary_id = this.props.summary.id;
+        this.props.updateSummary(summary_id);
+        this.props.getSummary();
     }
 
     render() {
@@ -49,7 +61,7 @@ class Cart extends Component {
                     <td className="row center">
                         <button onClick={ () => this.handleSubtractCount(id, quantity) } type="button"
                                 className="btn inputButtons cartMinusBtn waves-effect waves-light"
-                                data-quantity="add" data-field="quantity">-
+                                data-quantity="subtract" data-field="quantity">-
                         </button>
                         {quantity}
                         <button onClick={ () => this.handleAddCount(id, quantity) } type="button"
@@ -97,9 +109,10 @@ function mapStateToProps(state){
     console.log('Redux State from Cart Component:', state);
     return {
         // cart: state.makeCart.all,
-        cart: state.getCartMeta.single
+        cart: state.getCartMeta.single,
+        summary: state.summary.single
         // getCheckout: state.getCheckout.single
     }
 }
 
-export default connect(mapStateToProps, { getCart, deleteCartMetaItem, updateCartMetaQuantity })(Cart);
+export default connect(mapStateToProps, { getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary })(Cart);
