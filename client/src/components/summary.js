@@ -11,7 +11,7 @@ class Summary extends Component {
     }
 
     handleCheckout = () => {
-
+        console.log("handleCheckout clicked");
     }
 
     render() {

@@ -99,3 +99,13 @@ export function deleteCartMetaItem(cartMetaId) {
         payload: resp
     }
 }
+
+export function updateSummary(summaryId) {
+    const resp = axios.put('/api/summary/' + {summaryId}, {
+        id: summaryId
+    });
+    return {
+        type: types.UPDATESUMMARY,
+        payload: resp
+    }
+}

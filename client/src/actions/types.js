@@ -9,5 +9,6 @@ export default {
     ADDTOSUMMARY: "addToSummary",
     SUMMARY: "summary",
     UPDATECARTMETAQUANTITY: "updateCartMetaQuantity",
-    DELETECARTMETAITEM: "deleteCartMetaItem"
+    DELETECARTMETAITEM: "deleteCartMetaItem",
+    UPDATESUMMARY: "updateSummary"
 };
