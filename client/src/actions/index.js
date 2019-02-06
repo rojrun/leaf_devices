@@ -10,6 +10,7 @@ export function getProducts() {
 }
 
 export function getCart() {
+    console.log('GetCart Data Called from actions');
     const resp = axios.get('/api/cart');
     return {
         type: types.GETCART,
@@ -27,7 +28,7 @@ export function getCartMeta() {
 }
 
 export function getSummary() {
-    console.log('getSummary (getCheckout) data called');
+    console.log('getSummary data called');
     const resp = axios.get('/api/summary');
     return {
         type: types.SUMMARY,

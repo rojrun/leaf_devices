@@ -35,7 +35,6 @@ class ProductCarousel extends Component {
         }
 
         const products = this.props.products.map( (product) => {
-            console.log('Product:', product);
             return <SdcKit key={product.href} product={product}/>
         });
 

@@ -5,7 +5,8 @@ import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
     state = {
-        productQuantity: 0
+        productQuantity: 0,
+        pulse: ""
     }
 
     handleSubtractCount = () =>{
@@ -32,6 +33,9 @@ class SdcKit extends Component {
 
         if(productQuantity > 0) {
             this.props.addToCartMeta(id, productQuantity);
+            this.setState({
+                pulse: "pulse"
+            });
         }
     };
 
