@@ -8,6 +8,7 @@ import addToCartMetaReducer from './addToCartMeta_reducer';
 import getCartMetaReducer from './getCartMeta_reducer';
 import addToSummaryReducer from './addToSummary_reducer';
 import summaryReducer from './summary_reducer';
+import addCartAlertReducer from './addCartAlert_reducer';
 
 const rootReducer = combineReducers({
     // form: formReducer,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     addToCartMeta: addToCartMetaReducer,
     getCartMeta: getCartMetaReducer,
     addToSummary: addToSummaryReducer,
-    summary: summaryReducer
+    summary: summaryReducer,
+    addCartAlert: addCartAlertReducer
 });
 
 export default rootReducer;

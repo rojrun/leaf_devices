@@ -110,3 +110,10 @@ export function updateSummary(summaryId) {
         payload: resp
     }
 }
+
+export function addCartAlert() {
+    return {
+        type: types.ADDCARTALERT,
+        cartAlert: "pulse"
+    }
+}    

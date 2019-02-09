@@ -10,5 +10,6 @@ export default {
     SUMMARY: "summary",
     UPDATECARTMETAQUANTITY: "updateCartMetaQuantity",
     DELETECARTMETAITEM: "deleteCartMetaItem",
-    UPDATESUMMARY: "updateSummary"
+    UPDATESUMMARY: "updateSummary",
+    ADDCARTALERT: "addCartAlert"
 };

@@ -106,12 +106,9 @@ class Cart extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('Redux State from Cart Component:', state);
     return {
-        // cart: state.makeCart.all,
         cart: state.getCartMeta.single,
         summary: state.summary.single
-        // getCheckout: state.getCheckout.single
     }
 }
 
