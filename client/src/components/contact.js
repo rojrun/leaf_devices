@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../assets/css/contact.css';
-import '../assets/css/dialog_box.css';
+import '../assets/css/comments.css';
 import {addContactMessage} from "../actions";
-// import DialogBox from "./dialog_box";
+import Comments from './comments';
 
 class Contact extends Component {
     state = {
@@ -13,20 +13,18 @@ class Contact extends Component {
         your_phone_number: "",
         your_message: "",
         messageStatus: false,
-        messageComment: ""
     }
 
     handleSaveForm = async (e) => {
         e.preventDefault();
         this.setState({
-            messageStatus: true,
-            messageComment: "MESSAGE SENT"
+            messageStatus: true
         });
         const { your_fname, your_lname, your_email, your_phone_number, your_message } = this.state;
         await this.props.addContactMessage( your_fname, your_lname, your_email, your_phone_number, your_message );
-        setTimeout( () => {
-            this.props.history.push('/')
-        }, 2100);
+        // setTimeout( () => {
+        //     this.props.history.push('/')
+        // }, 2100);
     }
 
     cancel = () => {
@@ -36,23 +34,15 @@ class Contact extends Component {
             your_email: "",
             your_phone_number: "",
             your_message: "",
-            messageStatus: false,
-            messageComment: ""
+            messageStatus: false
         });
     }
 
     render(){
-        const {your_fname, your_lname, your_email, your_phone_number, your_message, messageComment } = this.state;
+        const {your_fname, your_lname, your_email, your_phone_number, your_message} = this.state;
 
-        // if(this.state.messageStatus){
-        //     return <DialogBox message={messageComment}/>
-        // }
         if(this.state.messageStatus){
-            return (
-                <div className="status spin">
-                    <div className="center comment">MESSAGE SENT</div>
-                </div>
-            );
+            return <Comments message="THANK YOU"/>
         }
 
         return (
