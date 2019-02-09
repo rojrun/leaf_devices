@@ -8,7 +8,7 @@ class SdcKit extends Component {
         productQuantity: 0
     }
 
-    handleSubtractCount = () =>{
+    handleSubtractCount = () => {
         if(this.state.productQuantity < 1){
             this.setState({
                productQuantity: 0
@@ -32,17 +32,13 @@ class SdcKit extends Component {
 
         if(productQuantity > 0) {
             this.props.addToCartMeta(id, productQuantity);
-            // console.log('cart alert:', this.props.cartNotif);
             this.props.addCartAlert();
-            // console.log('updated cart alert:', this.props.cartNotif);
         }
     };
 
     render() {
         const { name, price, href, style, image, id } = this.props.product;
         const {productQuantity} = this.state;
-
-        // console.log("addCartAlert******************", this.props.addCartAlert.disableBttn);
 
         return (
             <div className={`carousel-item col s10 ${style}`} href={href}>
