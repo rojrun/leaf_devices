@@ -19,8 +19,7 @@ class Contact extends Component {
     handleSaveForm = async (e) => {
         e.preventDefault();
         this.setState({
-            messageStatus: true,
-            messageComment: "MESSAGE SENT"
+            messageStatus: true
         });
         const { your_fname, your_lname, your_email, your_phone_number, your_message } = this.state;
         await this.props.addContactMessage( your_fname, your_lname, your_email, your_phone_number, your_message );
