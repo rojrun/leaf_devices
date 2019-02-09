@@ -10,37 +10,37 @@ class Cart extends Component {
         this.props.getCart();
     }
 
-    handleSubtractCount = (id, quantity) => {
+    handleSubtractCount = async (id, quantity) => {
         if(quantity < 1) {
             quantity = 0;
         } else {
             quantity--;
         }
-        this.props.updateCartMetaQuantity(id, quantity);
-        this.props.getCart();
+        await this.props.updateCartMetaQuantity(id, quantity);
+        await this.props.getCart();
 
         const summary_id = this.props.summary.id;
-        this.props.updateSummary(summary_id);
-        this.props.getSummary();
+        await this.props.updateSummary(summary_id);
+        await this.props.getSummary();
     }
 
-    handleAddCount = (id, quantity) => {
+    handleAddCount = async (id, quantity) => {
         quantity++;
-        this.props.updateCartMetaQuantity(id, quantity);
-        this.props.getCart();
+        await this.props.updateCartMetaQuantity(id, quantity);
+        await this.props.getCart();
 
         const summary_id = this.props.summary.id;
-        this.props.updateSummary(summary_id);
-        this.props.getSummary();
+        await this.props.updateSummary(summary_id);
+        await this.props.getSummary();
     }
 
-    handleDeleteItem = (id, quantity) => {
-        this.props.deleteCartMetaItem(id, quantity);
-        this.props.getCart();
+    handleDeleteItem = async (id, quantity) => {
+        await this.props.deleteCartMetaItem(id, quantity);
+        await this.props.getCart();
 
         const summary_id = this.props.summary.id;
-        this.props.updateSummary(summary_id);
-        this.props.getSummary();
+        await this.props.updateSummary(summary_id);
+        await this.props.getSummary();
     }
 
     render() {
@@ -106,12 +106,9 @@ class Cart extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('Redux State from Cart Component:', state);
     return {
-        // cart: state.makeCart.all,
         cart: state.getCartMeta.single,
         summary: state.summary.single
-        // getCheckout: state.getCheckout.single
     }
 }
 

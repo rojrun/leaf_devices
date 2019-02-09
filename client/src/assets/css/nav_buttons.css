@@ -4,7 +4,7 @@
     color: #F0810F;
     display: block;
     margin: 3% auto;
-    width: 100%;
+    width: 60%;
 }
 
 .iconButtons {
@@ -13,4 +13,8 @@
     font-size: 2em;
     margin-top: 21%;
     padding: 14%;
+}
+
+.pulse {
+    background-color: #006400;
 }

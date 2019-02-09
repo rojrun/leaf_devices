@@ -6,11 +6,6 @@ import {getProducts} from '../actions';
 // import DialogBox from './dialog_box';
 
 class ProductCarousel extends Component {
-
-    // state = {
-    //     messageComment: ""
-    // }
-
     componentDidMount() {
         this.instance = M.Carousel.init(this.carousel);
         this.props.getProducts();
@@ -24,18 +19,14 @@ class ProductCarousel extends Component {
 
     render() {
         if(!this.props.products.length){
-            // this.setState({
-            //     messageComment: "LOADING PAGE"
-            // });
             return (
-                <div className="status spin">
+                <div className="status">
                     <div className="center comment">LOADING PAGE</div>
                 </div>
             );
         }
 
         const products = this.props.products.map( (product) => {
-            console.log('Product:', product);
             return <SdcKit key={product.href} product={product}/>
         });
 
@@ -48,7 +39,6 @@ class ProductCarousel extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('Redux State:', state);
     return {
         products: state.products.all
     }

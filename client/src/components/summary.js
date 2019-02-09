@@ -6,6 +6,7 @@ import {addToSummary, getSummary} from '../actions';
 class Summary extends Component {
 
     componentDidMount() {
+        console.log('Summary Mounted')
         this.props.addToSummary();
         this.props.getSummary();
     }
@@ -15,7 +16,6 @@ class Summary extends Component {
     }
 
     render() {
-        console.log("Summary: ", this.props.summary);
         const { total_quantity, subtotal, tax, shipping, total } = this.props.summary;
 
         return (
@@ -32,7 +32,6 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('Redux State from Summary Component:', state);
     return {
         summary: state.summary.single
     }

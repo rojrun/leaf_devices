@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {addToCartMeta, makeCart, getCart} from '../actions';
+import {addToCartMeta, makeCart, getCart, addCartAlert} from '../actions';
 import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
@@ -32,12 +32,17 @@ class SdcKit extends Component {
 
         if(productQuantity > 0) {
             this.props.addToCartMeta(id, productQuantity);
+            // console.log('cart alert:', this.props.cartNotif);
+            this.props.addCartAlert();
+            // console.log('updated cart alert:', this.props.cartNotif);
         }
     };
 
     render() {
         const { name, price, href, style, image, id } = this.props.product;
         const {productQuantity} = this.state;
+
+        // console.log("addCartAlert******************", this.props.addCartAlert.disableBttn);
 
         return (
             <div className={`carousel-item col s10 ${style}`} href={href}>
@@ -54,7 +59,7 @@ class SdcKit extends Component {
                     <div className="center row quantityField">
                         <button onClick={this.handleSubtractCount} type="button"
                                 className="btn inputButtons waves-effect waves-light"
-                                data-quantity="minus" data-field="quantity">-
+                                data-quantity="subtract" data-field="quantity">-
                         </button>
                         <span className="center productQuantity" type="number" name="quantity"
                               value={productQuantity} product_id={id} onChange={() => {}}>{productQuantity}
@@ -74,12 +79,12 @@ class SdcKit extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('sdc kit -Redux State:', state);
     return {
         addToCartMeta: state.addToCartMeta.single,
         makeCart: state.makeCart.all,
-        getCart: state.getCart
+        getCart: state.getCart,
+        addCartAlert: state.addCartAlert
     }
 }
 
-export default connect(mapStateToProps, { addToCartMeta, makeCart, getCart })(SdcKit);
+export default connect(mapStateToProps, { addToCartMeta, makeCart, getCart, addCartAlert })(SdcKit);
