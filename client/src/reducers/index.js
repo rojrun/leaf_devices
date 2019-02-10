@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-// import {reducer as formReducer} from 'redux-form';
+import {reducer as formReducer} from 'redux-form';
 import kitReducer from './kit_reducer';
 import addCartReducer from './addCart_reducer';
 import makeCartReducer from './makeCart_reducer';
@@ -11,7 +11,7 @@ import summaryReducer from './summary_reducer';
 import addCartAlertReducer from './addCartAlert_reducer';
 
 const rootReducer = combineReducers({
-    // form: formReducer,
+    form: formReducer,
     products: kitReducer,
     addCart: addCartReducer,
     makeCart: makeCartReducer,

@@ -22,9 +22,9 @@ class Contact extends Component {
         });
         const { your_fname, your_lname, your_email, your_phone_number, your_message } = this.state;
         await this.props.addContactMessage( your_fname, your_lname, your_email, your_phone_number, your_message );
-        // setTimeout( () => {
-        //     this.props.history.push('/')
-        // }, 2100);
+        setTimeout( () => {
+            this.props.history.push('/')
+        }, 2100);
     }
 
     cancel = () => {
@@ -46,6 +46,22 @@ class Contact extends Component {
         }
 
         return (
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
             <div>
                 <form onSubmit={this.handleSaveForm} className="col s12">
                     <div className="center contact">CONTACT US</div>

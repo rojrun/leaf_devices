@@ -1,6 +1,7 @@
 import React from 'react';
 import '../assets/css/comments.css';
     
+/* Comments component displays message from props */
 const Comments = (props) => {
     return (
         <div className="status">
