@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-// import '../assets/css/comments.css';
 import SdcKit from './sdc_kit';
 import {connect} from 'react-redux';
 import {getProducts} from '../actions';
 import Comments from './comments';
 
+/* Main carousel component to display products */
 class ProductCarousel extends Component {
 
     componentDidMount() {

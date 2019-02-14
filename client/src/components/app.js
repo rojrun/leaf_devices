@@ -26,7 +26,6 @@ const App = () => (
                 <div className="footer">
                     <div>© 2019 Leaf Devices LLC. </div>
                     <div> All rights reserved.</div>
-
                 </div>
             </div>
             <div className="col s2 back_ground">

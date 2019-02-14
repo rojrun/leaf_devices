@@ -6,6 +6,7 @@ import Summary from './summary';
 import '../assets/css/cart.css';
 import Comments from './comments';
 
+/* Cart component to display selected items from landing page */
 class Cart extends Component {
     componentDidMount() {
         this.props.getCart();
