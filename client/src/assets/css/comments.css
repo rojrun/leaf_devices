@@ -10,18 +10,12 @@
     left: 50%;
     top: 61%;
     position: absolute;
-    -webkit-animation: spin 4s infinite linear;
 }
-
-/*@-webkit-keyframes spin {*/
-/*0%  {-webkit-transform: rotate(0deg);}*/
-/*100% {-webkit-transform: rotate(360deg);}*/
-/*}*/
 
 .comment {
     top: 50%;
     left: 50%;
-    transform: translate(-49%, 22%);
+    transform: translate(-49%, 55%);
     width: 30%;
     font-size: 2em;
     color: #F0810F;

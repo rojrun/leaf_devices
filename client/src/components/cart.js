@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary} from '../actions';
 import Summary from './summary';
 import '../assets/css/cart.css';
+import Comments from './comments';
 
 class Cart extends Component {
     componentDidMount() {
@@ -45,11 +46,7 @@ class Cart extends Component {
 
     render() {
         if(!this.props.cart.length){
-            return (
-                <div className="status">
-                    <div className="center comment cart_empty">CART EMPTY</div>
-                </div>
-            );
+            return <Comments message="CART EMPTY"/>
         }
 
         const cart = this.props.cart.map( (item, i) => {

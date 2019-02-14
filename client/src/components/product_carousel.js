@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import '../assets/css/dialog_box.css';
+// import '../assets/css/comments.css';
 import SdcKit from './sdc_kit';
 import {connect} from 'react-redux';
 import {getProducts} from '../actions';
-// import DialogBox from './dialog_box';
+import Comments from './comments';
 
 class ProductCarousel extends Component {
+
     componentDidMount() {
         this.instance = M.Carousel.init(this.carousel);
         this.props.getProducts();
@@ -19,11 +20,7 @@ class ProductCarousel extends Component {
 
     render() {
         if(!this.props.products.length){
-            return (
-                <div className="status">
-                    <div className="center comment">LOADING PAGE</div>
-                </div>
-            );
+            return <Comments message="LOADING PAGE"/>
         }
 
         const products = this.props.products.map( (product) => {

@@ -114,6 +114,8 @@ export function updateSummary(summaryId) {
 export function addCartAlert() {
     return {
         type: types.ADDCARTALERT,
-        cartAlert: "pulse"
+        cartAlert: "pulse",
+        disableBttn: "disabled"
     }
 }    
+
