@@ -17,6 +17,7 @@ class Contact extends Component {
         messageStatus: false,
     }
 
+<<<<<<< HEAD
     handleContactForm = (values) => {
         console.log("contact form: ", values);    
         // e.preventDefault();
@@ -28,6 +29,18 @@ class Contact extends Component {
         // setTimeout( () => {
         //     this.props.history.push('/')
         // }, 2100);
+=======
+    handleSaveForm = async (e) => {
+        e.preventDefault();
+        this.setState({
+            messageStatus: true
+        });
+        const { your_fname, your_lname, your_email, your_phone_number, your_message } = this.state;
+        await this.props.addContactMessage( your_fname, your_lname, your_email, your_phone_number, your_message );
+        setTimeout( () => {
+            this.props.history.push('/')
+        }, 2100);
+>>>>>>> 05a7c81ed781baf3312162ed5e92b3c076ddb91e
     }
 
     cancel = () => {
