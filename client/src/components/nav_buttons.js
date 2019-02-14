@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getCart, updateSummary, getSummary} from '../actions';
@@ -18,7 +18,7 @@ class NavButtons extends Component {
         const {cartAlert} = this.props.addCartAlert;
         
         return (
-            <div>
+            <Fragment>
                 <div className="hide-on-small-only">
                     <Link className="waves-effect waves-light btn navButtons" to="/">home</Link>
                     <Link className="waves-effect waves-light btn navButtons" to="/contact">contact</Link>
@@ -31,7 +31,7 @@ class NavButtons extends Component {
                     <Link className="material-icons iconButtons" to="/contact">message</Link>
                     <Link onClick={this.handleCartSummary} className={`material-icons iconButtons ${cartAlert}`} to="/cart">shopping_cart</Link>
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }
