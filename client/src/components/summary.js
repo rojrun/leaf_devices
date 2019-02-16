@@ -6,7 +6,6 @@ import {addToSummary, getSummary} from '../actions';
 class Summary extends Component {
 
     componentDidMount() {
-        console.log('Summary Mounted')
         this.props.addToSummary();
         this.props.getSummary();
     }
