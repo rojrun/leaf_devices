@@ -4,6 +4,10 @@
   "description": "Sales website and CMS",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:client": "npm start --prefix client",
+    "dev:server": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +22,13 @@
   "homepage": "https://github.com/rojrun/leaf_devices#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mysql": "^2.16.0",
+    "redux-form": "^8.1.0",
+    "redux-promise": "^0.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9",
+    "npm-run-all": "^4.1.5"
   }
 }

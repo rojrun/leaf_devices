@@ -1,0 +1,31 @@
+.input-field {
+    margin-top: 1px;
+}
+
+.input-field>label {
+    color: #28487d;
+}
+
+.input-field input[type=text]:focus + label {
+    color: #28487d !important;
+}
+
+input {
+    border-bottom: 1px solid #063852 !important;
+    box-shadow: 0 1px 0 0 #063852 !important;
+}
+
+input:focus {
+    border-bottom: 1px solid #063852 !important;
+    box-shadow: 0 1px 0 0 #063852 !important;
+}
+
+.inputError {
+    color: #E6DF44;
+    margin: 0;
+}
+
+label.active {
+    color: #063852;
+}
+

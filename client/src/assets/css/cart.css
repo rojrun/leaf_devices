@@ -1,0 +1,44 @@
+.cart {
+    color: #063852;
+    font-size: 2em;
+}
+
+.clear {
+    color: #063852;
+    font-size: 2rem;
+}
+
+.clear:hover {
+    color: #006400;
+}
+
+/*.checkout {*/
+    /*color: #1543DC;*/
+    /*font-size: 2em;*/
+    /*top: 4%;*/
+/*}*/
+
+.shop_update {
+    margin-top: 3%;
+}
+
+.total {
+    color: #063852;
+    display: inline-block;
+}
+
+table.rounded tr:last-child td:first-child {
+    border-radius: 0 0 0 6px;
+}
+
+table.rounded tr:last-child td:last-child {
+    border-radius: 0 0 6px 0;
+}
+
+.cartAddBtn {
+    margin-left: 8%;
+}
+
+.cartMinusBtn {
+    margin-right: 8%;
+}

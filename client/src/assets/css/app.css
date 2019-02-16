@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+.back_ground {
+    background-image:
+        repeating-linear-gradient(to bottom, transparent, transparent 5px, #28487d 5px, #28487d 10px),
+        repeating-linear-gradient(to right, #617ca2, #617ca2 5px, #28487d 5px, #28487d 10px);
+    height: 100vh;
+}
+
+.footer {
+    bottom: 0;
+    color: #E6DF44;
+    font-weight: 500;
+    position: fixed;
+}
+
+.footer-copyright > p {
+    margin: 0;
+}
+
+.main_content {
+    background-color: #F0810F;
+    height: 100vh;
+}
+
+.logo {
+    background-image: url("../../../dist/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 25vh;
+    margin-top: 1%;
+}
+
+
+
+
+
+

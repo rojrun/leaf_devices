@@ -1,0 +1,12 @@
+.contact {
+    color: #063852;
+    font-size: 2em;
+    top: 4%;
+}
+
+.contactButton {
+    background-color: #063852;
+    border-radius: 6px;
+    color: #F0810F;
+    margin: 0 2% 0 2%;
+}
