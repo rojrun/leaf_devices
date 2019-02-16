@@ -20,8 +20,7 @@ class Contact extends Component {
         await this.props.addContactMessage( firstName, lastName, email, phone_number, message );
         setTimeout( () => {
             this.props.history.push('/')
-        }, 2100);
-        
+        }, 3000);
     }
 
     render(){
@@ -86,7 +85,9 @@ function mapStateToProps(state){
     }
 }
 
-export default reduxForm ({
+Contact = reduxForm ({
     form: 'contact-form',
     validate: validate
-})(connect(mapStateToProps, { addContactMessage })(Contact));
+})(Contact);
+
+export default connect(mapStateToProps, { addContactMessage })(Contact);
