@@ -2,10 +2,18 @@
     background-color: #063852;
     border-radius: 6px;
     color: #F0810F;
-    margin-bottom: 5%;
+    margin-bottom: 7%;
 }
 
 .summary {
     background-color: rgba(242,242,242,0.5);
     border-radius: 6px;
+}
+
+.browser-default {
+    background-color: transparent;
+    border-radius: 6px;
+    font-weight: bolder;
+    padding: 0;
+    width: auto;
 }
