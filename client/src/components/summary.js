@@ -1,32 +1,33 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../assets/css/summary.css';
-import {addToSummary, getSummary} from '../actions';
+import {addToSummary, getSummary, updateSummary} from '../actions';
 
 class Summary extends Component {
 
+    state = {
+        value: "1"
+    }
+
     componentDidMount() {
-        this.instances = M.FormSelect.init(this.formSelect);
+        this.instatnces = M.FormSelect.init(this.refs.dropdown);
         this.props.addToSummary();
         this.props.getSummary();
     }
 
     componentDidUpdate(prevProps) {
         if(prevProps.summary !== this.props.summary) {
-            this.instances = M.FormSelect.init(this.formSelect);
+            this.instatnces = M.FormSelect.init(this.refs.dropdown);
         }      
     }
 
-    shippingMethods = () =>  {
-        return (
-            <div className="input-field">
-                <select ref="dropdown" defaultValue="1" className="browser-default">
-                    <option value="1">Standard Shipping: </option>
-                    <option value="2">Expedited Shipping: </option>
-                </select>
-                <label>Select Shipping Method</label>
-            </div>
-        );
+    shippingMethod = async (event) => {
+        this.setState({value: event.target.value});
+        console.log("shippingMethod value:", this.state.value);
+        let shippingValue = this.state.value;
+        const summary_id = this.props.summary.id;
+        await this.props.updateSummary(summary_id, shippingValue);
+        this.props.getSummary();
     }
 
     handleCheckout = () => {
@@ -44,8 +45,14 @@ class Summary extends Component {
 
                 {/* <p><b>Shipping: </b>{shipping/100}</p> */}
                 <div className="row">
-                    <b>{this.shippingMethods}</b>
-                    {shipping}
+                    <div className="input-field">
+                        {/* <label>Select Shipping Method</label> */}
+                        <select onChange={this.shippingMethod} ref="dropdown" defaultValue="1" className="browser-default">
+                            <option value="1">Standard Shipping: </option>
+                            <option value="2">Expedited Shipping: </option>
+                        </select> 
+                    </div> 
+                    {shipping/100}
                 </div>
 
                 <p><b>Total: ${total/100}</b></p>
@@ -61,4 +68,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { addToSummary, getSummary })(Summary);
+export default connect(mapStateToProps, { addToSummary, getSummary, updateSummary })(Summary);

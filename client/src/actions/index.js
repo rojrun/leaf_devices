@@ -101,9 +101,10 @@ export function deleteCartMetaItem(cartMetaId) {
     }
 }
 
-export function updateSummary(summaryId) {
+export function updateSummary(summaryId, shippingMethod = "1") {
     const resp = axios.put('/api/summary/' + {summaryId}, {
-        id: summaryId
+        id: summaryId,
+        shippingValue: shippingMethod
     });
     return {
         type: types.UPDATESUMMARY,
@@ -118,4 +119,3 @@ export function addCartAlert() {
         disableBttn: "disabled"
     }
 }    
-
