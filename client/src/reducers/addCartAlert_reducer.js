@@ -7,7 +7,6 @@ const DEFAULT_STATE = {
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type){
         case types.ADDCARTALERT:
-            console.log("ADDCARTALERT reducer: ", state);
             return { ...state, cartAlert: action.cartAlert};
         default:
             return state;

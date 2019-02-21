@@ -10,7 +10,6 @@ export function getProducts() {
 }
 
 export function getCart() {
-    console.log('GetCart Data Called from actions');
     const resp = axios.get('/api/cart');
     return {
         type: types.GETCART,
@@ -19,7 +18,6 @@ export function getCart() {
 }
 
 export function getCartMeta() {
-    console.log('Get Cart Meta Data Called');
     const resp = axios.get('/api/cart-meta');
     return {
         type: types.GETCARTMETA,
@@ -28,7 +26,6 @@ export function getCartMeta() {
 }
 
 export function getSummary() {
-    console.log('getSummary data called');
     const resp = axios.get('/api/summary');
     return {
         type: types.SUMMARY,
@@ -70,7 +67,6 @@ export function addToCartMeta(id, productQuantity) {
 }
 
 export function addToSummary() {
-    console.log('addToSummary axios post');
     const resp = axios.post('/api/summary');
     return {
         type: types.ADDTOSUMMARY,
@@ -101,10 +97,10 @@ export function deleteCartMetaItem(cartMetaId) {
     }
 }
 
-export function updateSummary(summaryId, shippingMethod = "1") {
+export function updateSummary(summaryId /*, shippingMethod*/) {
     const resp = axios.put('/api/summary/' + {summaryId}, {
         id: summaryId,
-        shippingValue: shippingMethod
+        /*shippingValue: shippingMethod*/
     });
     return {
         type: types.UPDATESUMMARY,
@@ -115,7 +111,17 @@ export function updateSummary(summaryId, shippingMethod = "1") {
 export function addCartAlert() {
     return {
         type: types.ADDCARTALERT,
-        cartAlert: "pulse",
-        disableBttn: "disabled"
+        cartAlert: "pulse"
     }
 }    
+
+export function addToShipMethod(summaryId, shipping) {
+    const resp = axios.put('/api/shippingMethod/' + {summaryId}, {
+        id: summaryId,
+        shipping_method: shipping
+    });
+    return {
+        type: types.ADDTOSHIPMETHOD,
+        payload: resp
+    }
+}
