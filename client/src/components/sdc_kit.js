@@ -54,12 +54,12 @@ class SdcKit extends Component {
                     </div>
                     <div className="center row quantityField">
                         <button onClick={this.handleSubtractCount} type="button"
-                                className="btn inputButtons waves-effect waves-light"
+                                className="btn inputButtons minusButton waves-effect waves-light"
                                 data-quantity="subtract" data-field="quantity">-
                         </button>
-                        <span className="center productQuantity" type="number" name="quantity"
+                        <div className="center productQuantity" type="number" name="quantity"
                               value={productQuantity} product_id={id} onChange={() => {}}>{productQuantity}
-                        </span>
+                        </div>
                         <button onClick={this.handleAddCount} type="button"
                                 className="btn inputButtons waves-effect waves-light"
                                 data-quantity="add" data-field="quantity">+

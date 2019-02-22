@@ -46,15 +46,26 @@
 }
 
 .price {
-    color: white;
+    color: #063852;
     font-size: 2em;
+}
+
+.quantityField {
+    display: flex;
+}
+
+.inputButtons {
+    margin: 0px 3% 0 3%;
 }
 
 .inputButtons, .inputSubmit {
     background-color: #063852;
     border-radius: 6px;
     color: #F0810F;
-    margin-left: 3%;
+}
+
+.minusButton {
+    margin-left: 8%;
 }
 
 .inputQuantity {
@@ -65,11 +76,10 @@
 
 .productQuantity {
     background-color: #F0810F;
+    border-radius: 6px;
     color: #063852;
-    height: 1%;
-    margin-left: 3%;
-    padding: 2% 5%;
-    width: 2%;
+    display: inline-block;
+    padding: 2% 6%;
 }
 
 .btn:hover {
@@ -85,17 +95,20 @@
         height: 50%;
     }
 
-    .quantityField {
-        display: inline-flex;
-        left: 5%;
-        width: 95%;
-    }
-
     .name {
-        
+        font-size: 1.5em;
+        margin-top: 0;
     }
 
     .price {
-        
+        font-size: 1.5em;
+    }
+
+    .minusButton {
+        margin-left: 0;
+    }
+
+    .productQuantity {
+        padding: 4% 6%;
     }
 }

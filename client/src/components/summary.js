@@ -46,15 +46,17 @@ class Summary extends Component {
                 <p><b>Subtotal: </b>{subtotal/100}</p>
                 <p><b>Tax: </b>{tax/100}</p>
 
-                <div className="row">
-                    <div className="input-field">
+                {/* <div className="row"> */}
+                    <div className="input-field row">
                         <select onChange={this.shippingMethod} ref="dropdown" defaultValue="standard" className="browser-default">
                             <option value="standard">Standard Shipping: </option>
                             <option value="expedited">Expedited Shipping: </option>
-                        </select> 
+                        </select>
+                         
+                        {shipping/100}
                     </div> 
-                    {shipping/100}
-                </div>
+                    
+                {/* </div> */}
 
                 <p><b>Total: ${total/100}</b></p>
                 <button onClick={this.handleCheckout} className="checkoutButton waves-effect waves-light btn">checkout</button>

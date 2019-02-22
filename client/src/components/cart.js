@@ -78,9 +78,9 @@ class Cart extends Component {
         return (
             <div>
                 <div className="cart center">CART</div>
-                <div className="col s12 row">
-                    <div className="col s8">
-                        <table className="striped rounded">
+                <div className="col s12 l12 row cartTable">
+                    <div className="col s12 l8">
+                        <table className="col s12 l12 striped rounded">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -97,7 +97,7 @@ class Cart extends Component {
                             <Link className="btn inputButtons waves-effect waves-light shop_update" to="/">back to shopping</Link>
                         </div>
                     </div>
-                    <div className="col s4">
+                    <div className="col s12 l4">
                         <Summary/>
                     </div>
                 </div>
