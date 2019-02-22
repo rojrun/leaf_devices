@@ -22,7 +22,8 @@ class Cart extends Component {
         await this.props.getCart();
 
         const summary_id = this.props.summary.id;
-        await this.props.updateSummary(summary_id);
+        const { shipping } = this.props.summary;
+        await this.props.updateSummary(summary_id, shipping);
         await this.props.getSummary();
     }
 
@@ -32,7 +33,8 @@ class Cart extends Component {
         await this.props.getCart();
 
         const summary_id = this.props.summary.id;
-        await this.props.updateSummary(summary_id);
+        const { shipping } = this.props.summary;
+        await this.props.updateSummary(summary_id, shipping);
         await this.props.getSummary();
     }
 
@@ -41,7 +43,8 @@ class Cart extends Component {
         await this.props.getCart();
 
         const summary_id = this.props.summary.id;
-        await this.props.updateSummary(summary_id);
+        const { shipping } = this.props.summary;
+        await this.props.updateSummary(summary_id, shipping);
         await this.props.getSummary();
     }
 

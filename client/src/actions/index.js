@@ -97,10 +97,10 @@ export function deleteCartMetaItem(cartMetaId) {
     }
 }
 
-export function updateSummary(summaryId /*, shippingMethod*/) {
+export function updateSummary(summaryId, shippingMethod) {
     const resp = axios.put('/api/summary/' + {summaryId}, {
         id: summaryId,
-        /*shippingValue: shippingMethod*/
+        shipping_method: shippingMethod
     });
     return {
         type: types.UPDATESUMMARY,
@@ -114,14 +114,3 @@ export function addCartAlert() {
         cartAlert: "pulse"
     }
 }    
-
-export function addToShipMethod(summaryId, shipping) {
-    const resp = axios.put('/api/shippingMethod/' + {summaryId}, {
-        id: summaryId,
-        shipping_method: shipping
-    });
-    return {
-        type: types.ADDTOSHIPMETHOD,
-        payload: resp
-    }
-}

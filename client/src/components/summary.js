@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../assets/css/summary.css';
-import {addToSummary, getSummary, updateSummary, addToShipMethod} from '../actions';
+import {addToSummary, getSummary, updateSummary} from '../actions';
 
+/* Child component of Cart component. Rerenders when quantity changes. */
 class Summary extends Component {
     state =  {
         value: "standard"
@@ -11,8 +12,6 @@ class Summary extends Component {
     componentDidMount() {
         this.instatnces = M.FormSelect.init(this.refs.dropdown);
         this.props.addToSummary();
-        // const summary_id = this.props.summary.id;
-        // this.props.addToShipMethod(summary_id, this.state.value);
         this.props.getSummary();
     }
 
@@ -27,9 +26,8 @@ class Summary extends Component {
             value: event.target.value
         }, 
             async () => {
-                // let shippingValue = this.state.value;
                 const summary_id = this.props.summary.id;
-                await this.props.updateSummary(summary_id /*, shippingValue*/);
+                await this.props.updateSummary(summary_id, this.state.value);
                 this.props.getSummary();
             }
         );        
@@ -67,9 +65,8 @@ class Summary extends Component {
 
 function mapStateToProps(state){
     return {
-        summary: state.summary.single,
-        addToShipMethod: state.addToShipMethod
+        summary: state.summary.single
     }
 }
 
-export default connect(mapStateToProps, { addToSummary, getSummary, updateSummary, addToShipMethod })(Summary);
+export default connect(mapStateToProps, { addToSummary, getSummary, updateSummary })(Summary);

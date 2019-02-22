@@ -102,7 +102,7 @@ app.put('/api/cart-meta/product/:id', (req, res) => {
 });
 
 app.get('/api/summary', (req, res) => {
-    db.query(`SELECT id, total_quantity, subtotal, tax, shipping_method, shipping, total FROM  \`summary\``, (error, results) => {
+    db.query(`SELECT id, total_quantity, subtotal, tax, shipping, total FROM  \`summary\``, (error, results) => {
         res.send({
             results: results[0] || {}
         });
@@ -110,7 +110,7 @@ app.get('/api/summary', (req, res) => {
 });
 
 app.put('/api/summary/:id', (req, res) => {
-    const { id } = req.body;
+    let { id, shipping_method } = req.body;
     const user_id = 1;
     const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p
         JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${user_id}`;
@@ -127,13 +127,13 @@ app.put('/api/summary/:id', (req, res) => {
             let cartId = results[0].cartId;
             const tax = .0775;
 
-            // if(shippingValue === "standard"){
-            //     var shipping = 0;
-            // } else {
-            //     var shipping = 375;
-            // }
-            // console.log("shippingValue: ", shippingValue);
-            // console.log("Shipping cost: ", shipping);
+            if(shipping_method === "standard") {
+                shipping_method = "standard";
+                var shipping = 0;
+            } else {
+                shipping_method = "expedited";
+                var shipping = 375;
+            }
 
             results.map( item => {
                 totalQuantity += item.quantity;
@@ -141,9 +141,9 @@ app.put('/api/summary/:id', (req, res) => {
             });
 
             const total = (subTotal * tax) + subTotal + shipping;
-            const sql = `UPDATE \`summary\` SET cart_id=?, customer_id=?, total_quantity=?, subtotal=?, tax=?, shipping=?, total=?, date=? WHERE \`id\`= ${id}`;
+            const sql = `UPDATE \`summary\` SET cart_id=?, customer_id=?, total_quantity=?, subtotal=?, tax=?, shipping_method=?, shipping=?, total=?, date=? WHERE \`id\`= ${id}`;
 
-            const inserts = [ cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping, total, new Date() ];
+            const inserts = [ cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping_method, shipping, total, new Date() ];
             const summaryAdd = mysql.format(sql, inserts);
 
             db.query(summaryAdd, (err, results) => {
@@ -183,7 +183,7 @@ app.post('/api/summary', (req, res) => {
                     });
 
                     const total = (subTotal * tax) + subTotal + shipping;
-                    const sql = `INSERT INTO ?? (cart_id, customer_id, total_quantity, subtotal, tax, shipping_method, shipping, total, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+                    const sql = `INSERT INTO ?? (cart_id, customer_id, total_quantity, subtotal, tax, shipping_method, shipping, total, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
                     const inserts = [ 'summary', cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping_method, shipping, total, new Date() ];
                     const summaryAdd = mysql.format(sql, inserts);
 
@@ -196,41 +196,6 @@ app.post('/api/summary', (req, res) => {
             });
         }
     });
-});
-
-app.put('/api/shipping_method/:id', (req, res) => {
-    const { id, shipping_method } = req.body;
-    const user_id = 1;
-    const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p
-        JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${user_id}`;
-
-    db.query(query, (err, results) => {
-        if(error){
-            res.send('failed');
-            return;
-        }
-
-        if(results.length) {
-            if(shipping_method === "standard") {
-                let method = "standard";
-                let shipping = 0;
-            } else {
-                let method = "expedited";
-                let shipping = 375;
-            }
-
-            const sql = `UPDATE \`summary\` SET shipping_method=?, shipping=? WHERE \`id\`= ${id}`;
-            const inserts = [method, shipping];
-            const summaryAdd = mysql.format(sql, inserts);  
-                   
-            db.query(summaryAdd, (err, results) => {
-                res.send('It Worked!');
-            });
-        } else {
-            res.status(422).send('No items in cart');
-        }
-
-    });   
 });
 
 // app.get('/api/contact-message', (req, res) => {
