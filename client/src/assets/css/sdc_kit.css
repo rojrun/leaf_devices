@@ -25,27 +25,8 @@
 
 .card {
     background-color: white;
-    height: 93%;
-}
-
-@media only screen and (max-device-width: 480px) {
-    .card {
-        height: 50%;
-    }
-
-    .quantityField {
-        display: inline-flex;
-        left: 5%;
-        width: 95%;
-    }
-
-    /* .name {
-
-    }
-
-    .price {
-
-    } */
+    border-radius: 6px;
+    height: 95%;
 }
 
 .prodImage {
@@ -97,4 +78,24 @@
 
 .btn:focus {
     background-color: #063852;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .card {
+        height: 50%;
+    }
+
+    .quantityField {
+        display: inline-flex;
+        left: 5%;
+        width: 95%;
+    }
+
+    .name {
+        
+    }
+
+    .price {
+        
+    }
 }
