@@ -110,10 +110,8 @@ app.get('/api/summary', (req, res) => {
 });
 
 app.put('/api/summary/:id', (req, res) => {
-    console.log('put summary: ', req.body);
-    const { id, shippingValue } = req.body;
+    let { id, shipping_method } = req.body;
     const user_id = 1;
-
     const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p
         JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${user_id}`;
 
@@ -129,21 +127,23 @@ app.put('/api/summary/:id', (req, res) => {
             let cartId = results[0].cartId;
             const tax = .0775;
 
-            if(shippingValue !== "1"){
-                var shipping = 375;
-            } else {
+            if(shipping_method === "standard") {
+                shipping_method = "standard";
                 var shipping = 0;
+            } else {
+                shipping_method = "expedited";
+                var shipping = 375;
             }
-            
+
             results.map( item => {
                 totalQuantity += item.quantity;
                 subTotal += item.quantity * item.price;
             });
 
             const total = (subTotal * tax) + subTotal + shipping;
-            const sql = `UPDATE \`summary\` SET cart_id=?, customer_id=?, total_quantity=?, subtotal=?, tax=?, shipping=?, total=?, date=? WHERE \`id\`= ${id}`;
+            const sql = `UPDATE \`summary\` SET cart_id=?, customer_id=?, total_quantity=?, subtotal=?, tax=?, shipping_method=?, shipping=?, total=?, date=? WHERE \`id\`= ${id}`;
 
-            const inserts = [ cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping, total, new Date() ];
+            const inserts = [ cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping_method, shipping, total, new Date() ];
             const summaryAdd = mysql.format(sql, inserts);
 
             db.query(summaryAdd, (err, results) => {
@@ -169,12 +169,13 @@ app.post('/api/summary', (req, res) => {
                     return;
                 }
 
-                if(results.length){
+                if(results.length) {
                     let totalQuantity = 0;
                     let subTotal = 0;
                     let cartId = results[0].cartId;
                     const tax = .0775;
-                    const shipping = 0;
+                    let shipping_method = "standard";
+                    let shipping = 0;
 
                     results.map( item => {
                         totalQuantity += item.quantity;
@@ -182,8 +183,8 @@ app.post('/api/summary', (req, res) => {
                     });
 
                     const total = (subTotal * tax) + subTotal + shipping;
-                    const sql = `INSERT INTO ?? (cart_id, customer_id, total_quantity, subtotal, tax, shipping, total, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-                    const inserts = [ 'summary', cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping, total, new Date() ];
+                    const sql = `INSERT INTO ?? (cart_id, customer_id, total_quantity, subtotal, tax, shipping_method, shipping, total, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+                    const inserts = [ 'summary', cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping_method, shipping, total, new Date() ];
                     const summaryAdd = mysql.format(sql, inserts);
 
                     db.query(summaryAdd, (err, results) => {
