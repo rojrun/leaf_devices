@@ -1,9 +1,15 @@
+.navBar {
+    bottom: 32vh;
+    display: inline-block;
+    position: relative;
+    width: 15%;
+}
 .navButtons {
     background-color: #063852;
     border-radius: 6px;
     color: #F0810F;
     display: block;
-    margin: 3% auto;
+    margin: 5% auto;
     width: 60%;
 }
 

@@ -1,4 +1,7 @@
 body {
+    background-image:
+        repeating-linear-gradient(to bottom, transparent, transparent 5px, #28487d 5px, #28487d 10px),
+        repeating-linear-gradient(to right, #617ca2, #617ca2 5px, #28487d 5px, #28487d 10px);
     margin: 0;
 }
 
@@ -6,18 +9,9 @@ body {
     margin: 0;
 }
 
-.back_ground {
-    background-image:
-        repeating-linear-gradient(to bottom, transparent, transparent 5px, #28487d 5px, #28487d 10px),
-        repeating-linear-gradient(to right, #617ca2, #617ca2 5px, #28487d 5px, #28487d 10px);
-    height: 100vh;
-}
-
-.footer {
-    bottom: 0;
+.footer-copyright {
     color: #E6DF44;
     font-weight: 500;
-    position: fixed;
 }
 
 .footer-copyright > p {
@@ -26,7 +20,9 @@ body {
 
 .main_content {
     background-color: #F0810F;
-    height: 100vh;
+    display: inline-block;
+    margin-left: 15%;
+    width: 70%;
 }
 
 .logo {
@@ -35,7 +31,6 @@ body {
     background-position: center;
     background-size: contain;
     height: 25vh;
-    margin-top: 1%;
 }
 
 

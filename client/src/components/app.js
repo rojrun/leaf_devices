@@ -13,24 +13,22 @@ import '../assets/css/app.css';
 
 const App = () => (
     <Router>
-        <div className="row">
-            <div className="col s2 back_ground"></div>
-            <div className="col s8 main_content">
-                <div className="col s12 logo"></div>
+        <div>
+            <div className="main_content">
+                <div className="logo"></div>
                 <Route exact path="/" component={ProductCarousel}/>
                 <Route path="/contact" component={Contact}/>
                 <Route path="/cart" component={Cart}/>
                 <Route path="/checkout" component={Checkout}/>
                 <Route path="/create" component={Create}/>
                 <Route path="/login" component={Login}/>
-                <div className="footer">
-                    <div>© 2019 Leaf Devices LLC. </div>
-                    <div> All rights reserved.</div>
-                </div>
+                <footer>
+                    <div className="footer-copyright center">
+                        © 2019 Leaf Devices LLC. All rights reserved.
+                    </div>
+                </footer>
             </div>
-            <div className="col s2 back_ground">
-                <NavButtons/>
-            </div>
+            <NavButtons/>
         </div>
     </Router>
 );

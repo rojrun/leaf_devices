@@ -52,8 +52,9 @@ class Summary extends Component {
                             <option value="standard">Standard Shipping: </option>
                             <option value="expedited">Expedited Shipping: </option>
                         </select>
-                         
-                        {shipping/100}
+                        <div className="shipping">
+                            {shipping/100}
+                        </div>  
                     </div> 
                     
                 {/* </div> */}

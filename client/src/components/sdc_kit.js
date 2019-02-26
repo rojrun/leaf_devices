@@ -41,18 +41,18 @@ class SdcKit extends Component {
         const {productQuantity} = this.state;
 
         return (
-            <div className={`carousel-item col s10 ${style}`} href={href}>
-                <div className="card col s12 l6">
+            <div className={`carousel-item ${style}`} href={href}>
+                <div className="card">
                     <img className="prodImage" src={image}/>
                 </div>
-                <div className="center col s12 l6">
+                <div className="content">
                     <div className="name">
                         {name}
                     </div>
                     <div className="price">
                         ${price/100}
                     </div>
-                    <div className="center row quantityField">
+                    <div className="row quantityField">
                         <button onClick={this.handleSubtractCount} type="button"
                                 className="btn inputButtons minusButton waves-effect waves-light"
                                 data-quantity="subtract" data-field="quantity">-
@@ -65,7 +65,7 @@ class SdcKit extends Component {
                                 data-quantity="add" data-field="quantity">+
                         </button>
                         <button onClick={this.handleAddToCart} type="button"
-                                className="btn inputSubmit waves-effect waves-light">Add to Cart
+                                className="btn inputSubmit waves-effect waves-light">Add
                         </button>
                     </div>
                 </div>

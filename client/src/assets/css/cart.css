@@ -1,11 +1,6 @@
-.cart {
+.cart, .clear {
     color: #063852;
     font-size: 2em;
-}
-
-.clear {
-    color: #063852;
-    font-size: 2rem;
 }
 
 .clear:hover {
@@ -44,6 +39,10 @@ table.rounded tr:last-child td:last-child {
 .cartMinusBtn {
     margin-right: 8%;
 }
+
+.inputButtons, .cartQuantity {
+    display: inline-block;
+} 
 
 @media only screen and (max-device-width: 480px) {
     html {

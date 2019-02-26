@@ -19,14 +19,14 @@ class NavButtons extends Component {
         
         return (
             <Fragment>
-                <div className="hide-on-small-only">
+                <div className="hide-on-small-only navBar">
                     <Link className="waves-effect waves-light btn navButtons" to="/">home</Link>
                     <Link className="waves-effect waves-light btn navButtons" to="/contact">contact</Link>
                     <Link onClick={this.handleCartSummary} className={`waves-effect waves-light btn navButtons ${cartAlert}`} to="/cart">cart</Link>
                     {/*<Link className="waves-effect waves-light btn navButtons" to="/create">create</Link>*/}
                     {/*<Link className="waves-effect waves-light btn navButtons" to="/login">login</Link>*/}
                 </div>
-                <div className="show-on-small hide-on-med-and-up">
+                <div className="show-on-small hide-on-med-and-up mobileNavBar">
                     <Link className="material-icons iconButtons" to="/">home</Link>
                     <Link className="material-icons iconButtons" to="/contact">message</Link>
                     <Link onClick={this.handleCartSummary} className={`material-icons iconButtons ${cartAlert}`} to="/cart">shopping_cart</Link>
