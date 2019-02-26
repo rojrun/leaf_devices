@@ -25,55 +25,59 @@
 
 .card {
     background-color: white;
-    height: 93%;
-}
-
-@media only screen and (max-device-width: 480px) {
-    .card {
-        height: 50%;
-    }
-
-    .quantityField {
-        display: inline-flex;
-        left: 5%;
-        width: 95%;
-    }
-
-    /* .name {
-
-    }
-
-    .price {
-
-    } */
+    border-radius: 6px;
+    display: inline-block;
+    height: 95%;
+    margin-left: 1%;
+    width: 49%;
 }
 
 .prodImage {
+    border-radius: 6px;
     height: 100%;
     width: 100%;
 }
 
 .carousel .carousel-item {
-    bottom: 31%;
-    height: 80%;
+    height: 45vh;
+    width: 60%;
+}
+
+.content {
+    display: inline-block;
+    height: 100%;
+    position: absolute;
+    width: 50%;
 }
 
 .name {
     color: white;
     font-size: 2em;
-    margin-top: 16%;
+    margin: 14% 3% 0 3%;
 }
 
 .price {
-    color: white;
+    color: #063852;
     font-size: 2em;
+    text-align: center;
+}
+
+.quantityField {
+    display: flex;
+}
+
+.inputButtons {
+    margin: 0px 3% 0 3%;
 }
 
 .inputButtons, .inputSubmit {
     background-color: #063852;
     border-radius: 6px;
     color: #F0810F;
-    margin-left: 3%;
+}
+
+.minusButton {
+    margin-left: 10%;
 }
 
 .inputQuantity {
@@ -84,11 +88,10 @@
 
 .productQuantity {
     background-color: #F0810F;
+    border-radius: 6px;
     color: #063852;
-    height: 1%;
-    margin-left: 3%;
-    padding: 2% 5%;
-    width: 2%;
+    display: inline-block;
+    padding: 2% 6%;
 }
 
 .btn:hover {
@@ -97,4 +100,28 @@
 
 .btn:focus {
     background-color: #063852;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .card {
+        display: block; 
+        height: 50%;
+    }
+
+    .name {
+        font-size: 1.5em;
+        margin-top: 0;
+    }
+
+    .price {
+        font-size: 1.5em;
+    }
+
+    .minusButton {
+        margin-left: 0;
+    }
+
+    .productQuantity {
+        padding: 4% 6%;
+    }
 }

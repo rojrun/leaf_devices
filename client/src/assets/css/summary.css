@@ -10,10 +10,19 @@
     border-radius: 6px;
 }
 
+select.browser-default {
+    display: inline-block;
+    margin-right: 3%;
+}    
+
 .browser-default {
     background-color: transparent;
     border-radius: 6px;
     font-weight: bolder;
     padding: 0;
     width: auto;
+}
+
+.shipping {
+    display: inline-block;
 }

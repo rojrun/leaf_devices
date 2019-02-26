@@ -21,3 +21,10 @@
     color: #F0810F;
     position: absolute;
 }
+
+@media only screen and (max-device-width: 480px) {
+    .comment {
+        font-size: 1.1em;
+    }
+}
+
