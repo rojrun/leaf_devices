@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../assets/css/summary.css';
 import {addToSummary, getSummary, updateSummary} from '../actions';
@@ -33,10 +34,6 @@ class Summary extends Component {
         );        
     }
 
-    handleCheckout = () => {
-        console.log("handleCheckout clicked");
-    }
-
     render() {
         const { total_quantity, subtotal, tax, shipping, total } = this.props.summary;
 
@@ -45,22 +42,17 @@ class Summary extends Component {
                 <p><b>Total Quantity: </b>{total_quantity}</p>
                 <p><b>Subtotal: </b>{subtotal/100}</p>
                 <p><b>Tax: </b>{tax/100}</p>
-
-                {/* <div className="row"> */}
-                    <div className="input-field row">
-                        <select onChange={this.shippingMethod} ref="dropdown" defaultValue="standard" className="browser-default">
-                            <option value="standard">Standard Shipping: </option>
-                            <option value="expedited">Expedited Shipping: </option>
-                        </select>
-                        <div className="shipping">
-                            {shipping/100}
-                        </div>  
-                    </div> 
-                    
-                {/* </div> */}
-
+                <div className="input-field row">
+                    <select onChange={this.shippingMethod} ref="dropdown" defaultValue="standard" className="browser-default">
+                        <option value="standard">Standard Shipping: </option>
+                        <option value="expedited">Expedited Shipping: </option>
+                    </select>
+                    <div className="shipping">
+                        {shipping/100}
+                    </div>  
+                </div> 
                 <p><b>Total: ${total/100}</b></p>
-                <button onClick={this.handleCheckout} className="checkoutButton waves-effect waves-light btn">checkout</button>
+                <Link className="checkoutButton waves-effect waves-light btn" to="/guest-checkout">checkout</Link>
             </div>
         );
     }
