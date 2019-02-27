@@ -114,3 +114,20 @@ export function addCartAlert() {
         cartAlert: "pulse"
     }
 }    
+
+export function addGuestCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber ) {
+    const resp = axios.post('/api/guest-checkout', {
+        first_name: firstName,
+        last_name: lastName,
+        mailing_address: mailingAddress,
+        mailing_city: mailingCity,
+        mailing_state: mailingState,
+        mailing_zip: mailingZip,
+        email_address: emailAddress,
+        phone_number: phoneNumber
+    });
+    return {
+        type: types.ADDGUESTCHECKOUT,
+        payload: resp
+    }
+}

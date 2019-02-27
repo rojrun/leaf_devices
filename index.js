@@ -198,6 +198,24 @@ app.post('/api/summary', (req, res) => {
     });
 });
 
+app.post('/api/guest-checkout', (req, res) => {
+    const { first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number } = req.body;
+
+    const sql = 'INSERT INTO `guest_checkout` (first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const inserts = [ first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number ];
+    const formattedSql = mysql.format(sql, inserts);
+
+    db.query(formattedSql, (error, results) => {
+        if(error){
+            res.send('failed');
+            return;
+        }
+        res.send({
+            results: results
+        });
+    });
+});
+
 // app.get('/api/contact-message', (req, res) => {
 //     db.query(`SELECT * FROM \`contact_us\``, (error, results) => {
 //         res.send({

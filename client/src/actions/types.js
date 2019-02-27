@@ -11,5 +11,6 @@ export default {
     UPDATECARTMETAQUANTITY: "updateCartMetaQuantity",
     DELETECARTMETAITEM: "deleteCartMetaItem",
     UPDATESUMMARY: "updateSummary",
-    ADDCARTALERT: "addCartAlert"
+    ADDCARTALERT: "addCartAlert",
+    ADDGUESTCHECKOUT: "addGuestCheckout"
 };
