@@ -10,6 +10,7 @@ import addToSummaryReducer from './addToSummary_reducer';
 import summaryReducer from './summary_reducer';
 import addCartAlertReducer from './addCartAlert_reducer';
 import addGuestCheckoutReducer from './addGuestCheckout_reducer';
+import customerReducer from './customer_reducer';
 
 const rootReducer = combineReducers({
     form: formReducer,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     addToSummary: addToSummaryReducer,
     summary: summaryReducer,
     addCartAlert: addCartAlertReducer,
-    addGuestCheckout: addGuestCheckoutReducer
+    addGuestCheckout: addGuestCheckoutReducer,
+    customer: customerReducer
 });
 
 export default rootReducer;

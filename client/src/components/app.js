@@ -7,25 +7,23 @@ import ProductCarousel from './product_carousel';
 import Contact from './contact';
 import Cart from './cart';
 import GuestCheckout from './guest_checkout';
-// import Create from './create';
-// import Login from './login';
+import OrderComplete from './order_complete';
 import '../assets/css/app.css';
 
 const App = () => (
     <Router>
         <div>
             <div className="main_content">
-                <div className="logo"></div>
-                <Route exact path="/" component={ProductCarousel}/>
-                <Route path="/contact" component={Contact}/>
-                <Route path="/cart" component={Cart}/>
-                <Route path="/guest-checkout" component={GuestCheckout}/>
-                {/* <Route path="/create" component={Create}/>
-                <Route path="/login" component={Login}/> */}
-                <footer>
-                    <div className="footer-copyright center">
-                        © 2019 Leaf Devices LLC. All rights reserved.
-                    </div>
+                <header className="logo"></header>
+                <main>
+                    <Route exact path="/" component={ProductCarousel}/>
+                    <Route path="/contact" component={Contact}/>
+                    <Route path="/cart" component={Cart}/>
+                    <Route path="/guest-checkout" component={GuestCheckout}/>
+                    <Route path="/order-complete" component={OrderComplete}/>
+                </main>    
+                <footer className="footer-copyright">
+                    © 2019 Leaf Devices LLC. All rights reserved.  
                 </footer>
             </div>
             <NavButtons/>

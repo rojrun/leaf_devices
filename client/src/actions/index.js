@@ -131,3 +131,11 @@ export function addGuestCheckout( firstName, lastName, mailingAddress, mailingCi
         payload: resp
     }
 }
+
+export function getCustomer() {
+    const resp = axios.get('/api/guest-checkout');
+    return {
+        type: types.CUSTOMER,
+        payload: resp
+    }
+}

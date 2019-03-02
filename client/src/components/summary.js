@@ -7,7 +7,7 @@ import {addToSummary, getSummary, updateSummary} from '../actions';
 /* Child component of Cart component. Rerenders when quantity changes. */
 class Summary extends Component {
     state =  {
-        value: "standard"
+        value: "Standard"
     }
 
     componentDidMount() {
@@ -43,9 +43,9 @@ class Summary extends Component {
                 <p><b>Subtotal: </b>{subtotal/100}</p>
                 <p><b>Tax: </b>{tax/100}</p>
                 <div className="input-field row">
-                    <select onChange={this.shippingMethod} ref="dropdown" defaultValue="standard" className="browser-default">
-                        <option value="standard">Standard Shipping: </option>
-                        <option value="expedited">Expedited Shipping: </option>
+                    <select onChange={this.shippingMethod} ref="dropdown" defaultValue="Standard" className="browser-default">
+                        <option value="Standard">Standard Shipping: </option>
+                        <option value="Expedited">Expedited Shipping: </option>
                     </select>
                     <div className="shipping">
                         {shipping/100}

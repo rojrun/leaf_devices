@@ -102,7 +102,7 @@ app.put('/api/cart-meta/product/:id', (req, res) => {
 });
 
 app.get('/api/summary', (req, res) => {
-    db.query(`SELECT id, total_quantity, subtotal, tax, shipping, total FROM  \`summary\``, (error, results) => {
+    db.query(`SELECT id, total_quantity, subtotal, tax, shipping_method, shipping, total FROM  \`summary\``, (error, results) => {
         res.send({
             results: results[0] || {}
         });
@@ -127,11 +127,11 @@ app.put('/api/summary/:id', (req, res) => {
             let cartId = results[0].cartId;
             const tax = .0775;
 
-            if(shipping_method === "standard") {
-                shipping_method = "standard";
+            if(shipping_method === "Standard") {
+                shipping_method = "Standard";
                 var shipping = 0;
             } else {
-                shipping_method = "expedited";
+                shipping_method = "Expedited";
                 var shipping = 375;
             }
 
@@ -174,7 +174,7 @@ app.post('/api/summary', (req, res) => {
                     let subTotal = 0;
                     let cartId = results[0].cartId;
                     const tax = .0775;
-                    let shipping_method = "standard";
+                    let shipping_method = "Standard";
                     let shipping = 0;
 
                     results.map( item => {
@@ -212,6 +212,14 @@ app.post('/api/guest-checkout', (req, res) => {
         }
         res.send({
             results: results
+        });
+    });
+});
+
+app.get('/api/guest-checkout', (req, res) => {
+    db.query(`SELECT first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip FROM  \`guest_checkout\``, (error, results) => {
+        res.send({
+            results: results[0] || {}
         });
     });
 });
