@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary} from '../actions';
 import Summary from './summary';
-import '../assets/css/cart.css';
 import Comments from './comments';
+import '../assets/css/cart.css';
 
 /* Cart component to display selected items from landing page */
 class Cart extends Component {

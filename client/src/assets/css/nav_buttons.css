@@ -1,7 +1,5 @@
 .navBar {
-    bottom: 32vh;
     display: inline-block;
-    position: relative;
     width: 15%;
 }
 .navButtons {

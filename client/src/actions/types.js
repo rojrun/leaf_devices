@@ -12,5 +12,6 @@ export default {
     DELETECARTMETAITEM: "deleteCartMetaItem",
     UPDATESUMMARY: "updateSummary",
     ADDCARTALERT: "addCartAlert",
-    ADDGUESTCHECKOUT: "addGuestCheckout"
+    ADDGUESTCHECKOUT: "addGuestCheckout", 
+    CUSTOMER: "customer"
 };
