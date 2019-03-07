@@ -1,7 +1,7 @@
 body {
     background-image:
-        repeating-linear-gradient(to bottom, transparent, transparent 5px, #28487d 5px, #28487d 10px),
-        repeating-linear-gradient(to right, #617ca2, #617ca2 5px, #28487d 5px, #28487d 10px);
+        repeating-linear-gradient(to bottom, transparent, transparent 1%, #28487d 3%, #28487d 4%),          
+        repeating-linear-gradient(to right, #617ca2, #617ca2 2%, #28487d 3%, #28487d 2%);    
     margin: 0;
 }
 
@@ -10,11 +10,11 @@ body {
 }
 
 .footer-copyright {
-    bottom: 0;
     color: #E6DF44;
     font-weight: 500;
-    position: absolute;
-    transform: translate(100%, -50%);
+    margin-top: 1%;
+    text-align: center;
+    width: 100%;
 }
 
 .main_content {
@@ -33,7 +33,68 @@ body {
     height: 25vh;
 }
 
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    .main_content {
+        min-height: 107vh;
+    }
+}
 
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* Tablets, iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* Tablets, iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* Tablets, iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
 
 
 
