@@ -28,8 +28,8 @@ class GuestCheckout extends Component {
                 </div>
                 <div className="row">
                     <Field name="mailingCity" label="Mailing City" size="l6 m6 s12" component={Input}/>
-                    <Field name="mailingState" label="Mailing State" size="l2 m2 s4" component={Input}/>
-                    <Field name="mailingZip" label="Mailing Zip Code" size="l4 m4 s8"component={Input}/>
+                    <Field name="mailingState" label="Mailing State" size="l2 m3 s6" component={Input}/>
+                    <Field name="mailingZip" label="Mailing Zip" size="l4 m3 s6"component={Input}/>
                 </div>
                 <div className="row">
                     <Field name="emailAddress" label="Email Address" size="l6 m6 s6" component={Input}/>

@@ -1,6 +1,11 @@
-.cart, .clear {
+.cart {
     color: #063852;
     font-size: 2em;
+}
+
+.clear {
+    color: #063852;
+    font-size: 2.6em;
 }
 
 .clear:hover {
@@ -16,19 +21,13 @@
     display: inline-block;
 }
 
-table.rounded th:last-child {
-    border-top-right-radius: 6px;
-}
-
-table.rounded th:first-child {
+table.rounded tr td:first-child {
     border-top-left-radius: 6px;
-}
-
-table.rounded tr:last-child td:first-child {
     border-bottom-left-radius: 6px;
-}
+}    
 
-table.rounded tr:last-child td:last-child {
+table.rounded tr td:last-child {
+    border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
 }
 
@@ -44,12 +43,71 @@ table.rounded tr:last-child td:last-child {
     display: inline-block;
 } 
 
-@media only screen and (max-device-width: 480px) {
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-width : 320px) 
+and (max-width : 480px) {
     html {
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
 
-    .cartTable {
-
+    .table {
+        padding: 0 !important;
     }
+
+    .inputButtons {
+        display: block;
+        margin: auto;
+    }
+
+    .clear {
+        font-size: 2em;
+        padding-top: 10vh;
+        padding-bottom: 10vh;
+    }
+
+    .cartAddBtn {
+        width: 64%;
+    }
+
+    .shop_update {
+        margin: auto;
+        margin-bottom: 4%;
+        width: 70%;
+    }
+}
+
+/* Smartphones ----------- */
+@media only screen 
+and (min-width: 481px) 
+and (max-width: 767px) {
+    .table {
+       
+    }
+}
+
+/* Tablets, iPads (landscape) ----------- */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px) 
+and (orientation: landscape) {
+/* Styles */
+}
+
+/* Tablets, iPads (portrait) ----------- */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+@media only screen
+and (min-width: 1025px) 
+and (max-width: 1280px) {
+
+}
+
+@media (min-width: 1281px) {
+
 }

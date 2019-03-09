@@ -1,28 +1,12 @@
 body {
     background-image:
-        repeating-linear-gradient(to bottom, transparent, transparent 5px, #28487d 5px, #28487d 10px),
-        repeating-linear-gradient(to right, #617ca2, #617ca2 5px, #28487d 5px, #28487d 10px);
+        repeating-linear-gradient(to bottom, transparent, transparent 1%, #28487d 3%, #28487d 4%),          
+        repeating-linear-gradient(to right, #617ca2, #617ca2 2%, #28487d 3%, #28487d 2%);    
     margin: 0;
 }
 
 .row {
     margin: 0;
-}
-
-.footer-copyright {
-    bottom: 0;
-    color: #E6DF44;
-    font-weight: 500;
-    position: absolute;
-    transform: translate(100%, -50%);
-}
-
-.main_content {
-    background-color: #F0810F;
-    display: inline-block;
-    margin-left: 15%;
-    width: 70%;
-    min-height: 100vh;
 }
 
 .logo {
@@ -33,8 +17,58 @@ body {
     height: 25vh;
 }
 
+.main_content {
+    background-color: #F0810F;
+    display: inline-block;
+    margin-left: 15%;
+    width: 70%;
+    min-height: 100vh;
+}
 
+.footer-copyright {
+    color: #E6DF44;
+    font-weight: 500;
+    margin-top: 1%;
+    text-align: center;
+    width: 100%;
+}
 
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-width : 320px) 
+and (max-width : 480px) {
+    
+}
 
+/* Smartphones ----------- */
+@media only screen 
+and (min-width: 481px) 
+and (max-width: 767px) {
+/* Styles */
+}
 
+/* Tablets, iPads (landscape) ----------- */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px) 
+and (orientation: landscape) {
+/* Styles */
+}
 
+/* Tablets, iPads (portrait) ----------- */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+@media only screen
+and (min-width: 1025px) 
+and (max-width: 1280px) {
+
+}
+
+@media (min-width: 1281px) {
+
+}
