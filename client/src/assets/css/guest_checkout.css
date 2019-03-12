@@ -25,19 +25,19 @@ and (max-width: 767px) {
 /* Styles */
 }
 
-/* Tablets, iPads (landscape) ----------- */
+/* Tablets, iPads (portrait) ----------- */
 @media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
-and (orientation: landscape) {
+and (min-width : 601px) 
+and (max-width : 768px) 
+and (orientation : portrait) {
 /* Styles */
 }
 
-/* Tablets, iPads (portrait) ----------- */
+/* Tablets, iPads (landscape) ----------- */
 @media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
-and (orientation : portrait) {
+and (min-width : 601px) 
+and (max-width : 768px) 
+and (orientation: landscape) {
 /* Styles */
 }
 

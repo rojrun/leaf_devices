@@ -76,8 +76,13 @@
     color: #F0810F;
 }
 
+.inputSubmit {
+    margin: 1% auto 1% 26%;
+    width: 49%;
+}
+
 .minusButton {
-    margin-left: 12%;
+    margin-left: 26%;
 }
 
 .inputQuantity {
@@ -107,8 +112,9 @@
 and (min-width : 320px) 
 and (max-width : 480px) {
     .carousel .carousel-item {
-        min-height: 70vh;
+        min-height: 58vh;
         min-width: 70%;
+        top: 2vh;
     }    
 
     .content {
@@ -133,7 +139,7 @@ and (max-width : 480px) {
     }
 
     .minusButton {
-        margin-left: 4%;
+        margin-left: 22%;
     }
 
     .productQuantity {
@@ -141,40 +147,121 @@ and (max-width : 480px) {
     }
 
     .inputSubmit {
-        padding-left: 4%;
+        margin: 1% 22% 1% 22%;
+        width: 56%;
     }
 }
 
 /* Smartphones ----------- */
 @media only screen 
 and (min-width: 481px) 
-and (max-width: 767px) {
+and (max-width: 600px) {
     .carousel .carousel-item {
-        min-height: 65vh;
+        min-height: 61vh;
         min-width: 70%;
+        top: 9vh;
     }    
 
-    table.rounded tr td:first-child {
-        padding-top: 23vh;
-        padding-bottom: 22vh;
-    }    
-}
+    .content {
+        height: 46%;
+        width: 98%;
+    }
 
-/* Tablets, iPads (landscape) ----------- */
-@media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
-and (orientation: landscape) {
-/* Styles */
+    .card {
+        display: block; 
+        height: 49%;
+        width: 97%;
+    }
+
+    .name {
+        font-size: 1.8em;
+        margin-top: 7%;
+        text-align: center;
+    }
+
+    .price {
+        font-size: 1.8em;
+    }
+
+    .quantityField {
+        font-size: 1.8em;
+    }
+
+    .minusButton {
+        margin-left: 23%;
+    }
+
+    .productQuantity {
+        width: 20%;
+        padding: 0 7%;
+    }
+
+    .inputSubmit {
+        margin: 1% 23% 1% 23%;
+        width: 54%;
+    }
 }
 
 /* Tablets, iPads (portrait) ----------- */
 @media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
+and (min-width : 601px) 
+and (max-width : 768px) 
 and (orientation : portrait) {
+    .carousel .carousel-item {
+        min-height: 61vh;
+        min-width: 70%;
+        top: 0;
+    }    
+
+    .content {
+        height: 46%;
+        width: 98%;
+    }
+
+    .card {
+        display: block; 
+        height: 49%;
+        width: 97%;
+    }
+
+    .name {
+        font-size: 1.8em;
+        margin-top: 7%;
+        text-align: center;
+    }
+
+    .price {
+        font-size: 1.8em;
+    }
+
+    .quantityField {
+        font-size: 1.8em;
+    }
+
+    .minusButton {
+        margin-left: 23%;
+    }
+
+    .productQuantity {
+        width: 20%;
+        padding: 0 7%;
+    }
+
+    .inputSubmit {
+        margin: 1% 23% 1% 23%;
+        width: 54%;
+    }
+}
+
+/* Tablets, iPads (landscape) ----------- */
+@media only screen 
+and (min-width : 601px) 
+and (max-width : 768px) 
+and (orientation: landscape) {
 /* Styles */
 }
+
+
 
 @media only screen
 and (min-width: 1025px) 

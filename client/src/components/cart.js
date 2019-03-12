@@ -61,14 +61,14 @@ class Cart extends Component {
                     <td>{name}</td>
                     <td className="row center">
                         <button onClick={ () => this.handleSubtractCount(id, quantity) } type="button"
-                                className="btn inputButtons cartMinusBtn waves-effect waves-light"
+                                className="btn inputButtons cartMinusBtn cartBtn waves-effect waves-light"
                                 data-quantity="subtract" data-field="quantity">-
                         </button>
                         <div className="cartQuantity">
                             {quantity}
                         </div>    
                         <button onClick={ () => this.handleAddCount(id, quantity) } type="button"
-                                className="btn inputButtons cartAddBtn waves-effect waves-light"
+                                className="btn inputButtons cartAddBtn cartBtn waves-effect waves-light"
                                 data-quantity="add" data-field="quantity">+
                         </button>
                     </td>
