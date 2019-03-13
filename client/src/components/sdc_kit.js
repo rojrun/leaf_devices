@@ -52,22 +52,24 @@ class SdcKit extends Component {
                     <div className="price">
                         ${price/100}
                     </div>
-                    <div className="row quantityField">
-                        <button onClick={this.handleSubtractCount} type="button"
-                                className="btn inputButtons minusButton waves-effect waves-light"
-                                data-quantity="subtract" data-field="quantity">-
-                        </button>
-                        <div className="productQuantity" type="number" name="quantity"
-                              value={productQuantity} product_id={id} onChange={() => {}}>{productQuantity}
-                        </div>
-                        <button onClick={this.handleAddCount} type="button"
-                                className="btn inputButtons waves-effect waves-light"
-                                data-quantity="add" data-field="quantity">+
-                        </button>
-                    </div>    
-                    <button onClick={this.handleAddToCart} type="button"
-                            className="btn inputSubmit waves-effect waves-light">Add
-                    </button>                   
+                    <div className="productInput">
+                        <div className="row quantityField">
+                            <button onClick={this.handleSubtractCount} type="button"
+                                    className="btn inputButtons minusButton waves-effect waves-light"
+                                    data-quantity="subtract" data-field="quantity">-
+                            </button>
+                            <div className="productQuantity" type="number" name="quantity"
+                                value={productQuantity} product_id={id} onChange={() => {}}>{productQuantity}
+                            </div>
+                            <button onClick={this.handleAddCount} type="button"
+                                    className="btn inputButtons waves-effect waves-light"
+                                    data-quantity="add" data-field="quantity">+
+                            </button>
+                        </div>                       
+                        <button onClick={this.handleAddToCart} type="button"
+                                className="btn inputSubmit waves-effect waves-light">Add
+                        </button>  
+                    </div>                      
                 </div>
             </div>
         );

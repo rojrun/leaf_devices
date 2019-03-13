@@ -1,13 +1,13 @@
 .checkoutButton {
     background-color: #063852;
-    border-radius: 6px;
+    border-radius: 0.6em;
     color: #F0810F;
     margin-bottom: 7%;
 }
 
 .summary {
     background-color: rgba(242,242,242,0.5);
-    border-radius: 6px;
+    border-radius: 0.6em;
 }
 
 select.browser-default {
@@ -17,7 +17,7 @@ select.browser-default {
 
 .browser-default {
     background-color: transparent;
-    border-radius: 6px;
+    border-radius: 0.6em;
     font-weight: bolder;
     padding: 0;
     width: auto;

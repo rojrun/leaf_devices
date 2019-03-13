@@ -1,31 +1,31 @@
 .black {
     background-color: black;
-    border-radius: 6px;
+    border-radius: 0.6em;
 }
 
 .blue {
     background-color: #1034A6;
-    border-radius: 6px;
+    border-radius: 0.6em;
 }
 
 .green {
     background-color: #0B6623;
-    border-radius: 6px;
+    border-radius: 0.6em;
 }
 
 .purple {
     background-color: #7851A9;
-    border-radius: 6px;
+    border-radius: 0.6em;
 }
 
 .red {
     background-color: #C21807;
-    border-radius: 6px;
+    border-radius: 0.6em;
 }
 
 .card {
     background-color: white;
-    border-radius: 6px;
+    border-radius: 0.6em;
     display: inline-block;
     height: 95%;
     margin-left: 1%;
@@ -33,7 +33,7 @@
 }
 
 .prodImage {
-    border-radius: 6px;
+    border-radius: 0.6em;
     height: 100%;
     width: 100%;
 }
@@ -62,41 +62,35 @@
     text-align: center;
 }
 
-.quantityField {
-    display: flex;
-}
-
-.inputButtons {
-    margin: 0px 3% 0 3%;
+.productInput {
+    box-sizing: border-box;
+    height: 35%;
+    margin: auto;
+    width: 50%;
 }
 
 .inputButtons, .inputSubmit {
     background-color: #063852;
-    border-radius: 6px;
+    border-radius: 0.6em;
     color: #F0810F;
 }
 
 .inputSubmit {
-    margin: 1% auto 1% 26%;
-    width: 49%;
-}
-
-.minusButton {
-    margin-left: 26%;
+    margin-top: 5%;
+    width: 100%;
 }
 
 .inputQuantity {
     color: #F0810F;
-    height: 5%;
-    width: 5%;
 }
 
 .productQuantity {
     background-color: #F0810F;
-    border-radius: 6px;
+    border-radius: 0.6em;
     color: #063852;
     display: inline-block;
-    padding: 2% 6%;
+    margin: 0 5%;
+    padding: 3% 14%;
 }
 
 .btn:hover {
@@ -112,9 +106,8 @@
 and (min-width : 320px) 
 and (max-width : 480px) {
     .carousel .carousel-item {
-        min-height: 58vh;
-        min-width: 70%;
-        top: 2vh;
+        height: 58vh;
+        width: 70%;
     }    
 
     .content {
@@ -138,17 +131,14 @@ and (max-width : 480px) {
         font-size: 1.3em;
     }
 
-    .minusButton {
-        margin-left: 22%;
+    .productInput {
+        height: 44%;
+        width: 43vw;
+        max-width: 139px;
     }
 
     .productQuantity {
-        padding: 4% 6%;
-    }
-
-    .inputSubmit {
-        margin: 1% 22% 1% 22%;
-        width: 56%;
+        padding: 3% 13%;
     }
 }
 
@@ -158,8 +148,7 @@ and (min-width: 481px)
 and (max-width: 600px) {
     .carousel .carousel-item {
         min-height: 61vh;
-        min-width: 70%;
-        top: 9vh;
+        width: 70%;
     }    
 
     .content {
@@ -183,22 +172,14 @@ and (max-width: 600px) {
         font-size: 1.8em;
     }
 
-    .quantityField {
-        font-size: 1.8em;
-    }
-
-    .minusButton {
-        margin-left: 23%;
+    .productInput {
+        height: 44%;
+        width: 29vw;
+        max-width: 138px;
     }
 
     .productQuantity {
-        width: 20%;
-        padding: 0 7%;
-    }
-
-    .inputSubmit {
-        margin: 1% 23% 1% 23%;
-        width: 54%;
+        padding: 3% 13%;
     }
 }
 
@@ -210,12 +191,11 @@ and (orientation : portrait) {
     .carousel .carousel-item {
         min-height: 61vh;
         min-width: 70%;
-        top: 0;
-    }    
+    }
 
     .content {
-        height: 46%;
-        width: 98%;
+        height: 48%;
+        width: 100%;
     }
 
     .card {
@@ -225,31 +205,28 @@ and (orientation : portrait) {
     }
 
     .name {
-        font-size: 1.8em;
+        font-size: 2em;
         margin-top: 7%;
         text-align: center;
     }
 
     .price {
-        font-size: 1.8em;
+        font-size: 2em;
     }
 
-    .quantityField {
-        font-size: 1.8em;
-    }
-
-    .minusButton {
-        margin-left: 23%;
+    .productInput {
+        height: 44%;
+        width: 28vw;
+        max-width: 166px;
     }
 
     .productQuantity {
-        width: 20%;
-        padding: 0 7%;
+        font-size: 1.4em;
+        padding: 2% 13%;
     }
 
-    .inputSubmit {
-        margin: 1% 23% 1% 23%;
-        width: 54%;
+    .inputButtons {
+        font-size: 2em;
     }
 }
 

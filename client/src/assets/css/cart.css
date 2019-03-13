@@ -39,7 +39,7 @@ table.rounded tr td:last-child {
     margin-right: 8%;
 }
 
-.inputButtons, .cartQuantity {
+.cartAddBtn, cartMinusBtn, .cartQuantity {
     display: inline-block;
 } 
 
