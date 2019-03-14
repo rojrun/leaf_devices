@@ -1,26 +1,25 @@
+.black, .blue, .green, .purple, .red {
+    border-radius: 0.6em;
+}
+
 .black {
     background-color: black;
-    border-radius: 0.6em;
 }
 
 .blue {
     background-color: #1034A6;
-    border-radius: 0.6em;
 }
 
 .green {
     background-color: #0B6623;
-    border-radius: 0.6em;
 }
 
 .purple {
     background-color: #7851A9;
-    border-radius: 0.6em;
 }
 
 .red {
     background-color: #C21807;
-    border-radius: 0.6em;
 }
 
 .card {
@@ -46,14 +45,14 @@
 .content {
     display: inline-block;
     height: 100%;
-    position: absolute;
+    vertical-align: top;
     width: 50%;
 }
 
 .name {
     color: white;
     font-size: 2em;
-    margin: 14% 3% 0 3%;
+    margin: 11% 3% 0 3%;
 }
 
 .price {
@@ -101,6 +100,63 @@
     background-color: #063852;
 }
 
+@media only screen 
+and (min-width : 100px)
+and (max-width : 319px) {
+    .carousel .carousel-item {
+        height: 58vh;
+        width: 70%;
+    }    
+
+    .content {
+        height: 46%;
+        width: 100%;
+    }
+
+    .card {   
+        display: block;
+        height: 47%;
+        margin: 2% auto;
+        width: 97%;
+    }
+
+    .name {
+        font-size: 0.4em;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .price {
+        font-size: 0.4em;
+    }
+
+    .productInput {
+        height: 46%;
+        width: 42vw;
+        max-width: 85px;
+    }    
+
+    .productQuantity {
+        padding: 2% 11%;
+        font-size: 0.3em;
+    }
+
+    .inputButtons {
+        line-height: 0;
+        padding: 0 2%;
+        height: 4vmax;
+        width: 24%;
+        font-size: 0.4em;
+    }
+
+    .inputSubmit {
+        font-size: 0.4em;
+        height: 31%;
+        line-height: 0;
+        margin-top: 1%;
+    }
+}
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-width : 320px) 
@@ -112,7 +168,7 @@ and (max-width : 480px) {
 
     .content {
         height: 46%;
-        width: 98%;
+        width: 100%;
     }
 
     .card {
@@ -123,7 +179,7 @@ and (max-width : 480px) {
 
     .name {
         font-size: 1.3em;
-        margin-top: 7%;
+        margin-top: 0;
         text-align: center;
     }
 
@@ -235,13 +291,30 @@ and (orientation : portrait) {
 and (min-width : 601px) 
 and (max-width : 768px) 
 and (orientation: landscape) {
-/* Styles */
+    .carousel .carousel-item {
+        min-height: 64vh;
+        min-width: 80%;
+    }
+
+    .name {
+        font-size: 1.7em;
+    }
+
+    .price {
+        font-size: 1.7em;
+    }
+
+    .productInput {
+        height: 42%;
+        width: 24vw;
+        max-width: 142px;
+    }
 }
 
 
 
 @media only screen
-and (min-width: 1025px) 
+and (min-width: 769px) 
 and (max-width: 1280px) {
 
 }

@@ -25,6 +25,20 @@
     background-color: #006400;
 }
 
+@media only screen 
+and (min-width : 100px)
+and (max-width : 319px) {
+    .mobileNavBar {
+        display: inline-block !important;
+    }
+
+    .iconButtons {
+        display: block;
+        font-size: 4vw;
+        width: 51%;
+    }
+}
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-width : 320px) 
@@ -62,8 +76,8 @@ and (orientation : portrait) {
 
     .iconButtons {
         display: block;
-        font-size: 2em;
-        width: 53%;
+        font-size: 1.5em;
+        width: 51%;
     }
 }
 
@@ -72,7 +86,19 @@ and (orientation : portrait) {
 and (min-width : 601px) 
 and (max-width : 768px) 
 and (orientation: landscape) {
-/* Styles */
+    .navBar {
+        display: none !important;
+    }
+
+    .mobileNavBar {
+        display: inline-block !important;
+    }
+
+    .iconButtons {
+        display: block;
+        font-size: 1.3em;
+        width: 50%;
+    }
 }
 
 @media only screen
