@@ -1,31 +1,30 @@
+.black, .blue, .green, .purple, .red {
+    border-radius: 0.6em;
+}
+
 .black {
     background-color: black;
-    border-radius: 6px;
 }
 
 .blue {
     background-color: #1034A6;
-    border-radius: 6px;
 }
 
 .green {
     background-color: #0B6623;
-    border-radius: 6px;
 }
 
 .purple {
     background-color: #7851A9;
-    border-radius: 6px;
 }
 
 .red {
     background-color: #C21807;
-    border-radius: 6px;
 }
 
 .card {
     background-color: white;
-    border-radius: 6px;
+    border-radius: 0.6em;
     display: inline-block;
     height: 95%;
     margin-left: 1%;
@@ -33,7 +32,7 @@
 }
 
 .prodImage {
-    border-radius: 6px;
+    border-radius: 0.6em;
     height: 100%;
     width: 100%;
 }
@@ -46,14 +45,14 @@
 .content {
     display: inline-block;
     height: 100%;
-    position: absolute;
+    vertical-align: top;
     width: 50%;
 }
 
 .name {
     color: white;
     font-size: 2em;
-    margin: 14% 3% 0 3%;
+    margin: 11% 3% 0 3%;
 }
 
 .price {
@@ -62,36 +61,35 @@
     text-align: center;
 }
 
-.quantityField {
-    display: flex;
-}
-
-.inputButtons {
-    margin: 0px 3% 0 3%;
+.productInput {
+    box-sizing: border-box;
+    height: 35%;
+    margin: auto;
+    width: 50%;
 }
 
 .inputButtons, .inputSubmit {
     background-color: #063852;
-    border-radius: 6px;
+    border-radius: 0.6em;
     color: #F0810F;
 }
 
-.minusButton {
-    margin-left: 12%;
+.inputSubmit {
+    margin-top: 5%;
+    width: 100%;
 }
 
 .inputQuantity {
     color: #F0810F;
-    height: 5%;
-    width: 5%;
 }
 
 .productQuantity {
     background-color: #F0810F;
-    border-radius: 6px;
+    border-radius: 0.6em;
     color: #063852;
     display: inline-block;
-    padding: 2% 6%;
+    margin: 0 5%;
+    padding: 3% 14%;
 }
 
 .btn:hover {
@@ -102,18 +100,75 @@
     background-color: #063852;
 }
 
+@media only screen 
+and (min-width : 100px)
+and (max-width : 319px) {
+    .carousel .carousel-item {
+        height: 58vh;
+        width: 70%;
+    }    
+
+    .content {
+        height: 46%;
+        width: 100%;
+    }
+
+    .card {   
+        display: block;
+        height: 47%;
+        margin: 2% auto;
+        width: 97%;
+    }
+
+    .name {
+        font-size: 0.4em;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .price {
+        font-size: 0.4em;
+    }
+
+    .productInput {
+        height: 46%;
+        width: 42vw;
+        max-width: 85px;
+    }    
+
+    .productQuantity {
+        padding: 2% 11%;
+        font-size: 0.3em;
+    }
+
+    .inputButtons {
+        line-height: 0;
+        padding: 0 2%;
+        height: 4vmax;
+        width: 24%;
+        font-size: 0.4em;
+    }
+
+    .inputSubmit {
+        font-size: 0.4em;
+        height: 31%;
+        line-height: 0;
+        margin-top: 1%;
+    }
+}
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-width : 320px) 
 and (max-width : 480px) {
     .carousel .carousel-item {
-        min-height: 70vh;
-        min-width: 70%;
+        height: 58vh;
+        width: 70%;
     }    
 
     .content {
         height: 46%;
-        width: 98%;
+        width: 100%;
     }
 
     .card {
@@ -124,7 +179,7 @@ and (max-width : 480px) {
 
     .name {
         font-size: 1.3em;
-        margin-top: 7%;
+        margin-top: 0;
         text-align: center;
     }
 
@@ -132,52 +187,134 @@ and (max-width : 480px) {
         font-size: 1.3em;
     }
 
-    .minusButton {
-        margin-left: 4%;
+    .productInput {
+        height: 44%;
+        width: 43vw;
+        max-width: 139px;
     }
 
     .productQuantity {
-        padding: 4% 6%;
-    }
-
-    .inputSubmit {
-        padding-left: 4%;
+        padding: 3% 13%;
     }
 }
 
 /* Smartphones ----------- */
 @media only screen 
 and (min-width: 481px) 
-and (max-width: 767px) {
+and (max-width: 600px) {
     .carousel .carousel-item {
-        min-height: 65vh;
-        min-width: 70%;
+        min-height: 61vh;
+        width: 70%;
     }    
 
-    table.rounded tr td:first-child {
-        padding-top: 23vh;
-        padding-bottom: 22vh;
-    }    
-}
+    .content {
+        height: 46%;
+        width: 98%;
+    }
 
-/* Tablets, iPads (landscape) ----------- */
-@media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
-and (orientation: landscape) {
-/* Styles */
+    .card {
+        display: block; 
+        height: 49%;
+        width: 97%;
+    }
+
+    .name {
+        font-size: 1.8em;
+        margin-top: 7%;
+        text-align: center;
+    }
+
+    .price {
+        font-size: 1.8em;
+    }
+
+    .productInput {
+        height: 44%;
+        width: 29vw;
+        max-width: 138px;
+    }
+
+    .productQuantity {
+        padding: 3% 13%;
+    }
 }
 
 /* Tablets, iPads (portrait) ----------- */
 @media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
+and (min-width : 601px) 
+and (max-width : 768px) 
 and (orientation : portrait) {
-/* Styles */
+    .carousel .carousel-item {
+        min-height: 61vh;
+        min-width: 70%;
+    }
+
+    .content {
+        height: 48%;
+        width: 100%;
+    }
+
+    .card {
+        display: block; 
+        height: 49%;
+        width: 97%;
+    }
+
+    .name {
+        font-size: 2em;
+        margin-top: 7%;
+        text-align: center;
+    }
+
+    .price {
+        font-size: 2em;
+    }
+
+    .productInput {
+        height: 44%;
+        width: 28vw;
+        max-width: 166px;
+    }
+
+    .productQuantity {
+        font-size: 1.4em;
+        padding: 2% 13%;
+    }
+
+    .inputButtons {
+        font-size: 2em;
+    }
 }
 
+/* Tablets, iPads (landscape) ----------- */
+@media only screen 
+and (min-width : 601px) 
+and (max-width : 768px) 
+and (orientation: landscape) {
+    .carousel .carousel-item {
+        min-height: 64vh;
+        min-width: 80%;
+    }
+
+    .name {
+        font-size: 1.7em;
+    }
+
+    .price {
+        font-size: 1.7em;
+    }
+
+    .productInput {
+        height: 42%;
+        width: 24vw;
+        max-width: 142px;
+    }
+}
+
+
+
 @media only screen
-and (min-width: 1025px) 
+and (min-width: 769px) 
 and (max-width: 1280px) {
 
 }

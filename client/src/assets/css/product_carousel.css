@@ -1,37 +1,35 @@
 .carousel {
-    min-height: 71vh;
+    height: 415px;
 }
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-width : 320px) 
 and (max-width : 480px) {
-    .carousel {
-        top: 12vh;
-    }
+    /* .carousel {
+        min-height: 66vh;
+    } */
 }
 
 @media only screen 
 and (min-width: 481px) 
-and (max-width: 767px) {
-    .carousel {
-        top: 12vh;
-    }
-}
-
-/* Tablets, iPads (landscape) ----------- */
-@media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
-and (orientation: landscape) {
-/* Styles */
+and (max-width: 600px) {
+    
 }
 
 /* Tablets, iPads (portrait) ----------- */
 @media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
+and (min-width : 601px) 
+and (max-width : 768px) 
 and (orientation : portrait) {
+/* Styles */
+}
+
+/* Tablets, iPads (landscape) ----------- */
+@media only screen 
+and (min-width : 601px) 
+and (max-width : 768px) 
+and (orientation: landscape) {
 /* Styles */
 }
 

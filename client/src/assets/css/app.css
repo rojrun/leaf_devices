@@ -33,6 +33,14 @@ body {
     width: 100%;
 }
 
+@media only screen 
+and (min-width : 100px)
+and (max-width : 319px) {
+    .footer-copyright {
+        font-size: 0.6em;
+    }
+}
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-width : 320px) 
@@ -43,25 +51,29 @@ and (max-width : 480px) {
 /* Smartphones ----------- */
 @media only screen 
 and (min-width: 481px) 
-and (max-width: 767px) {
-/* Styles */
-}
-
-/* Tablets, iPads (landscape) ----------- */
-@media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
-and (orientation: landscape) {
+and (max-width: 600px) {
 /* Styles */
 }
 
 /* Tablets, iPads (portrait) ----------- */
 @media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
+and (min-width : 601px) 
+and (max-width : 768px) 
 and (orientation : portrait) {
 /* Styles */
 }
+
+/* Tablets, iPads (landscape) ----------- */
+@media only screen 
+and (min-width : 601px) 
+and (max-width : 768px) 
+and (orientation: landscape) {
+    /* .logo {
+        height: 35vh;
+    } */
+}
+
+
 
 @media only screen
 and (min-width: 1025px) 

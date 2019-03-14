@@ -39,7 +39,7 @@ table.rounded tr td:last-child {
     margin-right: 8%;
 }
 
-.inputButtons, .cartQuantity {
+.cartAddBtn, cartMinusBtn, .cartQuantity {
     display: inline-block;
 } 
 
@@ -55,7 +55,7 @@ and (max-width : 480px) {
         padding: 0 !important;
     }
 
-    .inputButtons {
+    .cartBtn {
         display: block;
         margin: auto;
     }
@@ -80,25 +80,37 @@ and (max-width : 480px) {
 /* Smartphones ----------- */
 @media only screen 
 and (min-width: 481px) 
-and (max-width: 767px) {
-    .table {
-       
+and (max-width: 600px) {
+    .clear {
+        font-size: 2em;
+        padding-top: 5vh;
     }
-}
 
-/* Tablets, iPads (landscape) ----------- */
-@media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
-and (orientation: landscape) {
-/* Styles */
+    .cartBtn {
+        display: block;
+        margin: auto;
+    }
+
+    .shop_update {
+        margin: auto;
+        margin-bottom: 4%;
+        width: 70%;
+    }
 }
 
 /* Tablets, iPads (portrait) ----------- */
 @media only screen 
-and (min-width : 768px) 
-and (max-width : 1024px) 
+and (min-width : 601px) 
+and (max-width : 768px) 
 and (orientation : portrait) {
+/* Styles */
+}
+
+/* Tablets, iPads (landscape) ----------- */
+@media only screen 
+and (min-width : 601px) 
+and (max-width : 768px) 
+and (orientation: landscape) {
 /* Styles */
 }
 
