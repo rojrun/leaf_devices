@@ -9,7 +9,7 @@ class ProductCarousel extends Component {
 
     componentDidMount() {
         this.instance = M.Carousel.init(this.carousel);
-        // this.props.getProducts();
+        this.props.getProducts();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

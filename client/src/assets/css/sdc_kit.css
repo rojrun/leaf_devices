@@ -62,10 +62,14 @@
 }
 
 .productInput {
-    box-sizing: border-box;
-    height: 35%;
+    height: 29%;
     margin: auto;
-    width: 50%;
+    width: 70%;
+}
+
+.quantityField {
+    height: 50%;
+    width: 100%;
 }
 
 .inputButtons, .inputSubmit {
@@ -74,13 +78,13 @@
     color: #F0810F;
 }
 
-.inputSubmit {
-    margin-top: 5%;
-    width: 100%;
+.inputButtons {
+    width: 28%;
 }
 
-.inputQuantity {
-    color: #F0810F;
+.inputSubmit {
+    margin-top: 1%;
+    width: 100%;
 }
 
 .productQuantity {
@@ -89,7 +93,8 @@
     color: #063852;
     display: inline-block;
     margin: 0 5%;
-    padding: 3% 14%;
+    padding: 1% 14%;
+    line-height: 5vh;
 }
 
 .btn:hover {
@@ -104,7 +109,8 @@
 and (min-width : 100px)
 and (max-width : 319px) {
     .carousel .carousel-item {
-        height: 58vh;
+        height: 70vh;
+        max-height: 253px;
         width: 70%;
     }    
 
@@ -121,19 +127,18 @@ and (max-width : 319px) {
     }
 
     .name {
-        font-size: 0.4em;
+        font-size: 0.9em;
         margin-top: 0;
         text-align: center;
     }
 
     .price {
-        font-size: 0.4em;
+        font-size: 0.9em;
     }
 
     .productInput {
         height: 46%;
-        width: 42vw;
-        max-width: 85px;
+        width: 90%;
     }    
 
     .productQuantity {
@@ -145,8 +150,8 @@ and (max-width : 319px) {
         line-height: 0;
         padding: 0 2%;
         height: 4vmax;
-        width: 24%;
-        font-size: 0.4em;
+        width: 29%;
+        font-size: 0.7em;
     }
 
     .inputSubmit {
@@ -162,7 +167,8 @@ and (max-width : 319px) {
 and (min-width : 320px) 
 and (max-width : 480px) {
     .carousel .carousel-item {
-        height: 58vh;
+        height: 66vh;
+        max-height: 367px;
         width: 70%;
     }    
 
@@ -188,9 +194,8 @@ and (max-width : 480px) {
     }
 
     .productInput {
-        height: 44%;
-        width: 43vw;
-        max-width: 139px;
+        height: 47%;
+        width: 90%;
     }
 
     .productQuantity {
@@ -203,7 +208,8 @@ and (max-width : 480px) {
 and (min-width: 481px) 
 and (max-width: 600px) {
     .carousel .carousel-item {
-        min-height: 61vh;
+        height: 54vh;
+        max-height: 504px;
         width: 70%;
     }    
 
@@ -230,12 +236,17 @@ and (max-width: 600px) {
 
     .productInput {
         height: 44%;
-        width: 29vw;
-        max-width: 138px;
+        width: 90%;
+    }
+
+    .inputButtons {
+        font-size: 2em;
+        width: 29%;
+        height: 71%;
     }
 
     .productQuantity {
-        padding: 3% 13%;
+        padding: 0% 13%;
     }
 }
 
@@ -245,8 +256,8 @@ and (min-width : 601px)
 and (max-width : 768px) 
 and (orientation : portrait) {
     .carousel .carousel-item {
-        min-height: 61vh;
-        min-width: 70%;
+        height: 62vh;
+        width: 70%;
     }
 
     .content {
@@ -272,17 +283,17 @@ and (orientation : portrait) {
 
     .productInput {
         height: 44%;
-        width: 28vw;
-        max-width: 166px;
+        width: 90%;
     }
 
     .productQuantity {
         font-size: 1.4em;
-        padding: 2% 13%;
+        padding: 1% 13%;
     }
 
     .inputButtons {
         font-size: 2em;
+        width: 30%;
     }
 }
 
@@ -292,8 +303,8 @@ and (min-width : 601px)
 and (max-width : 768px) 
 and (orientation: landscape) {
     .carousel .carousel-item {
-        min-height: 64vh;
-        min-width: 80%;
+        height: 60vh;
+        width: 80%;
     }
 
     .name {
@@ -306,19 +317,53 @@ and (orientation: landscape) {
 
     .productInput {
         height: 42%;
-        width: 24vw;
-        max-width: 142px;
+        width: 87%;
+    }
+
+    .inputButtons { 
+        width: 29%;
+    }
+
+    .productQuantity {
+        padding: 5% 14%;
     }
 }
-
-
 
 @media only screen
 and (min-width: 769px) 
 and (max-width: 1280px) {
+    .carousel .carousel-item {
+        height: 45vh;
+        width: 75%;
+    }
 
+    .productInput {
+        width: 80%;
+    }
+
+    .inputButtons {
+        width: 28%;
+    }
 }
 
-@media (min-width: 1281px) {
+/* @media only screen 
+and (min-width: 1026px)
+and (max-width: 1280px) {
 
-}
+} */
+
+/* @media only screen
+and (min-width: 1281px) {
+    .carousel .carousel-item {
+        height: 45vh;
+        width: 75%;
+    }
+
+    .productInput {
+        width: 80%;
+    }
+
+    .inputButtons {
+        width: 29%;
+    }
+} */
