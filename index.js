@@ -183,8 +183,8 @@ app.post('/api/summary', (req, res) => {
                     });
 
                     const total = (subTotal * tax) + subTotal + shipping;
-                    const sql = `INSERT INTO ?? (cart_id, customer_id, total_quantity, subtotal, tax, shipping_method, shipping, total, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-                    const inserts = [ 'summary', cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping_method, shipping, total, new Date() ];
+                    const sql = `INSERT INTO \`summary\` (cart_id, customer_id, total_quantity, subtotal, tax, shipping_method, shipping, total, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+                    const inserts = [ cartId, user_id, totalQuantity, subTotal, subTotal * tax, shipping_method, shipping, total, new Date() ];
                     const summaryAdd = mysql.format(sql, inserts);
 
                     db.query(summaryAdd, (err, results) => {
@@ -199,9 +199,10 @@ app.post('/api/summary', (req, res) => {
 });
 
 app.post('/api/guest-checkout', (req, res) => {
+    console.log('post to guest-checkout');
     const { first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number } = req.body;
 
-    const sql = 'INSERT INTO `guest_checkout` (first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const sql = `INSERT INTO \`guest_checkout\` (first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
     const inserts = [ first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number ];
     const formattedSql = mysql.format(sql, inserts);
 

@@ -9,6 +9,7 @@ import '../assets/css/guest_checkout.css';
 class GuestCheckout extends Component {
 
     handleGuestCheckout = (values) => {
+        console.log("handleGuestCheckout:", values);
         const { firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber } = values;
         this.props.addGuestCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber );
     }

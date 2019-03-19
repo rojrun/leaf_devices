@@ -96,7 +96,7 @@ class Cart extends Component {
                             </tbody>
                         </table>
                         <div className="row center">
-                            <Link className="btn inputButtons waves-effect waves-light shop_update" to="/">back to shopping</Link>
+                            <Link className="btn waves-effect waves-light shop_update" to="/">back to shopping</Link>
                         </div>
                     </div>
                     <div className="col s12 m12 l4">

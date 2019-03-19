@@ -142,8 +142,8 @@ and (max-width : 319px) {
     }    
 
     .productQuantity {
-        padding: 2% 11%;
-        font-size: 0.3em;
+        padding: 0 11%;
+        font-size: 0.5em;
     }
 
     .inputButtons {
@@ -167,7 +167,7 @@ and (max-width : 319px) {
 and (min-width : 320px) 
 and (max-width : 480px) {
     .carousel .carousel-item {
-        height: 66vh;
+        height: 57vh;
         max-height: 367px;
         width: 70%;
     }    
@@ -200,6 +200,10 @@ and (max-width : 480px) {
 
     .productQuantity {
         padding: 3% 13%;
+    }
+
+    .inputSubmit {
+        margin-top: 2%;
     }
 }
 
@@ -237,12 +241,6 @@ and (max-width: 600px) {
     .productInput {
         height: 44%;
         width: 90%;
-    }
-
-    .inputButtons {
-        font-size: 2em;
-        width: 29%;
-        height: 71%;
     }
 
     .productQuantity {
