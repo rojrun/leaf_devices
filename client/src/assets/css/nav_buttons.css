@@ -50,17 +50,6 @@ and (max-width : 1000px) {
     }
 }
 
-/* Smartphones ----------- */
-/* @media only screen 
-and (min-width: 481px) 
-and (max-width: 767px) {
-    .mobileNavBar {
-        top: 0;
-        right: 0;
-        text-align: center;
-    }
-} */
-
 /* Tablets, iPads (portrait) ----------- */
 @media only screen 
 and (min-width : 601px) 
@@ -102,11 +91,20 @@ and (orientation: landscape) {
 }
 
 @media only screen
-and (min-width: 1025px) 
+and (min-width: 769px) 
+and (max-width: 1025px) {
+    .navButtons {
+        padding: 0 3%;
+    }    
+}
+
+@media only screen 
+and (min-width: 1026px)
 and (max-width: 1280px) {
 
 }
 
-@media (min-width: 1281px) {
+@media only screen
+and (min-width: 1281px) {
 
 }

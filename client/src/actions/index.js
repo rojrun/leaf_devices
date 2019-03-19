@@ -116,6 +116,7 @@ export function addCartAlert() {
 }    
 
 export function addGuestCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber ) {
+    console.log("post guest-checkout");
     const resp = axios.post('/api/guest-checkout', {
         first_name: firstName,
         last_name: lastName,
