@@ -8,8 +8,8 @@ import '../assets/css/guest_checkout.css';
 
 class GuestCheckout extends Component {
 
-    handleGuestCheckout = (values) => {
-        console.log("handleGuestCheckout:", values);
+    handleGuestCheckout = (event) => {
+        console.log("handleGuestCheckout", event);
         const { firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber } = values;
         this.props.addGuestCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber );
     }
@@ -18,7 +18,7 @@ class GuestCheckout extends Component {
         const { handleSubmit } = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.handleGuestCheckout)}>
+            <form onSubmit={handleSubmit}>
                 <div className="center contact">GUEST CHECKOUT</div>
                 <div className="row">
                     <Field name="firstName" label="First Name" size="l6 m6 s12" component={Input}/>
@@ -38,7 +38,7 @@ class GuestCheckout extends Component {
                 </div>
                 <div className="row center">
                     <button onClick={this.props.reset} type="button" className="btn waves-effect contactButton">Cancel</button>                 
-                    <Link className="waves-effect waves-light btn completeCheckout" to="/order-complete">complete checkout</Link>
+                    <Link onClick={this.handleGuestCheckout} className="waves-effect waves-light btn completeCheckout" to="/order-complete">complete checkout</Link>
                 </div>  
             </form>
         );

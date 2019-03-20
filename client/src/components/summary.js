@@ -36,6 +36,7 @@ class Summary extends Component {
 
     render() {
         const { total_quantity, subtotal, tax, shipping, total } = this.props.summary;
+        const shippingCalc = shipping/100;
 
         return (
             <div className="summary col s12 center">
@@ -48,7 +49,7 @@ class Summary extends Component {
                         <option value="Expedited">Expedited Shipping: </option>
                     </select>
                     <div className="shipping">
-                        {shipping/100}
+                        {shippingCalc}
                     </div>  
                 </div> 
                 <p><b>Total: ${total/100}</b></p>

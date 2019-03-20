@@ -174,8 +174,8 @@ app.post('/api/summary', (req, res) => {
                     let subTotal = 0;
                     let cartId = results[0].cartId;
                     const tax = .0775;
-                    let shipping_method = "Standard";
-                    let shipping = 0;
+                    const shipping_method = "Standard";
+                    const shipping = 0;
 
                     results.map( item => {
                         totalQuantity += item.quantity;
@@ -199,7 +199,7 @@ app.post('/api/summary', (req, res) => {
 });
 
 app.post('/api/guest-checkout', (req, res) => {
-    console.log('post to guest-checkout');
+    console.log('post to guest-checkout', req.body);
     const { first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number } = req.body;
 
     const sql = `INSERT INTO \`guest_checkout\` (first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
