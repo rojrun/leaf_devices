@@ -10,15 +10,16 @@ class Summary extends Component {
         value: "Standard"
     }
 
-    componentDidMount() {
-        this.instatnces = M.FormSelect.init(this.refs.dropdown);
-        this.props.addToSummary();
+    async componentDidMount() {
+        this.instances = M.FormSelect.init(this.refs.dropdown);
+        await this.props.addToSummary();
+        
         this.props.getSummary();
     }
 
     componentDidUpdate(prevProps) {
         if(prevProps.summary !== this.props.summary) {
-            this.instatnces = M.FormSelect.init(this.refs.dropdown);
+            this.instances = M.FormSelect.init(this.refs.dropdown);
         }      
     }
 
@@ -36,7 +37,6 @@ class Summary extends Component {
 
     render() {
         const { total_quantity, subtotal, tax, shipping, total } = this.props.summary;
-        const shippingCalc = shipping/100;
 
         return (
             <div className="summary col s12 center">
@@ -48,9 +48,9 @@ class Summary extends Component {
                         <option value="Standard">Standard Shipping: </option>
                         <option value="Expedited">Expedited Shipping: </option>
                     </select>
-                    <div className="shipping">
-                        {shippingCalc}
-                    </div>  
+                    {/* <div className="shipping">
+                        {shipping/100}
+                    </div>   */}
                 </div> 
                 <p><b>Total: ${total/100}</b></p>
                 <Link className="checkoutButton waves-effect waves-light btn" to="/guest-checkout">checkout</Link>
