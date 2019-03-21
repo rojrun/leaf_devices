@@ -8,8 +8,7 @@ const DEFAULT_STATE = {
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type){
         case types.ADDTOSUMMARY:
-            // console.log("ADDTOSUMMARY:", action.payload.data.results);
-            return {...state, single: action.payload.data.results};
+            return {...state, single: action.payload.data};
         default:
             return state;
     }

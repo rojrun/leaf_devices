@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 // app.use(express.static(resolve(__dirname, 'client', 'dist')));
 
+/******* products endpoint *******/
 app.get('/api/products', (req, res) => {
    db.query('SELECT p.id, p.name, p.description, p.price, p.href, p.style, p.image FROM `products` AS p', (error, results) => {
        res.send({
@@ -19,6 +20,7 @@ app.get('/api/products', (req, res) => {
    });
 });
 
+/******* cart endpoint *******/
 app.get('/api/cart', (req, res) => {
     const query = `SELECT i.id AS id, p.name, p.price, i.quantity FROM cart AS c JOIN products AS p JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=1`;
     db.query(query, (error, results) => {
@@ -40,6 +42,7 @@ app.post('/api/cart', (req, res) => {
     });
 });
 
+/******* cart-meta endpoint *******/
 app.get('/api/cart-meta', (req, res) => {
     db.query(`SELECT cm.id AS id, c.id AS cart_id, c.customer_id AS customer_id, p.id AS product_id, p.name AS product_name,
         quantity, p.price AS price, quantity * price AS gross_price FROM \`cart\` AS c, \`products\` AS p, \`cart_meta\` AS cm`, (error, results) => {
@@ -101,6 +104,7 @@ app.put('/api/cart-meta/product/:id', (req, res) => {
     });
 });
 
+/******* summary endpoint *******/
 app.get('/api/summary', (req, res) => {
     db.query(`SELECT id, total_quantity, subtotal, tax, shipping_method, shipping, total FROM  \`summary\``, (error, results) => {
         res.send({
@@ -125,14 +129,15 @@ app.put('/api/summary/:id', (req, res) => {
             let totalQuantity = 0;
             let subTotal = 0;
             let cartId = results[0].cartId;
+            let shipping = 0;
             const tax = .0775;
 
             if(shipping_method === "Standard") {
                 shipping_method = "Standard";
-                var shipping = 0;
+                shipping = 0;
             } else {
                 shipping_method = "Expedited";
-                var shipping = 375;
+                shipping = 375;
             }
 
             results.map( item => {
@@ -174,8 +179,8 @@ app.post('/api/summary', (req, res) => {
                     let subTotal = 0;
                     let cartId = results[0].cartId;
                     const tax = .0775;
-                    let shipping_method = "Standard";
-                    let shipping = 0;
+                    const shipping_method = "Standard";
+                    const shipping = 0;
 
                     results.map( item => {
                         totalQuantity += item.quantity;
@@ -198,8 +203,8 @@ app.post('/api/summary', (req, res) => {
     });
 });
 
+/******* guest-checkout endpoint *******/
 app.post('/api/guest-checkout', (req, res) => {
-    console.log('post to guest-checkout');
     const { first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number } = req.body;
 
     const sql = `INSERT INTO \`guest_checkout\` (first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -225,6 +230,7 @@ app.get('/api/guest-checkout', (req, res) => {
     });
 });
 
+/******* contact-message endpoint *******/
 // app.get('/api/contact-message', (req, res) => {
 //     db.query(`SELECT * FROM \`contact_us\``, (error, results) => {
 //         res.send({

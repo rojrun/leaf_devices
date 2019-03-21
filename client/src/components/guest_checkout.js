@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import {Link} from 'react-router-dom';
 import {addGuestCheckout} from '../actions';
 import Input from './general/input';
 import '../assets/css/guest_checkout.css';
@@ -9,9 +8,9 @@ import '../assets/css/guest_checkout.css';
 class GuestCheckout extends Component {
 
     handleGuestCheckout = (values) => {
-        console.log("handleGuestCheckout:", values);
         const { firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber } = values;
         this.props.addGuestCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber );
+        this.props.history.push("/order-complete");
     }
 
     render() {
@@ -38,7 +37,7 @@ class GuestCheckout extends Component {
                 </div>
                 <div className="row center">
                     <button onClick={this.props.reset} type="button" className="btn waves-effect contactButton">Cancel</button>                 
-                    <Link className="waves-effect waves-light btn completeCheckout" to="/order-complete">complete checkout</Link>
+                    <button className="waves-effect waves-light btn completeCheckout">complete checkout</button>
                 </div>  
             </form>
         );
