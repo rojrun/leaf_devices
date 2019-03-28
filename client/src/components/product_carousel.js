@@ -3,6 +3,7 @@ import SdcKit from './sdc_kit';
 import {connect} from 'react-redux';
 import {getProducts} from '../actions';
 import Comments from './comments';
+import '../assets/css/product_carousel.css';
 
 /* Main carousel component to display products */
 class ProductCarousel extends Component {

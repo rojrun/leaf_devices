@@ -1,3 +1,5 @@
+.tabs-content.carousel .carousel-item { width: 100%; height: 100%; } 
+
 .black, .blue, .green, .purple, .red {
     border-radius: 0.6em;
 }
@@ -168,7 +170,7 @@ and (min-width : 320px)
 and (max-width : 480px) {
     .carousel .carousel-item {
         height: 57vh;
-        max-height: 367px;
+        max-height: 417px;
         width: 70%;
     }    
 
@@ -200,6 +202,10 @@ and (max-width : 480px) {
 
     .productQuantity {
         padding: 3% 13%;
+    }
+
+    .inputButtons {
+        width: 29%;
     }
 
     .inputSubmit {
