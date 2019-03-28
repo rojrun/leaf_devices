@@ -1,14 +1,14 @@
 .carousel {
-    height: 415px;
+    /* height: 415px; */
 }
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-width : 320px) 
 and (max-width : 480px) {
-    /* .carousel {
-        min-height: 66vh;
-    } */
+    .carousel {
+        height: 490px;
+    }
 }
 
 @media only screen 

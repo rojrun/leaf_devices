@@ -94,10 +94,11 @@ export function addToSummary() {
     }
 }
 
-export function updateSummary(summaryId, shippingMethod) {
+export function updateSummary(summaryId, shippingMethod, shippingCost) {
     const resp = axios.put('/api/summary/' + {summaryId}, {
         id: summaryId,
-        shipping_method: shippingMethod
+        shipping_method: shippingMethod,
+        shipping: shippingCost
     });
     return {
         type: types.UPDATESUMMARY,

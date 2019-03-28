@@ -114,7 +114,7 @@ app.get('/api/summary', (req, res) => {
 });
 
 app.put('/api/summary/:id', (req, res) => {
-    let { id, shipping_method } = req.body;
+    let { id, shipping_method, shipping } = req.body;
     const user_id = 1;
     const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p
         JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${user_id}`;
@@ -129,16 +129,7 @@ app.put('/api/summary/:id', (req, res) => {
             let totalQuantity = 0;
             let subTotal = 0;
             let cartId = results[0].cartId;
-            let shipping = 0;
             const tax = .0775;
-
-            if(shipping_method === "Standard") {
-                shipping_method = "Standard";
-                shipping = 0;
-            } else {
-                shipping_method = "Expedited";
-                shipping = 375;
-            }
 
             results.map( item => {
                 totalQuantity += item.quantity;
