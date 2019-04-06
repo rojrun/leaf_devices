@@ -24,7 +24,7 @@ const App = () => (
                 </main>    
                 <footer className="footer-copyright">
                     <div>© 2019 Leaf Devices LLC.</div>
-                    <div> All rights reserved.</div>  
+                    <div>All rights reserved.</div>  
                 </footer>
             </div>
             <NavButtons/>

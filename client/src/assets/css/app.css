@@ -41,11 +41,21 @@ and (max-width : 319px) {
     }
 }
 
+/*-------------- Media Queries ------------*/
+
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-width : 320px) 
 and (max-width : 480px) {
     
+}
+
+@media only screen
+and (orientation : landscape) {
+    .footer-copyright div {
+        display: inline-block;
+        margin-left: 5px;
+    }   
 }
 
 /* Smartphones ----------- */
@@ -73,7 +83,16 @@ and (orientation: landscape) {
     } */
 }
 
-
+/* iPad Pro (portrait) ---------------*/
+@media only screen 
+and (min-device-width : 1024px)
+and (max-device-height : 1366px)
+and (orientation : portrait) {
+    .footer-copyright div {
+        display: inline-block;
+        margin-left: 5px;
+    } 
+}
 
 @media only screen
 and (min-width: 1025px) 
