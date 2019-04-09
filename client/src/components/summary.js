@@ -45,24 +45,28 @@ class Summary extends Component {
         );        
     }
 
+    addZeroes(num) {
+        return num.toLocaleString("en", {useGrouping: false, minimumFractionDigits: 2});
+     }
+
     render() {
         const { total_quantity, subtotal, tax, total } = this.props.summary;
        
         return (
             <div className="summary col s12 center">
                 <p><b>Total Quantity: </b>{total_quantity}</p>
-                <p><b>Subtotal: </b>{subtotal/100}</p>
-                <p><b>Tax: </b>{tax/100}</p>
+                <p><b>Subtotal: </b>{this.addZeroes(subtotal/100)}</p>
+                <p><b>Tax: </b>{this.addZeroes(tax/100)}</p>
                 <div className="input-field row">
                     <select onChange={this.shippingMethod} ref="dropdown" defaultValue="Standard" className="browser-default">
                         <option value="Standard">Standard Shipping: </option>
                         <option value="Expedited">Expedited Shipping: </option>
                     </select>
                     <div className="shipping">
-                        {this.state.shippingCost/100}
+                        {this.addZeroes(this.state.shippingCost/100)}
                     </div>  
                 </div> 
-                <p><b>Total: ${total/100}</b></p>
+                <p><b>Total: ${this.addZeroes(total/100)}</b></p>
                 <Link className="checkoutButton waves-effect waves-light btn" to="/guest-checkout">checkout</Link>
             </div>
         );

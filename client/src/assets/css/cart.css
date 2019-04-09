@@ -110,7 +110,8 @@ and (max-width : 480px) {
 /* Smartphones ----------- */
 @media only screen 
 and (min-width: 481px) 
-and (max-width: 600px) {
+and (max-width: 600px)
+and (orientation : portrait) {
     .cartBtn {
         display: block;
         margin: auto;
@@ -129,6 +130,25 @@ and (max-width: 600px) {
     .shop_update {
         margin: 3% auto;
         width: 70%;
+    }
+}
+
+@media only screen 
+and (min-width: 481px) 
+and (max-width: 600px)
+and (orientation : landscape) {
+    .clear {
+        padding-top: 16vh;
+        font-size: 2em;
+    }
+
+    .cartBtn {
+        display: block;
+        margin: auto;
+    }
+
+    .shop_update {
+        width: 44%;
     }
 }
 
@@ -158,7 +178,18 @@ and (orientation : portrait) {
 and (min-width : 601px) 
 and (max-width : 768px) 
 and (orientation: landscape) {
-/* Styles */
+    .clear {
+        padding-top: 12vh;
+    }
+
+    .cartBtn {
+        display: block;
+        margin: auto;
+    }
+
+    .shop_update {
+        width: 41%;
+    }
 }
 
 @media only screen
