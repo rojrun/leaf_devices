@@ -516,7 +516,7 @@ and (orientation : portrait) {
 }
 
 /* iPad Pro (landscape) ---------------*/
-@media only screen 
+/* @media only screen 
 and (min-device-width : 1366px)
 and (max-device-height : 1024px)
 and (orientation : landscape) {
@@ -528,7 +528,7 @@ and (orientation : landscape) {
     .name {
         margin-top: 21%;
     }
-}
+} */
 
 /* @media only screen 
 and (min-width: 1026px)
