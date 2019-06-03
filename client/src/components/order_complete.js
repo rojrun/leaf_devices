@@ -4,7 +4,7 @@ import {getCart, getSummary, getCustomer} from '../actions';
 import Comments from './comments';
 import '../assets/css/order_complete.css';
 
-class orderComplete extends Component {
+class OrderComplete extends Component {
     componentDidMount() {
         this.props.getCart();
         this.props.getSummary();
@@ -69,4 +69,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { getCart, getSummary, getCustomer })(orderComplete);
+export default connect(mapStateToProps, { getCart, getSummary, getCustomer })(OrderComplete);

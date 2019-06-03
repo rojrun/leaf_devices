@@ -1,5 +1,5 @@
 .status {
-    background-image: url("../../../dist/logo_wo_text.png");
+    background-image: url("../../../dist/images/logo_wo_text.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -10,13 +10,21 @@
     left: 50%;
     top: 61%;
     position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
 }
 
 .comment {
-    top: 50%;
-    left: 50%;
-    font-size: calc(0.3em + 3vw);
-    transform: translate(-50%, 0%);
+    /* top: 50%;
+    left: 50%; */
+    font-size: calc(2.33vw + 8.54px);
+    /* transform: translate(-50%, 0%); */
+    transform: translate(0%, 60%);
     color: #F0810F;
-    position: absolute;
+    /* position: absolute; */
+    flex: 0 1 auto;
 }

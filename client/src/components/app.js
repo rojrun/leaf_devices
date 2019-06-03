@@ -8,6 +8,7 @@ import Contact from './contact';
 import Cart from './cart';
 import GuestCheckout from './guest_checkout';
 import OrderComplete from './order_complete';
+import Comments from './comments';
 import '../assets/css/app.css';
 
 const App = () => (
@@ -21,10 +22,11 @@ const App = () => (
                     <Route path="/cart" component={Cart}/>
                     <Route path="/guest-checkout" component={GuestCheckout}/>
                     <Route path="/order-complete" component={OrderComplete}/>
+                    <Route path="/comments" component={Comments}/>
                 </main>    
                 <footer className="footer-copyright">
-                    <div>© 2019 Leaf Devices LLC.</div>
-                    <div>All rights reserved.</div>  
+                    <p>© 2019 Leaf Devices LLC.</p>
+                    <p>&nbsp; All rights reserved.</p>  
                 </footer>
             </div>
             <NavButtons/>
