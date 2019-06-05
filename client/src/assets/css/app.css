@@ -14,7 +14,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    height: calc(7.51vw + 55.97px);
+    height: calc(11.52vh - 5.45px);
 }
 
 .main_content {
