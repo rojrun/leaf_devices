@@ -3,7 +3,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    height: calc(0vw + 440px);
+    height: calc(70.49vh - 0.57px);
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -13,7 +13,7 @@
 }
 
 .comment {
-    font-size: calc(2.33vw + 8.54px);
+    font-size: calc(2vw + 4.61px);
     transform: translate(0%, 60%);
     color: #F0810F;
     flex: 0 1 auto;
