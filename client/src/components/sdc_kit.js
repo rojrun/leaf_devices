@@ -55,19 +55,20 @@ class SdcKit extends Component {
                     <div className="productInput">
                         <div className="row quantityField">
                             <button onClick={this.handleSubtractCount} type="button"
-                                    className="btn inputButtons minusButton waves-effect waves-light"
-                                    data-quantity="subtract" data-field="quantity">-
+                                className="btn inputButtons minusButton waves-effect waves-light"
+                                data-quantity="subtract" data-field="quantity">-
                             </button>
-                            <div className="productQuantity" type="number" name="quantity"
-                                value={productQuantity} product_id={id} onChange={() => {}}>{productQuantity}
-                            </div>
+                            <div className="productQuantity">
+                                <input type="number" name="quantity"
+                                    value={productQuantity} product_id={id} onChange={() => {}}/>
+                            </div>    
                             <button onClick={this.handleAddCount} type="button"
-                                    className="btn inputButtons waves-effect waves-light"
-                                    data-quantity="add" data-field="quantity">+
+                                className="btn inputButtons waves-effect waves-light"
+                                data-quantity="add" data-field="quantity">+
                             </button>
-                        </div>                       
+                        </div>
                         <button onClick={this.handleAddToCart} type="button"
-                                className="btn inputSubmit waves-effect waves-light">Add
+                            className="btn inputSubmit waves-effect waves-light">Add
                         </button>  
                     </div>                      
                 </div>

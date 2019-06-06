@@ -23,8 +23,8 @@ const App = () => (
                     <Route path="/order-complete" component={OrderComplete}/>
                 </main>    
                 <footer className="footer-copyright">
-                    <div>© 2019 Leaf Devices LLC.</div>
-                    <div>All rights reserved.</div>  
+                    <p>© 2019 Leaf Devices LLC.</p>
+                    <p>&nbsp; All rights reserved.</p>  
                 </footer>
             </div>
             <NavButtons/>
