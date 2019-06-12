@@ -11,6 +11,10 @@ class OrderComplete extends Component {
         this.props.getCustomer();
     }
 
+    addZeroes(num) {
+        return num.toLocaleString("en", {useGrouping: false, minimumFractionDigits: 2});
+    }
+
     render() {
         if(!this.props.cart.length){
             return <Comments message="LOADING"/>
@@ -44,7 +48,7 @@ class OrderComplete extends Component {
                         <div>Total Quantity:  {total_quantity}</div>
                         <div>Subtotal:  {subtotal/100}</div>
                         <div>Tax:  {tax/100}</div>
-                        <div>{shipping_method} Shipping:  {shipping/100}</div>  
+                        <div>{shipping_method} Shipping:  {this.addZeroes(shipping/100)}</div>  
                         <div>Total:  ${total/100}</div>
                     </div>
                 </div>
