@@ -47,7 +47,7 @@ class Summary extends Component {
 
     addZeroes(num) {
         return num.toLocaleString("en", {useGrouping: false, minimumFractionDigits: 2});
-     }
+    }
 
     render() {
         const { total_quantity, subtotal, tax, total } = this.props.summary;
