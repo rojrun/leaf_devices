@@ -1,0 +1,11 @@
+.logo {
+    background-image: url("../../../dist/images/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: calc(26.23vh - 13.93px);
+}
+
+.logo:hover {
+    cursor: url("../../../dist/images/cursor.png"), auto;
+}
