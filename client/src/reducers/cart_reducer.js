@@ -7,8 +7,9 @@ const DEFAULT_STATE = {
 
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type){
-        case types.ADDCONTACTUS:
-            return {...state, all: action.payload.data.results};
+        case types.CART:
+            console.log("cart reducer:", state);
+            return {...state, single: action.payload.data.results};
         default:
             return state;
     }

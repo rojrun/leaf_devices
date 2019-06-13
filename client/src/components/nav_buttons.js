@@ -36,12 +36,12 @@ class NavButtons extends Component {
     }
 }
 
-function mapStateToProps(state){
-    return {
-        cart: state.getCartMeta.single,
-        summary: state.summary.single,
-        addCartAlert: state.addCartAlert
-    }
-}
+// function mapStateToProps(state){
+//     return {
+//         cart: state.getCartMeta.single,
+//         summary: state.summary.single,
+//         addCartAlert: state.addCartAlert
+//     }
+// }
 
 export default connect(mapStateToProps, {getCart, updateSummary, getSummary})(NavButtons);

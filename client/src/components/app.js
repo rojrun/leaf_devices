@@ -2,6 +2,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Logo from './logo';
 import NavButtons from './nav_buttons';
 import ProductCarousel from './product_carousel';
 import Contact from './contact';
@@ -14,7 +15,9 @@ const App = () => (
     <Router>
         <div>
             <div className="main_content">
-                <header className="logo"></header>
+                <header>
+                    <Logo/>
+                </header>
                 <main>
                     <Route exact path="/" component={ProductCarousel}/>
                     <Route path="/contact" component={Contact}/>

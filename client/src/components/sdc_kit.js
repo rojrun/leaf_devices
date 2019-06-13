@@ -5,7 +5,8 @@ import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
     state = {
-        productQuantity: 0
+        productQuantity: 0,
+        hasCart: false
     }
 
     handleSubtractCount = () => {
@@ -79,10 +80,7 @@ class SdcKit extends Component {
 
 function mapStateToProps(state){
     return {
-        addToCartMeta: state.addToCartMeta.single,
-        makeCart: state.makeCart.all,
-        getCart: state.getCart,
-        addCartAlert: state.addCartAlert
+        cart: state.cart.single
     }
 }
 
