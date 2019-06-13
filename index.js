@@ -22,7 +22,10 @@ app.get('/api/products', (req, res) => {
 
 /******* cart endpoint *******/
 app.get('/api/cart', (req, res) => {
-    const query = `SELECT i.id AS id, p.name, p.price, i.quantity FROM cart AS c JOIN products AS p JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=1`;
+    const query = `SELECT i.id AS id, p.name, p.price, i.quantity FROM cart AS c 
+        JOIN products AS p JOIN cart_meta AS i 
+        ON c.id=i.cart_id AND i.product_id=p.id 
+        WHERE c.status="incomplete" AND c.customer_id=1`;
     db.query(query, (error, results) => {
         res.send({
             results: results
