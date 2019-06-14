@@ -21,21 +21,9 @@ app.get('/api/products', (req, res) => {
 });
 
 /******* cart endpoint *******/
-app.get('/api/cart', (req, res) => {
-    const query = `SELECT i.id AS id, p.name, p.price, i.quantity FROM cart AS c 
-        JOIN products AS p JOIN cart_meta AS i 
-        ON c.id=i.cart_id AND i.product_id=p.id 
-        WHERE c.status="incomplete" AND c.customer_id=1`;
-    db.query(query, (error, results) => {
-        res.send({
-            results: results
-        });
-    });
-});
-
 app.post('/api/cart', (req, res) => {
-    db.query(`INSERT INTO \`cart\` (customer_id) VALUES (1)`, (error, results) => {
-        if(error){
+    db.query(`INSERT INTO \`cart\` (status) VALUES ("incomplete")`, (error, results) => {
+        if(error) {
             res.send('failed');
             return;
         }
@@ -44,22 +32,73 @@ app.post('/api/cart', (req, res) => {
         });
     });
 });
+// app.post('/api/cart', (req, res) => {
+//     db.query(`INSERT INTO \`cart\` (customer_id) VALUES (1)`, (error, results) => {
+//         if(error){
+//             res.send('failed');
+//             return;
+//         }
+//         res.send({
+//             results: results
+//         });
+//     });
+// });
 
-/******* cart-meta endpoint *******/
-app.get('/api/cart-meta', (req, res) => {
-    db.query(`SELECT cm.id AS id, c.id AS cart_id, c.customer_id AS customer_id, p.id AS product_id, p.name AS product_name,
-        quantity, p.price AS price, quantity * price AS gross_price FROM \`cart\` AS c, \`products\` AS p, \`cart_meta\` AS cm`, (error, results) => {
+
+app.get('/api/cart', (req, res) => {
+    const query = `SELECT cm.customer_id, p.name, p.price, cm.quantity 
+                    FROM cart AS c 
+                    JOIN products AS p 
+                    JOIN cart_meta AS cm 
+                    ON c.customer_id=cm.cart_id AND cm.product_id=p.id 
+                    WHERE c.status="incomplete"`;
+    db.query(query, (error, results) => {
+        res.send({
+            results: results
+        });
+    });                
+});
+// app.get('/api/cart', (req, res) => {
+//     const query = `SELECT i.id AS id, p.name, p.price, i.quantity 
+//                     FROM cart AS c 
+//                     JOIN products AS p 
+//                     JOIN cart_meta AS i 
+//                     ON c.id=i.cart_id AND i.product_id=p.id 
+//                     WHERE c.status="incomplete" AND c.customer_id=1`;
+//     db.query(query, (error, results) => {
+//         res.send({
+//             results: results
+//         });
+//     });
+// });
+
+app.put('/api/cart/:customer_id', (req, res) => {
+    const {customer_id} = req.body;
+    db.query(`UPDATE \`cart\` SET \`status\` = 'complete' WHERE \`cart\`.\`customer_id\` = ${customer_id}`, (error, result) => {
         res.send({
             results: results
         });
     });
 });
 
+/******* cart-meta endpoint *******/
+// app.get('/api/cart-meta', (req, res) => {
+//     db.query(`SELECT cm.id AS id, c.id AS cart_id, c.customer_id AS customer_id, p.id AS product_id, p.name AS product_name,
+//         quantity, p.price AS price, quantity * price AS gross_price FROM \`cart\` AS c, \`products\` AS p, \`cart_meta\` AS cm`, (error, results) => {
+//         res.send({
+//             results: results
+//         });
+//     });
+// });
+
+// SELECT `customer_id` FROM `cart` WHERE `status`="incomplete"
 app.post('/api/cart-meta', (req, res) => {
     const {product_id, quantity} = req.body;
     db.query('SELECT * FROM `cart` WHERE `customer_id`=1 AND `status`="incomplete"', (error, result) => {
         const inserSql = 'INSERT INTO `cart_meta` (`cart_id`, `customer_id`, `product_id`, `quantity`) VALUES (?, ?, ?, ?)';
 
+        
+        // INSERT INTO `cart` (status) VALUES ("incomplete")
         if(!result.length){
             db.query('INSERT INTO `cart` (customer_id, status) VALUES (1, "incomplete")', (error, result) => {
                 const cartId = result.insertId;

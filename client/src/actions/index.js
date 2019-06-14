@@ -11,18 +11,18 @@ export function getProducts() {
 }
 
 /******* cart endpoint *******/
-export function getCart() {
-    const resp = axios.get('/api/cart');
-    return {
-        type: types.GETCART,
-        payload: resp
-    }
-}
-
 export function makeCart() {
     const resp = axios.post('/api/cart');
     return {
         type: types.MAKECART,
+        payload: resp
+    }
+}
+
+export function getCart() {
+    const resp = axios.get('/api/cart');
+    return {
+        type: types.GETCART,
         payload: resp
     }
 }
