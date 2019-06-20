@@ -1,13 +1,13 @@
 import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getCart, updateSummary, getSummary} from '../actions';
+import {getCartMeta, updateSummary, getSummary} from '../actions';
 import '../assets/css/nav_buttons.css';
 
 class NavButtons extends Component {
 
     handleCartSummary = async () => {
-        await this.props.getCart();
+        await this.props.getCartMeta();
 
         const summary_id = this.props.summary.id;
         await this.props.updateSummary(summary_id);
@@ -38,10 +38,10 @@ class NavButtons extends Component {
 
 function mapStateToProps(state){
     return {
-        cart: state.getCartMeta.single,
+        getCartMeta: state.getCartMeta.single,
         summary: state.summary.single,
         addCartAlert: state.addCartAlert
     }
 }
 
-export default connect(mapStateToProps, {getCart, updateSummary, getSummary})(NavButtons);
+export default connect(mapStateToProps, {getCartMeta, updateSummary, getSummary})(NavButtons);

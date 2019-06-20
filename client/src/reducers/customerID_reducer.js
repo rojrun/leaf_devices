@@ -7,9 +7,9 @@ const DEFAULT_STATE = {
 
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type){
-        case types.ADDTOCARTMETA:
-            console.log("addToCartMeta reducer", action);
-            return {...state, all: action};
+        case types.CUSTOMERID:
+            console.log("customerid", action.payload.data.results);
+            return {...state, single: action.payload.data.results};
         default:
             return state;
     }

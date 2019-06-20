@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {addToCartMeta, makeCart, getCart, addCartAlert} from '../actions';
+import {addToCartMeta, makeCart, addCartAlert, getCustomerID} from '../actions';
 import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
@@ -27,20 +27,38 @@ class SdcKit extends Component {
         });
     }
 
-    handleAddToCart = () => {
+    makeCustomerCart = async () => {
         if(!this.state.hasCart) {
             this.props.makeCart();
+            await this.props.getCustomerID();
             this.setState({
                 hasCart: !this.state.hasCart
-            });         
+            });
         }
+        
+    }
+
+    handleAddToCart = () => {
+        this.makeCustomerCart();
+        
+        // if(!this.state.hasCart) {
+        //     this.props.makeCart();
+        //     this.setState({
+        //         hasCart: !this.state.hasCart
+        //     });         
+        // }
+
+        
 
         const productQuantity = this.state.productQuantity;
         const {id} = this.props.product;
+        const {customer_id} = this.props.customerID;
+        console.log("customer_id:", customer_id);
+        // console.log("customer_id:", this.props.customerID);
 
         if(productQuantity > 0) {
-            this.props.addToCartMeta(id, productQuantity);
-            this.props.addCartAlert();
+            this.props.addToCartMeta(customer_id, id, productQuantity);
+            // this.props.addCartAlert();
         }
     };
 
@@ -90,8 +108,9 @@ function mapStateToProps(state){
         addToCartMeta: state.addToCartMeta.single,
         makeCart: state.makeCart.single,
         getCart: state.getCart,
-        addCartAlert: state.addCartAlert
+        addCartAlert: state.addCartAlert,
+        customerID: state.customerID.single
     }
 }
 
-export default connect(mapStateToProps, { addToCartMeta, makeCart, getCart, addCartAlert })(SdcKit);
+export default connect(mapStateToProps, { addToCartMeta, makeCart, addCartAlert, getCustomerID })(SdcKit);

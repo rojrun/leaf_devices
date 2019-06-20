@@ -7,7 +7,7 @@ const DEFAULT_STATE = {
 
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type){
-        case types.GETCART:
+        case types.GETCARTMETA:
             return {...state, single: action.payload.data.results};
         default:
             return state;

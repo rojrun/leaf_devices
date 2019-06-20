@@ -46,18 +46,29 @@ app.post('/api/cart', (req, res) => {
 
 
 app.get('/api/cart', (req, res) => {
-    const query = `SELECT cm.customer_id, p.name, p.price, cm.quantity 
-                    FROM cart AS c 
-                    JOIN products AS p 
-                    JOIN cart_meta AS cm 
-                    ON c.customer_id=cm.cart_id AND cm.product_id=p.id 
-                    WHERE c.status="incomplete"`;
-    db.query(query, (error, results) => {
+    db.query(`SELECT customer_id from \`cart\` WHERE status="incomplete"`, (error, results) => {
         res.send({
             results: results
         });
-    });                
+    })
 });
+
+
+// app.get('/api/cart', (req, res) => {
+//     const id = req.query.id;
+    
+//     const query = `SELECT cm.customer_id, p.name, p.price, cm.quantity 
+//                     FROM cart AS c 
+//                     JOIN products AS p 
+//                     JOIN cart_meta AS cm 
+//                     ON c.customer_id=cm.cart_id AND cm.product_id=p.id 
+//                     WHERE c.status="incomplete" AND c.customer_id=${id}`;
+//     db.query(query, (error, results) => {
+//         res.send({
+//             results: results
+//         });
+//     });                
+// });
 // app.get('/api/cart', (req, res) => {
 //     const query = `SELECT i.id AS id, p.name, p.price, i.quantity 
 //                     FROM cart AS c 
@@ -72,7 +83,7 @@ app.get('/api/cart', (req, res) => {
 //     });
 // });
 
-app.put('/api/cart/:customer_id', (req, res) => {
+app.put('/api/cart/:id', (req, res) => {
     const {customer_id} = req.body;
     db.query(`UPDATE \`cart\` SET \`status\` = 'complete' WHERE \`cart\`.\`customer_id\` = ${customer_id}`, (error, result) => {
         res.send({
@@ -82,6 +93,21 @@ app.put('/api/cart/:customer_id', (req, res) => {
 });
 
 /******* cart-meta endpoint *******/
+app.get('/api/cart-meta', (req, res) => {
+    const id = req.query.id;
+    
+    const query = `SELECT cm.customer_id, p.name, p.price, cm.quantity 
+                    FROM cart AS c 
+                    JOIN products AS p 
+                    JOIN cart_meta AS cm 
+                    ON c.customer_id=cm.cart_id AND cm.product_id=p.id 
+                    WHERE c.status="incomplete" AND c.customer_id=${id}`;
+    db.query(query, (error, results) => {
+        res.send({
+            results: results
+        });
+    });                
+});
 // app.get('/api/cart-meta', (req, res) => {
 //     db.query(`SELECT cm.id AS id, c.id AS cart_id, c.customer_id AS customer_id, p.id AS product_id, p.name AS product_name,
 //         quantity, p.price AS price, quantity * price AS gross_price FROM \`cart\` AS c, \`products\` AS p, \`cart_meta\` AS cm`, (error, results) => {
@@ -93,26 +119,27 @@ app.put('/api/cart/:customer_id', (req, res) => {
 
 // SELECT `customer_id` FROM `cart` WHERE `status`="incomplete"
 app.post('/api/cart-meta', (req, res) => {
-    const {product_id, quantity} = req.body;
-    db.query('SELECT * FROM `cart` WHERE `customer_id`=1 AND `status`="incomplete"', (error, result) => {
-        const inserSql = 'INSERT INTO `cart_meta` (`cart_id`, `customer_id`, `product_id`, `quantity`) VALUES (?, ?, ?, ?)';
+    console.log("cart-meta", req.body);
+    const {customer_id, product_id, quantity} = req.body;
+    db.query(`SELECT * FROM \`cart\` WHERE \`customer_id\`=${customer_id} AND \`status\`="incomplete"`, (error, result) => {
+        const inserSql = `INSERT INTO \`cart_meta\` (\`cart_id\`, \`customer_id\`, \`product_id\`, \`quantity\`) VALUES (${customer_id}, ${customer_id}, ?, ?)`;
 
         
         // INSERT INTO `cart` (status) VALUES ("incomplete")
-        if(!result.length){
-            db.query('INSERT INTO `cart` (customer_id, status) VALUES (1, "incomplete")', (error, result) => {
-                const cartId = result.insertId;
-                const inserts = [cartId, 1, product_id, quantity];
-                const sql = mysql.format(inserSql, inserts);
+        // if(!result.length){
+        //     db.query('INSERT INTO `cart` (customer_id, status) VALUES (1, "incomplete")', (error, result) => {
+        //         const cartId = result.insertId;
+        //         const inserts = [cartId, 1, product_id, quantity];
+        //         const sql = mysql.format(inserSql, inserts);
 
-                db.query(sql, (err, result) => {
-                    res.send({
-                        success: true
-                    });
-                });
-            });
-            return;
-        }
+        //         db.query(sql, (err, result) => {
+        //             res.send({
+        //                 success: true
+        //             });
+        //         });
+        //     });
+        //     return;
+        // }
 
         const [cart] = result;
         const inserts = [cart.id, 1, product_id, quantity];

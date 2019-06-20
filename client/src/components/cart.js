@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary} from '../actions';
+import {getCartMeta, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary} from '../actions';
 import Summary from './summary';
 import Comments from './comments';
 import '../assets/css/cart.css';
@@ -9,7 +9,7 @@ import '../assets/css/cart.css';
 /* Cart component to display selected items from landing page */
 class Cart extends Component {
     componentDidMount() {
-        this.props.getCart();
+        this.props.getCartMeta();
     }
 
     handleSubtractCount = async (id, quantity) => {
@@ -19,7 +19,7 @@ class Cart extends Component {
             quantity--;
         }
         await this.props.updateCartMetaQuantity(id, quantity);
-        await this.props.getCart();
+        await this.props.getCartMeta();
 
         const summary_id = this.props.summary.id;
         const { shipping } = this.props.summary;
@@ -30,7 +30,7 @@ class Cart extends Component {
     handleAddCount = async (id, quantity) => {
         quantity++;
         await this.props.updateCartMetaQuantity(id, quantity);
-        await this.props.getCart();
+        await this.props.getCartMeta();
 
         const summary_id = this.props.summary.id;
         const { shipping } = this.props.summary;
@@ -40,7 +40,7 @@ class Cart extends Component {
 
     handleDeleteItem = async (id, quantity) => {
         await this.props.deleteCartMetaItem(id, quantity);
-        await this.props.getCart();
+        await this.props.getCartMeta();
 
         const summary_id = this.props.summary.id;
         const { shipping } = this.props.summary;
@@ -110,9 +110,9 @@ class Cart extends Component {
 
 function mapStateToProps(state){
     return {
-        cart: state.getCartMeta.single,
+        getCartMeta: state.getCartMeta.single,
         summary: state.summary.single
     }
 }
 
-export default connect(mapStateToProps, { getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary })(Cart);
+export default connect(mapStateToProps, { getCartMeta, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary })(Cart);

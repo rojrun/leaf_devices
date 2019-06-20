@@ -4,6 +4,8 @@
     background-position: center;
     background-size: contain;
     height: calc(26.23vh - 13.93px);
+    width: calc(10.03vw + 13.06px);
+    margin: auto;
 }
 
 .logo:hover {

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getCart, getSummary, getCustomer} from '../actions';
+import {getCartMeta, getSummary, getCustomer} from '../actions';
 import Comments from './comments';
 import '../assets/css/order_complete.css';
 
 class OrderComplete extends Component {
     componentDidMount() {
-        this.props.getCart();
+        this.props.getCartMeta();
         this.props.getSummary();
         this.props.getCustomer();
     }
@@ -67,10 +67,10 @@ class OrderComplete extends Component {
 
 function mapStateToProps(state){
     return {
-        cart: state.getCartMeta.single,
+        getCartMeta: state.getCartMeta.single,
         summary: state.summary.single,
         customer: state.customer.single
     }
 }
 
-export default connect(mapStateToProps, { getCart, getSummary, getCustomer })(OrderComplete);
+export default connect(mapStateToProps, { getCartMeta, getSummary, getCustomer })(OrderComplete);

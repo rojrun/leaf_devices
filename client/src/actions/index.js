@@ -19,13 +19,21 @@ export function makeCart() {
     }
 }
 
-export function getCart() {
+export function getCustomerID() {
     const resp = axios.get('/api/cart');
     return {
-        type: types.GETCART,
+        type: types.CUSTOMERID,
         payload: resp
     }
 }
+
+// export function getCart() {
+//     const resp = axios.get('/api/cart');
+//     return {
+//         type: types.GETCART,
+//         payload: resp
+//     }
+// }
 
 /******* cart-meta endpoint *******/
 export function getCartMeta() {
@@ -36,8 +44,9 @@ export function getCartMeta() {
     }
 }
 
-export function addToCartMeta(id, productQuantity) {
+export function addToCartMeta(customer_id, id, productQuantity) {
     const resp = axios.post('/api/cart-meta', {
+        customer_id: customer_id,
         product_id: id,
         quantity: productQuantity
     });

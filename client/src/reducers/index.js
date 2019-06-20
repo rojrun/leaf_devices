@@ -11,6 +11,7 @@ import summaryReducer from './summary_reducer';
 import addCartAlertReducer from './addCartAlert_reducer';
 import addGuestCheckoutReducer from './addGuestCheckout_reducer';
 import customerReducer from './customer_reducer';
+import customerIDReducer from './customerID_reducer';
 
 const rootReducer = combineReducers({
     form: formReducer,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
     summary: summaryReducer,
     addCartAlert: addCartAlertReducer,
     addGuestCheckout: addGuestCheckoutReducer,
-    customer: customerReducer
+    customer: customerReducer,
+    customerID: customerIDReducer
 });
 
 export default rootReducer;
