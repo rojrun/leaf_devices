@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {addToCartMeta, makeCart, getCart, addCartAlert} from '../actions';
+import {addToCartMeta, addCartAlert} from '../actions';
 import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
@@ -77,13 +77,4 @@ class SdcKit extends Component {
     }
 }
 
-function mapStateToProps(state){
-    return {
-        addToCartMeta: state.addToCartMeta.single,
-        makeCart: state.makeCart.all,
-        getCart: state.getCart,
-        addCartAlert: state.addCartAlert
-    }
-}
-
-export default connect(mapStateToProps, { addToCartMeta, makeCart, getCart, addCartAlert })(SdcKit);
+export default connect(null, { addToCartMeta, addCartAlert })(SdcKit);

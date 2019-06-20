@@ -82,15 +82,9 @@ function validate({firstName, lastName, mailingAddress, mailingCity, mailingStat
     return errors;  
 }
 
-function mapStateToProps(state){
-    return {
-        addGuestCheckout: state.addGuestCheckout.all
-    }
-}
-
 GuestCheckout = reduxForm ({
     form: 'guest_checkout-form',
     validate: validate
 })(GuestCheckout);
 
-export default connect(mapStateToProps, { addGuestCheckout })(GuestCheckout);
+export default connect(null, { addGuestCheckout })(GuestCheckout);
