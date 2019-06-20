@@ -79,15 +79,9 @@ function validate({firstName, lastName, email, phone_number, message}){
     return errors;  
 }
 
-function mapStateToProps(state){
-    return {
-        addContactUs: state.addContactUs.all
-    }
-}
-
 Contact = reduxForm ({
     form: 'contact-form',
     validate: validate
 })(Contact);
 
-export default connect(mapStateToProps, { addContactMessage })(Contact);
+export default connect(null, { addContactMessage })(Contact);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SdcKit from './sdc_kit';
 import {connect} from 'react-redux';
 import {getProducts} from '../actions';
+import SdcKit from './sdc_kit';
 import Comments from './comments';
 import '../assets/css/product_carousel.css';
 

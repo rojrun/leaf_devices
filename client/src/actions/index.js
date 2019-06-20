@@ -22,8 +22,7 @@ export function getCart() {
 export function makeCart() {
     const resp = axios.post('/api/cart');
     return {
-        type: types.MAKECART,
-        payload: resp
+        type: types.MAKECART
     }
 }
 
@@ -42,8 +41,7 @@ export function addToCartMeta(id, productQuantity) {
         quantity: productQuantity
     });
     return {
-        type: types.ADDTOCARTMETA,
-        payload: resp
+        type: types.ADDTOCARTMETA
     }
 }
 
@@ -53,8 +51,7 @@ export function updateCartMetaQuantity(cartMetaId, productQuantity) {
         quantity: productQuantity
     });
     return {
-        type: types.UPDATECARTMETAQUANTITY,
-        payload: resp
+        type: types.UPDATECARTMETAQUANTITY
     }
 }
 
@@ -65,8 +62,7 @@ export function deleteCartMetaItem(cartMetaId) {
         }
     });
     return {
-        type: types.DELETECARTMETAITEM,
-        payload: resp
+        type: types.DELETECARTMETAITEM
     }
 }
 
@@ -89,8 +85,7 @@ export function getSummary() {
 export function addToSummary() {
     const resp = axios.post('/api/summary');
     return {
-        type: types.ADDTOSUMMARY,
-        payload: resp
+        type: types.ADDTOSUMMARY
     }
 }
 
@@ -101,8 +96,7 @@ export function updateSummary(summaryId, shippingMethod, shippingCost) {
         shipping: shippingCost
     });
     return {
-        type: types.UPDATESUMMARY,
-        payload: resp
+        type: types.UPDATESUMMARY
     }
 }
 
@@ -116,8 +110,7 @@ export function addContactMessage( your_fname, your_lname, your_email, your_phon
         message: your_message
     });
     return {
-        type: types.ADDCONTACTUS,
-        payload: resp
+        type: types.ADDCONTACTUS
     }
 }
    
@@ -134,8 +127,7 @@ export function addGuestCheckout( firstName, lastName, mailingAddress, mailingCi
         phone_number: phoneNumber
     });
     return {
-        type: types.ADDGUESTCHECKOUT,
-        payload: resp
+        type: types.ADDGUESTCHECKOUT
     }
 }
 
