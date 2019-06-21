@@ -23,13 +23,15 @@ class NavButtons extends Component {
                     <Link className="waves-effect waves-light btn navButtons" to="/">home</Link>
                     <Link className="waves-effect waves-light btn navButtons" to="/contact">contact</Link>
                     <Link onClick={this.handleCartSummary} className={`waves-effect waves-light btn navButtons ${cartAlert}`} to="/cart">cart</Link>
-                    {/*<Link className="waves-effect waves-light btn navButtons" to="/create">create</Link>*/}
-                    {/*<Link className="waves-effect waves-light btn navButtons" to="/login">login</Link>*/}
+                    <Link className="waves-effect waves-light btn navButtons" to="/sign-up">sign up</Link>
+                    <Link className="waves-effect waves-light btn navButtons" to="/sign-in">sign in</Link>
                 </div>
                 <div className="show-on-small hide-on-med-and-up mobileNavBar">
                     <Link className="material-icons iconButtons" to="/">home</Link>
-                    <Link className="material-icons iconButtons" to="/contact">message</Link>
+                    <Link className="material-icons iconButtons" to="/contact">contacts</Link>
                     <Link onClick={this.handleCartSummary} className={`material-icons iconButtons ${cartAlert}`} to="/cart">shopping_cart</Link>
+                    <Link className="material-icons iconButtons" to="/sign-up">create</Link>
+                    <Link className="material-icons iconButtons" to="/sign-in">vpn_key</Link>
                 </div>
             </Fragment>
         );
@@ -38,8 +40,6 @@ class NavButtons extends Component {
 
 function mapStateToProps(state){
     return {
-        cart: state.getCartMeta.single,
-        summary: state.summary.single,
         addCartAlert: state.addCartAlert
     }
 }

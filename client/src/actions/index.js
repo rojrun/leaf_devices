@@ -1,6 +1,34 @@
 import axios from 'axios';
 import types from './types';
 
+export function addSignUp(name, email, password) {
+    const resp = axios.post('/api/sign-up', {
+        name: name,
+        email: email,
+        password: password
+    });
+    return {
+        type: types.ADDSIGNUP
+    }
+}
+
+export function addSignIn(email, password) {
+    const resp = axios.post('/api/sign-in', {
+        email: email,
+        password: password
+    });
+    return {
+        type: types.ADDSIGNIN
+    }
+}
+
+// export function addQuantity(){
+//     return {
+//         type: types.QUANTITY,
+//         payload: 
+//     }
+// }
+
 /******* products endpoint *******/
 export function getProducts() {
     const resp = axios.get('/api/products');

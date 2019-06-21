@@ -11,6 +11,81 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 // app.use(express.static(resolve(__dirname, 'client', 'dist')));
 
+/******** sign-up endpoint *************/
+app.post('/api/sign-up', (req, res) => {
+    const { name, email, password } = req.body;
+
+    if (!name) {
+        res.send('No name was entered');
+    }
+
+    if (!email) {
+        res.send('No email was enetered');
+    } else {
+        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        regex.test(String(email).toLowerCase());
+    }
+
+    if (!password) {
+        res.send('No password was entered');
+    } else {
+        const regex = /^[A-Za-z0-9]{5,10}$/;
+        regex.test(password);
+    }
+
+    db.query(`SELECT id FROM \`users\` WHERE email=${email}`, (error, results) => {
+        if (results) {
+            res.send('Email already in use');
+        } else {
+            
+        }
+    });
+
+    // Create a user table, id, name, email, password
+
+    // Check that a name was passed in
+
+    // Check that an email was paassed and that it is a valid email format
+
+    // Check that a passsword was passed in, simple check for at least length of password
+
+    // If missing any required data send back an error
+
+    // Query user table to check if the email address is already being used
+    // select id from users where email=email
+    // if query finds a user send back an error email already in use
+
+    // Create a new user in users table
+
+    // Send back success message
+
+
+    res.send({
+        userDataReceived: { name, email, password },
+        message: 'testing sign up endpoint'
+    });
+});
+
+/********* sign-in endpoint ***********/
+app.post('/api/sign-in', (req, res) => {
+    const { email, password } = req.body;
+
+    // Check that an email and password where passed to here
+
+    // Query db to find user based on email
+
+    //if user found check if passwords match
+
+    // if no user or passwords dont match send back an error
+
+    // if everything checks out send back success message
+
+    res.send({
+        userDataReceived: { email, password },
+        message: 'testing sign in endpoint'
+    });
+});
+
 /******* products endpoint *******/
 app.get('/api/products', (req, res) => {
    db.query('SELECT p.id, p.name, p.description, p.price, p.href, p.style, p.image FROM `products` AS p', (error, results) => {
