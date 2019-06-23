@@ -22,12 +22,19 @@ export function addSignIn(email, password) {
     }
 }
 
-// export function addQuantity(){
-//     return {
-//         type: types.QUANTITY,
-//         payload: 
-//     }
-// }
+export function addQuantity() {
+    return {
+        type: types.ADD_QUANTITY
+    
+    }
+}
+
+export function minusQuantity() {
+    return {
+        type: types.MINUS_QUANTITY
+        
+    }
+}
 
 /******* products endpoint *******/
 export function getProducts() {

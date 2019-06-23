@@ -1,13 +1,20 @@
 import types from '../actions/types';
 
-const DEFAULT_STATE = {
-    quantity: 0
-};
+const DEFAULT_STATE = [
+    {
+        id: null,
+        quantity: 0
+    }
+];
 
-export default (state= DEFAULT_STATE, action) {
+export default (state= DEFAULT_STATE, action) => {
     switch (action.type) {
-        case types.QUANTITY:
-            return {...state, quantity: action.payload};
+        case types.ADD_QUANTITY:
+            console.log("quantity reducer:", state);
+            return {...state, quantity: action.payload + 1};
+        case types.MINUS_QUANTITY:
+            console.log("quantity reducer:", state);
+            return {...state, quantity: action.payload -1};        
         default:
             return state;    
     }

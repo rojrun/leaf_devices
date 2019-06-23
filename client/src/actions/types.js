@@ -15,5 +15,7 @@ export default {
     ADDGUESTCHECKOUT: "addGuestCheckout", 
     CUSTOMER: "customer",
     ADDSIGNUP: "addSignUp",
-    ADDSIGNIN: "addSignIn"
+    ADDSIGNIN: "addSignIn",
+    ADD_QUANTITY: "addQuantity",
+    MINUS_QUANTITY: "minusQuantity"
 };

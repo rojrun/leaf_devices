@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {addToCartMeta, addCartAlert} from '../actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addToCartMeta, addCartAlert, minusQuantity, addQuantity } from '../actions';
 import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
@@ -9,6 +9,7 @@ class SdcKit extends Component {
     }
 
     handleSubtractCount = () => {
+        // this.props.minusQuantity();
         if(this.state.productQuantity < 1){
             this.setState({
                productQuantity: 0
@@ -21,6 +22,8 @@ class SdcKit extends Component {
     }
 
     handleAddCount = () => {
+      
+        // this.props.addQuantity();
         this.setState({
             productQuantity: this.state.productQuantity + 1
         });
@@ -39,6 +42,8 @@ class SdcKit extends Component {
     render() {
         const { name, price, href, style, image, id } = this.props.product;
         const {productQuantity} = this.state;
+
+        console.log("quantity state:", this.props.quantity);
 
         return (
             <div className={`carousel-item ${style}`} href={href}>
@@ -61,6 +66,7 @@ class SdcKit extends Component {
                             <div className="productQuantity">
                                 <input type="number" name="quantity"
                                     value={productQuantity} product_id={id} onChange={() => {}}/>
+                                    // value={this.props.quantity} product_id={id} onChange={() => {}}/>
                             </div>    
                             <button onClick={this.handleAddCount} type="button"
                                 className="btn inputButtons waves-effect waves-light"
@@ -77,4 +83,11 @@ class SdcKit extends Component {
     }
 }
 
-export default connect(null, { addToCartMeta, addCartAlert })(SdcKit);
+// function mapStateToProps(state) {
+//     console.log("mapstatetoprops", state);
+//     return {
+//         quantity: state.quantity      
+//     }
+// }
+
+export default connect(null, { addToCartMeta, addCartAlert, minusQuantity, addQuantity })(SdcKit);
