@@ -13,5 +13,7 @@ export default {
     UPDATESUMMARY: "updateSummary",
     ADDCARTALERT: "addCartAlert",
     ADDGUESTCHECKOUT: "addGuestCheckout", 
-    CUSTOMER: "customer"
+    CUSTOMER: "customer",
+    ADDSIGNUP: "addSignUp",
+    ADDSIGNIN: "addSignIn"
 };

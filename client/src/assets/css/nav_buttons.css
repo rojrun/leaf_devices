@@ -4,7 +4,8 @@
     justify-content: space-around;
     align-items: center;
     align-content: center;
-    height: calc(6.67vh + 108.33px);
+    /* height: calc(6.67vh + 108.33px); */
+    height: 40vh;
     position: fixed;
     width: 15%;
 }
@@ -26,6 +27,10 @@
     font-size: 1.3em;
     flex: 0 1 auto;
     padding: 8%;
+}
+
+.iconButtons:hover {
+    cursor: url("../../../dist/images/cursor.png"), auto;
 }
 
 .pulse {

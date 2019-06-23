@@ -17,6 +17,10 @@ body {
     min-height: 100vh;
 }
 
+main {
+    min-height: 72vh;
+}
+
 .footer-copyright {
     color: #E6DF44;
     font-weight: 500;
