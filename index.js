@@ -13,34 +13,75 @@ app.use(express.urlencoded({extended: false}));
 
 /******** sign-up endpoint *************/
 app.post('/api/sign-up', (req, res) => {
+    console.log("sign up", req.body);
     const { name, email, password } = req.body;
 
-    if (!name) {
-        res.send('No name was entered');
-    }
-
-    if (!email) {
-        res.send('No email was enetered');
-    } else {
-        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        regex.test(String(email).toLowerCase());
-    }
-
-    if (!password) {
-        res.send('No password was entered');
-    } else {
-        const regex = /^[A-Za-z0-9]{5,10}$/;
-        regex.test(password);
-    }
-
-    db.query(`SELECT id FROM \`users\` WHERE email=${email}`, (error, results) => {
-        if (results) {
-            res.send('Email already in use');
+    function hasName(name) {
+        if (!name) {
+            res.send('No name was entered');
+            return;
         } else {
-            
+            return true;
         }
-    });
+    }
+      
+    function isEmailValid(email) {
+        if (!email) {
+            res.send('No email was enetered');
+            return;
+        } else {
+            const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            const emailCheck = regex.test(String(email).toLowerCase());
+            
+            if(emailCheck === false) {
+                res.send("Email must be in valid format");
+                return;
+            } else {
+                return true;
+            }
+        }
+    }
 
+    function isPasswordValid(password) {
+        if (!password) {
+            res.send('No password was entered');
+            return;
+        } else {
+            const regex = /^[A-Za-z0-9]{5,10}$/;
+            const passwordCheck = regex.test(password);
+    
+            if(passwordCheck === false) {
+                res.send("Password must be between 5-10 characters.");
+                return;
+            } else {
+                return true;
+            }
+        }           
+    } 
+
+    if ( hasName(name) && isEmailValid(email) && isPasswordValid(password) ) {
+        db.query(`SELECT id FROM \`users\` WHERE email=${email}`, (error, results) => {
+            if (results) {
+                res.send('Email already in use');
+                return;
+            } else {
+                const sql = `INSERT INTO \`users\` (name, email, password) VALUES (?, ?, ?)`;
+                const inserts = [ name, email, password ];
+                const formattedSql = mysql.format(sql, inserts);
+                db.query(formattedSql, (error, results) => {
+                    if(error){
+                        res.send('failed');
+                        return;
+                    }
+                    res.send({
+                        messege: "New user email successfully added",
+                        results: results
+                    });
+                });
+            }     
+        });           
+    }
+    
     // Create a user table, id, name, email, password
 
     // Check that a name was passed in
@@ -60,15 +101,43 @@ app.post('/api/sign-up', (req, res) => {
     // Send back success message
 
 
-    res.send({
-        userDataReceived: { name, email, password },
-        message: 'testing sign up endpoint'
-    });
+    // res.send({
+    //     userDataReceived: { name, email, password },
+    //     message: 'testing sign up endpoint'
+    // });
 });
 
 /********* sign-in endpoint ***********/
 app.post('/api/sign-in', (req, res) => {
     const { email, password } = req.body;
+
+    if (!email && !password) {
+        res.send("Please enter email and password");
+        return;
+    }
+
+    db.query(`SELECT id FROM \`users\` WHERE email='${email}'`, (error, result) => {
+        if(error) {
+            console.log("no email found");
+            res.send("No email found");
+            return;
+        } else {
+            db.query(`SELECT id FROM \`users\` WHERE email='${email}' AND password=${password}`, (error, result) => {
+                if(error) {
+                    console.log("email and password do not match");
+                    res.send("email and password do not match");
+                    return;
+                } else {
+                    console.log("email and password matches");
+                    res.send({
+                        messege: "email and password matches",
+                        result: result
+                    });
+                    return;         
+                }
+            });
+        }
+    });
 
     // Check that an email and password where passed to here
 
@@ -80,10 +149,10 @@ app.post('/api/sign-in', (req, res) => {
 
     // if everything checks out send back success message
 
-    res.send({
-        userDataReceived: { email, password },
-        message: 'testing sign in endpoint'
-    });
+    // res.send({
+    //     userDataReceived: { email, password },
+    //     message: 'testing sign in endpoint'
+    // });
 });
 
 /******* products endpoint *******/

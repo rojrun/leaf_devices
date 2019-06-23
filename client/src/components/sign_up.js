@@ -9,7 +9,7 @@ class SignUp extends Component {
     handleSignUp = (values) => {
         const { name, email, password } = values;
         this.props.addSignUp(name, email, password);
-        this.props.history.push("/");
+        // this.props.history.push("/");
     } 
 
     render() {
