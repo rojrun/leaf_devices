@@ -4,5 +4,6 @@ module.exports = {
         user: "root",
         password: "root",
         database: "leaf_devices"
-    }
+    },
+    cookieSecret: 'asdjhklasd78'
 };

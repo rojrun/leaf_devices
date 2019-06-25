@@ -3,22 +3,37 @@ const cors = require('cors');
 const mysql = require('mysql');
 const PORT = process.env.PORT || 9000;
 // const { resolve } = require('path');
+const { cookieSecret } = require('./config');
+const cookieSession = require('cookie-session');
 const db = require('./db');
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(cookieSession({
+    name: 'session',
+    secret: cookieSecret
+}));
 // app.use(express.static(resolve(__dirname, 'client', 'dist')));
 
 /******** sign-up endpoint *************/
+
+app.get('/api/cookie-test', (req, res) => {
+    res.send({
+        message: 'Session data',
+        session: req.session
+    });
+});
+
 app.post('/api/sign-up', (req, res) => {
-    console.log("sign up", req.body);
     const { name, email, password } = req.body;
 
     function hasName(name) {
         if (!name) {
-            res.send('No name was entered');
+            res.send({
+                message: 'No name was entered'
+            });
             return;
         } else {
             return true;
@@ -27,14 +42,18 @@ app.post('/api/sign-up', (req, res) => {
       
     function isEmailValid(email) {
         if (!email) {
-            res.send('No email was enetered');
+            res.send({
+                message: 'No email was enetered'
+            });
             return;
         } else {
             const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
             const emailCheck = regex.test(String(email).toLowerCase());
             
             if(emailCheck === false) {
-                res.send("Email must be in valid format");
+                res.send({
+                    message: "Email must be in valid format"
+                });
                 return;
             } else {
                 return true;
@@ -44,14 +63,18 @@ app.post('/api/sign-up', (req, res) => {
 
     function isPasswordValid(password) {
         if (!password) {
-            res.send('No password was entered');
+            res.send({
+                message: 'No password was entered'
+            });
             return;
         } else {
             const regex = /^[A-Za-z0-9]{5,10}$/;
             const passwordCheck = regex.test(password);
     
             if(passwordCheck === false) {
-                res.send("Password must be between 5-10 characters.");
+                res.send({
+                    message: "Password must be between 5-10 characters."
+                });
                 return;
             } else {
                 return true;
@@ -62,7 +85,9 @@ app.post('/api/sign-up', (req, res) => {
     if ( hasName(name) && isEmailValid(email) && isPasswordValid(password) ) {
         db.query(`SELECT id FROM \`users\` WHERE email=${email}`, (error, results) => {
             if (results) {
-                res.send('Email already in use');
+                res.send({
+                    message: 'Email already in use'
+                });
                 return;
             } else {
                 const sql = `INSERT INTO \`users\` (name, email, password) VALUES (?, ?, ?)`;
@@ -70,9 +95,13 @@ app.post('/api/sign-up', (req, res) => {
                 const formattedSql = mysql.format(sql, inserts);
                 db.query(formattedSql, (error, results) => {
                     if(error){
-                        res.send('failed');
+                        res.send({
+                            message: 'failed'
+                        });
                         return;
                     }
+                    req.session.userId = results.insertId;
+
                     res.send({
                         messege: "New user email successfully added",
                         results: results
@@ -112,30 +141,54 @@ app.post('/api/sign-in', (req, res) => {
     const { email, password } = req.body;
 
     if (!email && !password) {
-        res.send("Please enter email and password");
+        res.send({
+            success: false,
+            error: "Please enter email and password"
+        });
         return;
     }
 
-    db.query(`SELECT id FROM \`users\` WHERE email='${email}'`, (error, result) => {
+    db.query(`SELECT id, password FROM \`users\` WHERE email='${email}'`, (error, result) => {
         if(error) {
-            console.log("no email found");
-            res.send("No email found");
+            res.send({
+                error: "No email found"
+            });
             return;
         } else {
-            db.query(`SELECT id FROM \`users\` WHERE email='${email}' AND password=${password}`, (error, result) => {
-                if(error) {
-                    console.log("email and password do not match");
-                    res.send("email and password do not match");
-                    return;
-                } else {
-                    console.log("email and password matches");
+            const user = result[0];
+
+            if(user){
+                if(password === user.password){
+                    req.session.userId = user.id;
+
                     res.send({
-                        messege: "email and password matches",
-                        result: result
+                        message: 'User signed in',
+                        user: {
+                            email: email,
+                            id: user.id
+                        }
                     });
-                    return;         
                 }
+            }
+            res.send({
+                success: false,
+                error: 'Email and or password do not match'
             });
+            return;
+            // db.query(`SELECT id FROM \`users\` WHERE email='${email}' AND password=${password}`, (error, result) => {
+            //     if(error) {
+            //         console.log("email and password do not match");
+            //         res.send("email and password do not match");
+            //         return;
+            //     } else {
+            //         console.log("email and password matches");
+            //         res.send({
+            //             messege: "email and password matches",
+            //             result: result
+            //         });
+            //         return;         
+            //     }
+            // });
         }
     });
 
@@ -166,10 +219,22 @@ app.get('/api/products', (req, res) => {
 
 /******* cart endpoint *******/
 app.get('/api/cart', (req, res) => {
+    const userId = req.session.userId;
+    console.log("from cart endpoint, userId:", userId);
+
+    // Check if user id, send back error if no id
+    if(!userId) {
+        res.send({
+            success: false,
+            error: "There is no user id"
+        });
+        return;
+    }
+
     const query = `SELECT i.id AS id, p.name, p.price, i.quantity FROM cart AS c 
         JOIN products AS p JOIN cart_meta AS i 
         ON c.id=i.cart_id AND i.product_id=p.id 
-        WHERE c.status="incomplete" AND c.customer_id=1`;
+        WHERE c.status="incomplete" AND c.customer_id=${userId}`;
     db.query(query, (error, results) => {
         res.send({
             results: results
@@ -178,9 +243,23 @@ app.get('/api/cart', (req, res) => {
 });
 
 app.post('/api/cart', (req, res) => {
-    db.query(`INSERT INTO \`cart\` (customer_id) VALUES (1)`, (error, results) => {
+    const userId = req.session.userId;
+
+    // Check if user id, send back error if no id
+    if(!userId) {
+        res.send({
+            success: false,
+            error: "There is no user id"
+        });
+        return;
+    }
+
+    db.query(`INSERT INTO \`cart\` (customer_id) VALUES (${userId})`, (error, results) => {
         if(error){
-            res.send('failed');
+            res.send({
+                success: false,
+                error: "Insert into cart table failed"
+            });
             return;
         }
         res.send({
