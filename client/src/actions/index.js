@@ -22,12 +22,25 @@ export function addSignIn(email, password) {
     }
 }
 
-// export function addQuantity(){
-//     return {
-//         type: types.QUANTITY,
-//         payload: 
-//     }
-// }
+export function addToCart(id, quantity) {
+    return {
+        type: types.ADD_TO_CART,
+        payload: {
+            id,
+            quantity 
+        }    
+    }
+}
+
+export function removeFromCart(id, quantity) {
+    return {
+        type: types.REMOVE_FROM_CART,
+        payload: {
+            id,
+            quantity 
+        }          
+    }
+}
 
 /******* products endpoint *******/
 export function getProducts() {
@@ -94,12 +107,25 @@ export function deleteCartMetaItem(cartMetaId) {
     }
 }
 
-export function addCartAlert() {
+/* Adds cart notification to cart button */
+export function addCartAlert(style) {
     return {
         type: types.ADDCARTALERT,
-        cartAlert: "pulse"
+        payload: {
+            cartAlert: style
+        }
     }
 } 
+
+/* Removes cart notification when cart button is pressed */
+export function removeCartAlert(style) {
+    return {
+        type: types.REMOVECARTALERT,
+        payload: {
+            cartAlert: style
+        }
+    }
+}
 
 /******* summary endpoint *******/
 export function getSummary() {

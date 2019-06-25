@@ -5,7 +5,7 @@ import getCartMetaReducer from './getCartMeta_reducer';
 import summaryReducer from './summary_reducer';
 import addCartAlertReducer from './addCartAlert_reducer';
 import customerReducer from './customer_reducer';
-// import quantityReducer from './quantity_reducer';
+import cartReducer from './cart_reducer';
 
 const rootReducer = combineReducers({
     form: formReducer,
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
     summary: summaryReducer,
     addCartAlert: addCartAlertReducer,
     customer: customerReducer,
-    // quantity: quantityReducer
+    cart: cartReducer
 });
 
 export default rootReducer;
