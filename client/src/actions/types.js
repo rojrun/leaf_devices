@@ -16,6 +16,6 @@ export default {
     CUSTOMER: "customer",
     ADDSIGNUP: "addSignUp",
     ADDSIGNIN: "addSignIn",
-    ADD_QUANTITY: "addQuantity",
-    MINUS_QUANTITY: "minusQuantity"
+    ADD_TO_CART: "addToCart",
+    REMOVE_FROM_CART: "removeFromCart"
 };

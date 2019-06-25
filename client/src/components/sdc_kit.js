@@ -1,32 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToCartMeta, addCartAlert, minusQuantity, addQuantity } from '../actions';
+import { addToCartMeta, addCartAlert, addToCart, removeFromCart } from '../actions';
 import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
-    state = {
-        productQuantity: 0
+    // state = {
+    //     productQuantity: 0
+    // }
+
+    handleSubtractCount = (id, quantity) => {
+        console.log("handleSubtractCount id:", id);
+        console.log("handleSubtractCount quantity:", quantity);
+        this.props.removeFromCart(id, quantity);
+        // if(this.state.productQuantity < 1){
+        //     this.setState({
+        //        productQuantity: 0
+        //     });
+        // } else {
+        //     this.setState({
+        //         productQuantity: this.state.productQuantity - 1
+        //     });
+        // }
     }
 
-    handleSubtractCount = () => {
-        // this.props.minusQuantity();
-        if(this.state.productQuantity < 1){
-            this.setState({
-               productQuantity: 0
-            });
-        } else {
-            this.setState({
-                productQuantity: this.state.productQuantity - 1
-            });
-        }
-    }
+    handleAddCount = (id, quantity) => {
+        console.log("handleAddCount id:", id);
+        console.log("handleAddCount quantity:", quantity);
+        this.props.addToCart(id, quantity);
 
-    handleAddCount = () => {
-      
-        // this.props.addQuantity();
-        this.setState({
-            productQuantity: this.state.productQuantity + 1
-        });
+        // this.setState({
+        //     productQuantity: this.state.productQuantity + 1
+        // });
     }
 
     handleAddToCart = () => {
@@ -41,10 +45,8 @@ class SdcKit extends Component {
 
     render() {
         const { name, price, href, style, image, id } = this.props.product;
-        const {productQuantity} = this.state;
-
-        console.log("quantity state:", this.props.quantity);
-
+        const { quantity } = this.props.cart;
+    
         return (
             <div className={`carousel-item ${style}`} href={href}>
                 <div className="card">
@@ -59,22 +61,21 @@ class SdcKit extends Component {
                     </div>
                     <div className="productInput">
                         <div className="row quantityField">
-                            <button onClick={this.handleSubtractCount} type="button"
-                                className="btn inputButtons minusButton waves-effect waves-light"
+                            <button onClick={() => this.handleSubtractCount(id, quantity)} type="button"
+                                className="btn inputButtons minusButton"
                                 data-quantity="subtract" data-field="quantity">-
                             </button>
                             <div className="productQuantity">
                                 <input type="number" name="quantity"
-                                    value={productQuantity} product_id={id} onChange={() => {}}/>
-                                    // value={this.props.quantity} product_id={id} onChange={() => {}}/>
+                                    value={quantity} product_id={id} onChange={() => {}}/>
                             </div>    
-                            <button onClick={this.handleAddCount} type="button"
-                                className="btn inputButtons waves-effect waves-light"
+                            <button onClick={() => this.handleAddCount(id, quantity)} type="button"
+                                className="btn inputButtons"
                                 data-quantity="add" data-field="quantity">+
                             </button>
                         </div>
                         <button onClick={this.handleAddToCart} type="button"
-                            className="btn inputSubmit waves-effect waves-light">Add
+                            className="btn inputSubmit">Add
                         </button>  
                     </div>                      
                 </div>
@@ -83,11 +84,11 @@ class SdcKit extends Component {
     }
 }
 
-// function mapStateToProps(state) {
-//     console.log("mapstatetoprops", state);
-//     return {
-//         quantity: state.quantity      
-//     }
-// }
+function mapStateToProps(state) {
+    
+    return {
+        cart: state.cart    
+    }
+}
 
-export default connect(null, { addToCartMeta, addCartAlert, minusQuantity, addQuantity })(SdcKit);
+export default connect(mapStateToProps, { addToCartMeta, addCartAlert, addToCart, removeFromCart })(SdcKit);

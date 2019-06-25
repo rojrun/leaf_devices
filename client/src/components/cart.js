@@ -92,7 +92,7 @@ class Cart extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cart}
+                                {cartMeta}
                             </tbody>
                         </table>
                         <div className="row center">
@@ -110,7 +110,7 @@ class Cart extends Component {
 
 function mapStateToProps(state){
     return {
-        cart: state.getCartMeta.single,
+        cartMeta: state.getCartMeta.single,
         summary: state.summary.single
     }
 }

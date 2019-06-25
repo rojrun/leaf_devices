@@ -22,17 +22,23 @@ export function addSignIn(email, password) {
     }
 }
 
-export function addQuantity() {
+export function addToCart(id, quantity) {
     return {
-        type: types.ADD_QUANTITY
-    
+        type: types.ADD_TO_CART,
+        payload: {
+            id,
+            quantity 
+        }    
     }
 }
 
-export function minusQuantity() {
+export function removeFromCart(id, quantity) {
     return {
-        type: types.MINUS_QUANTITY
-        
+        type: types.REMOVE_FROM_CART,
+        payload: {
+            id,
+            quantity 
+        }          
     }
 }
 
