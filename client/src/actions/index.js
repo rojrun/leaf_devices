@@ -107,12 +107,25 @@ export function deleteCartMetaItem(cartMetaId) {
     }
 }
 
-export function addCartAlert() {
+/* Adds cart notification to cart button */
+export function addCartAlert(style) {
     return {
         type: types.ADDCARTALERT,
-        cartAlert: "pulse"
+        payload: {
+            cartAlert: style
+        }
     }
 } 
+
+/* Removes cart notification when cart button is pressed */
+export function removeCartAlert(style) {
+    return {
+        type: types.REMOVECARTALERT,
+        payload: {
+            cartAlert: style
+        }
+    }
+}
 
 /******* summary endpoint *******/
 export function getSummary() {

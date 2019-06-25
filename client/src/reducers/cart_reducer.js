@@ -3,7 +3,7 @@ import types from '../actions/types';
 /* This reducer is to keep track of quantity state, with adding and subtracting quantity.
     It is used in sdc_kit.js and cart.js. */
 const DEFAULT_STATE = {
-    id: undefined,
+    id: null,
     quantity: 0
 };
 
@@ -13,17 +13,18 @@ export default (state= DEFAULT_STATE, action) => {
     switch (action.type) {
         case types.ADD_TO_CART:
             console.log("ADD_TO_CART reducer", state);
-            if(state[action.payload.id] !== undefined) {
-                return {
-                    ...state,
-                    // [action.payload.id]: state[action.payload.id] + action.payload.quantity
-                    id: action.payload.id, 
-                    quantity: state[action.payload.quantity] + action.payload.quantity
-                }
-            }
+            // if(state[action.payload.id] !== undefined) {
+            //     return {
+            //         ...state,
+            //         [action.payload.id]: state[action.payload.id] + action.payload.quantity
+            //     }
+            // }
+            // return {
+            //     ...state,
+            //     [action.payload.id]: action.payload.quantity
+            // }
             return {
                 ...state,
-                // [action.payload.id]: action.payload.quantity
                 id: action.payload.id,
                 quantity: state.quantity + 1
             }

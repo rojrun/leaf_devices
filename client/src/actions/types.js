@@ -12,6 +12,7 @@ export default {
     DELETECARTMETAITEM: "deleteCartMetaItem",
     UPDATESUMMARY: "updateSummary",
     ADDCARTALERT: "addCartAlert",
+    REMOVECARTALERT: "removeCartAlert",
     ADDGUESTCHECKOUT: "addGuestCheckout", 
     CUSTOMER: "customer",
     ADDSIGNUP: "addSignUp",

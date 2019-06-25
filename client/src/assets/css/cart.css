@@ -16,6 +16,7 @@
 
 .clear:hover {
     color: #006400;
+    cursor: url("../../../dist/images/cursor.png"), auto;
 }
 
 .shop_update {

@@ -49,11 +49,11 @@ class Cart extends Component {
     }
 
     render() {
-        if(!this.props.cart.length){
+        if(!this.props.cartMeta.length){
             return <Comments message="CART EMPTY"/>
         }
 
-        const cart = this.props.cart.map( (item, i) => {
+        const cart = this.props.cartMeta.map( (item, i) => {
             const {id, quantity, name, price} = item;
             return (
                 <tr key={i}>
@@ -92,7 +92,7 @@ class Cart extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cartMeta}
+                                {cart}
                             </tbody>
                         </table>
                         <div className="row center">
