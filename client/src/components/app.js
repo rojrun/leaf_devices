@@ -11,6 +11,7 @@ import GuestCheckout from './guest_checkout';
 import OrderComplete from './order_complete';
 import SignUp from './sign_up';
 import SignIn from './sign_in';
+import UserCart from './user_cart';
 import '../assets/css/app.css';
 
 const App = () => (
@@ -26,6 +27,7 @@ const App = () => (
                     <Route path="/cart" component={Cart}/>
                     <Route path="/guest-checkout" component={GuestCheckout}/>
                     <Route path="/order-complete" component={OrderComplete}/>
+                    <Route path="/user-cart" component={UserCart}/>
                     <Route path="/sign-up" component={SignUp}/>
                     <Route path="/sign-in" component={SignIn}/>
                 </main>    

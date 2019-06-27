@@ -83,7 +83,7 @@ app.post('/api/sign-up', (req, res) => {
     } 
 
     if ( hasName(name) && isEmailValid(email) && isPasswordValid(password) ) {
-        db.query(`SELECT id FROM \`users\` WHERE email=${email}`, (error, results) => {
+        db.query(`SELECT id FROM \`users\` WHERE email='${email}'`, (error, results) => {
             if (results) {
                 res.send({
                     message: 'Email already in use'
@@ -110,30 +110,6 @@ app.post('/api/sign-up', (req, res) => {
             }     
         });           
     }
-    
-    // Create a user table, id, name, email, password
-
-    // Check that a name was passed in
-
-    // Check that an email was paassed and that it is a valid email format
-
-    // Check that a passsword was passed in, simple check for at least length of password
-
-    // If missing any required data send back an error
-
-    // Query user table to check if the email address is already being used
-    // select id from users where email=email
-    // if query finds a user send back an error email already in use
-
-    // Create a new user in users table
-
-    // Send back success message
-
-
-    // res.send({
-    //     userDataReceived: { name, email, password },
-    //     message: 'testing sign up endpoint'
-    // });
 });
 
 /********* sign-in endpoint ***********/
@@ -156,10 +132,12 @@ app.post('/api/sign-in', (req, res) => {
             return;
         } else {
             const user = result[0];
+            console.log("sign in, user id: ", user);
 
-            if(user){
+            if(user) {
                 if(password === user.password){
                     req.session.userId = user.id;
+                    console.log("req.session.userId", user.id);
 
                     res.send({
                         message: 'User signed in',
@@ -175,37 +153,8 @@ app.post('/api/sign-in', (req, res) => {
                 error: 'Email and or password do not match'
             });
             return;
-            // db.query(`SELECT id FROM \`users\` WHERE email='${email}' AND password=${password}`, (error, result) => {
-            //     if(error) {
-            //         console.log("email and password do not match");
-            //         res.send("email and password do not match");
-            //         return;
-            //     } else {
-            //         console.log("email and password matches");
-            //         res.send({
-            //             messege: "email and password matches",
-            //             result: result
-            //         });
-            //         return;         
-            //     }
-            // });
         }
     });
-
-    // Check that an email and password where passed to here
-
-    // Query db to find user based on email
-
-    //if user found check if passwords match
-
-    // if no user or passwords dont match send back an error
-
-    // if everything checks out send back success message
-
-    // res.send({
-    //     userDataReceived: { email, password },
-    //     message: 'testing sign in endpoint'
-    // });
 });
 
 /******* products endpoint *******/

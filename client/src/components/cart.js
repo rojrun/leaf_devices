@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary} from '../actions';
+import {addToCartMeta, getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary} from '../actions';
 import Summary from './summary';
 import Comments from './comments';
 import '../assets/css/cart.css';
@@ -9,6 +9,7 @@ import '../assets/css/cart.css';
 /* Cart component to display selected items from landing page */
 class Cart extends Component {
     componentDidMount() {
+        // this.props.addToCartMeta(id, productQuantity);
         this.props.getCart();
     }
 
@@ -61,14 +62,14 @@ class Cart extends Component {
                     <td>{name}</td>
                     <td className="row center">
                         <button onClick={ () => this.handleSubtractCount(id, quantity) } type="button"
-                                className="btn cartMinusBtn cartBtn waves-effect waves-light"
+                                className="btn cartMinusBtn cartBtn"
                                 data-quantity="subtract" data-field="quantity">-
                         </button>
                         <div className="cartQuantity">
                             {quantity}
                         </div>    
                         <button onClick={ () => this.handleAddCount(id, quantity) } type="button"
-                                className="btn cartAddBtn cartBtn waves-effect waves-light"
+                                className="btn cartAddBtn cartBtn"
                                 data-quantity="add" data-field="quantity">+
                         </button>
                     </td>
@@ -96,7 +97,7 @@ class Cart extends Component {
                             </tbody>
                         </table>
                         <div className="row center">
-                            <Link className="btn waves-effect waves-light shop_update" to="/">back to shopping</Link>
+                            <Link className="btn shop_update" to="/">back to shopping</Link>
                         </div>
                     </div>
                     <div className="col s12 m12 l4">
@@ -115,4 +116,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary })(Cart);
+export default connect(mapStateToProps, { addToCartMeta, getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary })(Cart);
