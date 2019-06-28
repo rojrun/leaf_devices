@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import '../assets/css/user_cart.css';
+import '../assets/css/SignUpInPage.css';
 
-const UserCart = () => (
+const SignUpInPage = () => (
     <div>
         <div className="userCart center">PLEASE SIGN-IN OR SIGN-UP</div>
         <div className="center">
@@ -12,4 +12,4 @@ const UserCart = () => (
     </div>
 );
 
-export default UserCart;
+export default SignUpInPage;

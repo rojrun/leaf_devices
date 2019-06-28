@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {addToCartMeta, getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary} from '../actions';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addToCartMeta, getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary } from '../actions';
 import Summary from './summary';
 import Comments from './comments';
 import '../assets/css/cart.css';
@@ -9,7 +9,6 @@ import '../assets/css/cart.css';
 /* Cart component to display selected items from landing page */
 class Cart extends Component {
     componentDidMount() {
-        // this.props.addToCartMeta(id, productQuantity);
         this.props.getCart();
     }
 
@@ -19,33 +18,36 @@ class Cart extends Component {
         } else {
             quantity--;
         }
-        await this.props.updateCartMetaQuantity(id, quantity);
+        this.props.updateCartMetaQuantity(id, quantity);
         await this.props.getCart();
 
         const summary_id = this.props.summary.id;
         const { shipping } = this.props.summary;
-        await this.props.updateSummary(summary_id, shipping);
+        this.props.updateSummary(summary_id, shipping);
         await this.props.getSummary();
     }
 
     handleAddCount = async (id, quantity) => {
         quantity++;
-        await this.props.updateCartMetaQuantity(id, quantity);
+        this.props.updateCartMetaQuantity(id, quantity);
         await this.props.getCart();
+
+        // fix summmary when quantity is changed
+        await this.props.getSummary();
 
         const summary_id = this.props.summary.id;
         const { shipping } = this.props.summary;
-        await this.props.updateSummary(summary_id, shipping);
+        this.props.updateSummary(summary_id, shipping);
         await this.props.getSummary();
     }
 
     handleDeleteItem = async (id, quantity) => {
-        await this.props.deleteCartMetaItem(id, quantity);
+        this.props.deleteCartMetaItem(id, quantity);
         await this.props.getCart();
 
         const summary_id = this.props.summary.id;
         const { shipping } = this.props.summary;
-        await this.props.updateSummary(summary_id, shipping);
+        this.props.updateSummary(summary_id, shipping);
         await this.props.getSummary();
     }
 
@@ -54,8 +56,10 @@ class Cart extends Component {
             return <Comments message="CART EMPTY"/>
         }
 
+        console.log('Is User Signed In:', this.props.auth);
+
         const cart = this.props.cartMeta.map( (item, i) => {
-            const {id, quantity, name, price} = item;
+            const { id, quantity, name, price } = item;
             return (
                 <tr key={i}>
                     <td onClick={ () => this.handleDeleteItem(id) }  className="material-icons clear">clear</td>

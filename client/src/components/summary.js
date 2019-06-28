@@ -13,9 +13,8 @@ class Summary extends Component {
 
     async componentDidMount() {
         this.instances = M.FormSelect.init(this.refs.dropdown);
-        await this.props.addToSummary();
-        
-        this.props.getSummary();
+        this.props.addToSummary();  
+        await this.props.getSummary();
     }
 
     componentDidUpdate(prevProps) {
@@ -67,7 +66,7 @@ class Summary extends Component {
                     </div>  
                 </div> 
                 <p><b>Total: ${this.addZeroes(total/100)}</b></p>
-                <Link className="checkoutButton waves-effect waves-light btn" to="/guest-checkout">checkout</Link>
+                <Link className="checkoutButton btn" to="/guest-checkout">checkout</Link>
             </div>
         );
     }

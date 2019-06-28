@@ -7,7 +7,16 @@ import reduxPromise from 'redux-promise';
 import rootReducer from './reducers';
 import App from './components/app';
 
+import types from './actions/types';
+import {checkAuth} from './actions';
+
 const store = createStore(rootReducer, {}, applyMiddleware(reduxPromise));
+
+store.dispatch({
+    type: types.SIGN_IN
+});
+
+checkAuth(store.dispatch);
 
 ReactDOM.render(
     <Provider store={store}>

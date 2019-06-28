@@ -10,7 +10,7 @@ class SignIn extends Component {
     handleSignIn = (values) => {
         const { email, password } = values;
         this.props.addSignIn(email, password);
-        this.props.history.push("/cart");
+        // this.props.history.push("/cart");
     } 
 
     render() {

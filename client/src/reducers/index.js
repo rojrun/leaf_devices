@@ -6,6 +6,7 @@ import summaryReducer from './summary_reducer';
 import addCartAlertReducer from './addCartAlert_reducer';
 import customerReducer from './customer_reducer';
 import cartReducer from './cart_reducer';
+import userReducer from './user_reducer';
 
 const rootReducer = combineReducers({
     form: formReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     summary: summaryReducer,
     addCartAlert: addCartAlertReducer,
     customer: customerReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    user: userReducer
 });
 
 export default rootReducer;

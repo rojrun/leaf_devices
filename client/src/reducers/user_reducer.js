@@ -1,15 +1,15 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE = {
-    all: [],
-    single: {}
+    auth: false
 };
 
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type){
-        case types.SUMMARY:
-            console.log("summary reducer, state:", state);
-            return {...state, single: action.payload.data.results};
+        case types.SIGN_IN:
+            return { auth: true };
+        case types.CHECK_AUTH:
+            return { auth: action.auth };
         default:
             return state;
     }
