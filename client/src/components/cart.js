@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary} from '../actions';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addToCartMeta, getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary } from '../actions';
 import Summary from './summary';
 import Comments from './comments';
 import '../assets/css/cart.css';
@@ -18,33 +18,36 @@ class Cart extends Component {
         } else {
             quantity--;
         }
-        await this.props.updateCartMetaQuantity(id, quantity);
+        this.props.updateCartMetaQuantity(id, quantity);
         await this.props.getCart();
 
         const summary_id = this.props.summary.id;
         const { shipping } = this.props.summary;
-        await this.props.updateSummary(summary_id, shipping);
+        this.props.updateSummary(summary_id, shipping);
         await this.props.getSummary();
     }
 
     handleAddCount = async (id, quantity) => {
         quantity++;
-        await this.props.updateCartMetaQuantity(id, quantity);
+        this.props.updateCartMetaQuantity(id, quantity);
         await this.props.getCart();
+
+        // fix summmary when quantity is changed
+        await this.props.getSummary();
 
         const summary_id = this.props.summary.id;
         const { shipping } = this.props.summary;
-        await this.props.updateSummary(summary_id, shipping);
+        this.props.updateSummary(summary_id, shipping);
         await this.props.getSummary();
     }
 
     handleDeleteItem = async (id, quantity) => {
-        await this.props.deleteCartMetaItem(id, quantity);
+        this.props.deleteCartMetaItem(id, quantity);
         await this.props.getCart();
 
         const summary_id = this.props.summary.id;
         const { shipping } = this.props.summary;
-        await this.props.updateSummary(summary_id, shipping);
+        this.props.updateSummary(summary_id, shipping);
         await this.props.getSummary();
     }
 
@@ -53,22 +56,24 @@ class Cart extends Component {
             return <Comments message="CART EMPTY"/>
         }
 
+        console.log('Is User Signed In:', this.props.auth);
+
         const cart = this.props.cartMeta.map( (item, i) => {
-            const {id, quantity, name, price} = item;
+            const { id, quantity, name, price } = item;
             return (
                 <tr key={i}>
                     <td onClick={ () => this.handleDeleteItem(id) }  className="material-icons clear">clear</td>
                     <td>{name}</td>
                     <td className="row center">
                         <button onClick={ () => this.handleSubtractCount(id, quantity) } type="button"
-                                className="btn cartMinusBtn cartBtn waves-effect waves-light"
+                                className="btn cartMinusBtn cartBtn"
                                 data-quantity="subtract" data-field="quantity">-
                         </button>
                         <div className="cartQuantity">
                             {quantity}
                         </div>    
                         <button onClick={ () => this.handleAddCount(id, quantity) } type="button"
-                                className="btn cartAddBtn cartBtn waves-effect waves-light"
+                                className="btn cartAddBtn cartBtn"
                                 data-quantity="add" data-field="quantity">+
                         </button>
                     </td>
@@ -96,7 +101,7 @@ class Cart extends Component {
                             </tbody>
                         </table>
                         <div className="row center">
-                            <Link className="btn waves-effect waves-light shop_update" to="/">back to shopping</Link>
+                            <Link className="btn shop_update" to="/">back to shopping</Link>
                         </div>
                     </div>
                     <div className="col s12 m12 l4">
@@ -115,4 +120,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary })(Cart);
+export default connect(mapStateToProps, { addToCartMeta, getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary })(Cart);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToCartMeta, addCartAlert, addToCart, removeFromCart } from '../actions';
+import { withRouter } from 'react-router';
+import { addToCartMeta, addCartAlert } from '../actions';
 import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
@@ -9,9 +10,6 @@ class SdcKit extends Component {
     }
 
     handleSubtractCount = () => {
-        // console.log("handleSubtractCount id:", id);
-        // console.log("handleSubtractCount quantity:", quantity);
-        // this.props.removeFromCart(id, quantity);
         if(this.state.productQuantity < 1){
             this.setState({
                productQuantity: 0
@@ -24,10 +22,6 @@ class SdcKit extends Component {
     }
 
     handleAddCount = () => {
-        // console.log("handleAddCount id:", id);
-        // console.log("handleAddCount quantity:", quantity);
-        // this.props.addToCart(id, quantity);
-
         this.setState({
             productQuantity: this.state.productQuantity + 1
         });
@@ -38,15 +32,16 @@ class SdcKit extends Component {
         const {id} = this.props.product;
 
         if(productQuantity > 0) {
-            this.props.addToCartMeta(id, productQuantity);
             this.props.addCartAlert("pulse");
+            this.props.addToCartMeta(id, productQuantity);
         }
     };
 
     render() {
         const { name, price, href, style, image, id } = this.props.product;
-        // const { quantity } = this.props.cart;
         const {productQuantity} = this.state;
+
+        console.log('Is User Signed In:', this.props.auth);
     
         return (
             <div className={`carousel-item ${style}`} href={href}>
@@ -62,7 +57,6 @@ class SdcKit extends Component {
                     </div>
                     <div className="productInput">
                         <div className="row quantityField">
-                            {/* <button onClick={() => this.handleSubtractCount(id, quantity)} type="button" */}
                             <button onClick={this.handleSubtractCount} type="button"
                                 className="btn inputButtons minusButton"
                                 data-quantity="subtract" data-field="quantity">-
@@ -71,7 +65,6 @@ class SdcKit extends Component {
                                 <input type="number" name="quantity"
                                     value={productQuantity} product_id={id} onChange={() => {}}/>
                             </div>    
-                            {/* <button onClick={() => this.handleAddCount(id, quantity)} type="button" */}
                             <button onClick={this.handleAddCount} type="button"
                                 className="btn inputButtons"
                                 data-quantity="add" data-field="quantity">+
@@ -79,7 +72,7 @@ class SdcKit extends Component {
                         </div>
                         <button onClick={this.handleAddToCart} type="button"
                             className="btn inputSubmit">Add
-                        </button>  
+                        </button>
                     </div>                      
                 </div>
             </div>
@@ -88,10 +81,10 @@ class SdcKit extends Component {
 }
 
 function mapStateToProps(state) {
-    // console.log("mapstatetoprops:", state);
     return {
+        auth: state.user.auth,
         cart: state.cart    
     }
 }
 
-export default connect(mapStateToProps, { addToCartMeta, addCartAlert, addToCart, removeFromCart })(SdcKit);
+export default withRouter(connect(mapStateToProps, { addToCartMeta, addCartAlert })(SdcKit));

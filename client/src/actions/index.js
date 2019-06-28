@@ -12,6 +12,15 @@ export function addSignUp(name, email, password) {
     }
 }
 
+export async function checkAuth(dispatch){
+    const resp = await axios.get('/api/is-signed-in');
+
+    dispatch({
+        type: types.CHECK_AUTH,
+        auth: resp.data.auth
+    });
+}
+
 export function addSignIn(email, password) {
     const resp = axios.post('/api/sign-in', {
         email: email,
@@ -86,9 +95,9 @@ export function addToCartMeta(id, productQuantity) {
     }
 }
 
-export function updateCartMetaQuantity(cartMetaId, productQuantity) {
-    const resp = axios.put('/api/cart-meta/product/' + {cartMetaId}, {
-        id: cartMetaId,
+export function updateCartMetaQuantity(cartId, productQuantity) {
+    const resp = axios.put('/api/cart-meta/product/' + {cartId}, {
+        id: cartId,
         quantity: productQuantity
     });
     return {

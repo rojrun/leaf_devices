@@ -7,7 +7,7 @@ export default {
     ADDTOCARTMETA: "addCartToMeta",
     GETCARTMETA: "getCartMeta",
     ADDTOSUMMARY: "addToSummary",
-    SUMMARY: "summary",
+    SUMMARY: "getSummary",
     UPDATECARTMETAQUANTITY: "updateCartMetaQuantity",
     DELETECARTMETAITEM: "deleteCartMetaItem",
     UPDATESUMMARY: "updateSummary",
@@ -18,5 +18,7 @@ export default {
     ADDSIGNUP: "addSignUp",
     ADDSIGNIN: "addSignIn",
     ADD_TO_CART: "addToCart",
-    REMOVE_FROM_CART: "removeFromCart"
+    REMOVE_FROM_CART: "removeFromCart",
+    SIGN_IN: 'sign_in',
+    CHECK_AUTH: 'check_auth'
 };

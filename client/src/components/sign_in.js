@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import {addSignIn} from '../actions';
+import { withRouter } from 'react-router';
+import { addSignIn } from '../actions';
 import Input from './general/input';
 import '../assets/css/sign_in.css'; 
 
@@ -9,7 +10,7 @@ class SignIn extends Component {
     handleSignIn = (values) => {
         const { email, password } = values;
         this.props.addSignIn(email, password);
-        // this.props.history.push("/");
+        // this.props.history.push("/cart");
     } 
 
     render() {
@@ -52,4 +53,4 @@ SignIn = reduxForm ({
     validate: validate
 })(SignIn);
 
-export default connect(null, { addSignIn })(SignIn);
+export default withRouter(connect(null, { addSignIn })(SignIn));
