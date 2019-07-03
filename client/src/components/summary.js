@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import '../assets/css/summary.css';
-import {addToSummary, getSummary, updateSummary} from '../actions';
+import { addToSummary, getSummary, updateSummary } from '../actions';
 
 /* Child component of Cart component. Rerenders when quantity changes. */
 class Summary extends Component {
@@ -20,7 +20,7 @@ class Summary extends Component {
     componentDidUpdate(prevProps) {
         if(prevProps.summary !== this.props.summary) {
             this.instances = M.FormSelect.init(this.refs.dropdown);
-        }      
+        }  
     }
 
     shippingMethod = (event) => {

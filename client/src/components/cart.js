@@ -32,9 +32,7 @@ class Cart extends Component {
         this.props.updateCartMetaQuantity(id, quantity);
         await this.props.getCart();
 
-        // fix summmary when quantity is changed
-        await this.props.getSummary();
-
+        console.log('handleAddCount', this.props.summary);
         const summary_id = this.props.summary.id;
         const { shipping } = this.props.summary;
         this.props.updateSummary(summary_id, shipping);
@@ -64,7 +62,7 @@ class Cart extends Component {
                 <tr key={i}>
                     <td onClick={ () => this.handleDeleteItem(id) }  className="material-icons clear">clear</td>
                     <td>{name}</td>
-                    <td className="row center">
+                    <td className="tdQuantity">
                         <button onClick={ () => this.handleSubtractCount(id, quantity) } type="button"
                                 className="btn cartMinusBtn cartBtn"
                                 data-quantity="subtract" data-field="quantity">-

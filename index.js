@@ -344,7 +344,19 @@ app.put('/api/cart-meta/product/:id', (req, res) => {
 
 /******* summary endpoint *******/
 app.get('/api/summary', (req, res) => {
-    db.query(`SELECT id, total_quantity, subtotal, tax, shipping_method, shipping, total FROM  \`summary\``, (error, results) => {
+    const userId = req.session.userId;
+
+    // Check if user id, send back error if no id
+    if(!userId) {
+        res.send({
+            success: false,
+            error: "There is no user id"
+        });
+        return;
+    }
+
+    db.query(`SELECT id, total_quantity, subtotal, tax, shipping_method, shipping, total FROM  \`summary\`
+        WHERE customer_id = ${userId}`, (error, results) => {
         res.send({
             results: results[0] || {}
         });
@@ -365,8 +377,12 @@ app.put('/api/summary/:id', (req, res) => {
         return;
     }
 
-    const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p
-        JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${userId}`;
+    const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` 
+        FROM cart AS c 
+        JOIN products AS p
+        JOIN cart_meta AS i 
+        ON c.id=i.cart_id AND i.product_id=p.id 
+        WHERE c.status="incomplete" AND c.customer_id=${userId}`;
 
     db.query(query, (error, results) => {
         if(error){
@@ -374,26 +390,40 @@ app.put('/api/summary/:id', (req, res) => {
             return;
         }
 
-        if(results.length){
+        if(results.length) {
             let totalQuantity = 0;
             let subTotal = 0;
             let cartId = results[0].cartId;
             const tax = .0775;
+            console.log("cartId", cartId);
 
             results.map( item => {
                 totalQuantity += item.quantity;
                 subTotal += item.quantity * item.price;
+                console.log("total quantity:", totalQuantity);
             });
+            console.log("total quantity:", totalQuantity);
+            let total = (subTotal * tax) + subTotal + shipping;
+            let salesTax = subTotal * tax;
+            
+            db.query(`UPDATE \`summary\` SET cart_id=${cartId}, customer_id=${userId}, total_quantity=${totalQuantity},
+                subtotal=${subTotal}, tax=${salesTax}, shipping_method=${shipping_method}, shipping=${shipping}, total=${total}, date= new Date() 
+                WHERE \`id\`=${id}`, (error, results) => {
+                    res.send({
+                        results: results
+                    });
+                });
 
-            const total = (subTotal * tax) + subTotal + shipping;
-            const sql = `UPDATE \`summary\` SET cart_id=?, customer_id=?, total_quantity=?, subtotal=?, tax=?, shipping_method=?, shipping=?, total=?, date=? WHERE \`id\`= ${id}`;
+            // const total = (subTotal * tax) + subTotal + shipping;
+            // const sql = `UPDATE \`summary\` SET cart_id=?, customer_id=?, total_quantity=?, subtotal=?, tax=?, shipping_method=?, shipping=?, total=?, date=? 
+            //     WHERE \`id\`= ${id}`;
 
-            const inserts = [ cartId, userId, totalQuantity, subTotal, subTotal * tax, shipping_method, shipping, total, new Date() ];
-            const summaryAdd = mysql.format(sql, inserts);
+            // const inserts = [ totalQuantity, subTotal, subTotal * tax, shipping_method, shipping, total, new Date() ];
+            // const summaryAdd = mysql.format(sql, inserts);
 
-            db.query(summaryAdd, (err, results) => {
-                res.send('It Worked!');
-            });
+            // db.query(summaryAdd, (err, results) => {
+            //     res.send('It Worked!');
+            // });
         } else {
             res.status(422).send('No items in cart');
         }

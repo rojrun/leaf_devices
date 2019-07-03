@@ -4,10 +4,18 @@
     background-position: center;
     background-size: contain;
     margin: auto;
-    height: calc(26.23vh - 13.93px);
-    width: calc(10.03vw + 13.06px);
+    height: calc(9.84vh + 98.52px);
+    width: calc(3.76vw + 108.65px);
 }
 
 .logo:hover {
     cursor: url("../../../dist/images/cursor.png"), auto;
+}
+
+@media only screen 
+and (orientation: portrait) {
+    .logo {
+        height: calc(7.10vh + 107.27px);
+        width: calc(6.27vw + 94.41px);
+    }
 }
