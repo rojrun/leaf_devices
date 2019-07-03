@@ -4,10 +4,16 @@
     justify-content: space-around;
     align-items: center;
     align-content: center;
-    /* height: calc(6.67vh + 108.33px); */
-    height: 40vh;
     position: fixed;
     width: 15%;
+}
+
+.navBar {
+    height: calc(7.55vh + 212.83px);
+}
+
+.mobileNavBar {
+    height: calc(-2.03vh + 216.50px);
 }
 
 .navButtons {
