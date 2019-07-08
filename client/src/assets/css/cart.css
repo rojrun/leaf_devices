@@ -9,14 +9,7 @@
     font-size: 2em;
 }
 
-/* table.rounded tr td:first-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
-
 .clear {
-    /* align-self: center; */
     color: #063852;
     font-size: calc(0.92vw + 29.06px);
 }

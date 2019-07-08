@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../assets/css/summary.css';
-import { addToSummary, getSummary, updateSummary } from '../actions';
+import { addToSummary, getSummary, updateSummary, expeditedShipping, standardShipping } from '../actions';
 
 /* Child component of Cart component. Rerenders when quantity changes. */
 class Summary extends Component {
-    state =  {
-        value: "Standard",
-        shippingCost: 0
-    }
+    // state =  {
+    //     value: "Standard",
+    //     shippingCost: 0
+    // }
 
     async componentDidMount() {
         this.instances = M.FormSelect.init(this.refs.dropdown);
@@ -21,30 +21,35 @@ class Summary extends Component {
         if(prevProps.summary !== this.props.summary) {
             this.instances = M.FormSelect.init(this.refs.dropdown);
         }
-
     }
 
-    shippingMethod = (event) => {
-        let shippingCost = null;
+    shippingMethod = async (event) => {
+        // let shippingCost = null;
         let { value } = event.target;
+
+        console.log("shipping method", value);
         if(value === "Expedited") {
-            shippingCost = 375;
+            // shippingCost = 375;
+            this.props.expeditedShipping(value);
         } else {
-            shippingCost = 0;
+            // shippingCost = 0;
+            this.props.expeditedShipping(value);
         }
 
-        this.setState({
-            value,
-            shippingCost
-        }, 
-            async () => {
+        // this.setState({
+        //     value,
+        //     shippingCost
+        // }, 
+            // async () => {
                 // const summary_id = this.props.summary.id;
-                console.log("shippingMethod, summary state:", this.state.value);
-                console.log("shippingMethod, summary state:", this.state.shippingCost);
-                this.props.updateSummary(this.state.value, this.state.shippingCost);
+                // console.log("shippingMethod, summary state:", this.state.value);
+                // console.log("shippingMethod, summary state:", this.state.shippingCost);
+                console.log("shipping props", this.props.shipping);
+                let { shippingMethod, shippingCost } = this.props.shipping;
+                this.props.updateSummary(shippingMethod, shippingCost);
                 await this.props.getSummary();
-            }
-        );        
+        //     }
+        // );        
     }
 
     addZeroes(num) {
@@ -53,6 +58,8 @@ class Summary extends Component {
 
     render() {
         const { total_quantity, subtotal, tax, total } = this.props.summary;
+        const { shippingCost } = this.props.shipping;
+        console.log("shipping cost", shippingCost);
        
         return (
             <div className="summary col s12 center">
@@ -65,7 +72,7 @@ class Summary extends Component {
                         <option value="Expedited">Expedited Shipping: </option>
                     </select>
                     <div className="shipping">
-                        {this.addZeroes(this.state.shippingCost/100)}
+                        {this.addZeroes(shippingCost/100)}
                     </div>  
                 </div> 
                 <p><b>Total: ${this.addZeroes(total/100)}</b></p>
@@ -76,9 +83,11 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state){
+    console.log("mapStateToProps", state);
     return {
-        summary: state.summary.single
+        summary: state.summary.single,
+        shipping: state.shipping
     }
 }
 
-export default connect(mapStateToProps, { addToSummary, getSummary, updateSummary })(Summary);
+export default connect(mapStateToProps, { addToSummary, getSummary, updateSummary, expeditedShipping, standardShipping })(Summary);

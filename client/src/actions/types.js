@@ -19,6 +19,8 @@ export default {
     ADDSIGNIN: "addSignIn",
     ADD_TO_CART: "addToCart",
     REMOVE_FROM_CART: "removeFromCart",
-    SIGN_IN: 'sign_in',
-    CHECK_AUTH: 'check_auth'
+    SIGN_IN: "sign_in",
+    CHECK_AUTH: "check_auth",
+    EXPEDITED_SHIPPING: "expeditedShipping",
+    STANDARD_SHIPPING: "standardShipping"
 };

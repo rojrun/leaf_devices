@@ -116,6 +116,32 @@ export function deleteCartMetaItem(cartMetaId) {
     }
 }
 
+/* Keeps track of shipping method for Cart and Summmary components */
+export function expeditedShipping(value) {
+    console.log("expedited shipping:", value);
+    
+    return {
+        type: types.EXPEDITED_SHIPPING,
+        payload: {
+            shippingMethod: value
+        
+        }
+    }
+}
+
+/* Keeps track of shipping method for Cart and Summmary components */
+export function standardShipping(method, cost) {
+    console.log("standard shipping:", method);
+    console.log("standard shipping", cost);
+    return {
+        type: types.STANDARD_SHIPPING,
+        payload: {
+            shippingMethod: method,
+            shippingCost: cost
+        }
+    }
+}
+
 /* Adds cart notification to cart button */
 export function addCartAlert(style) {
     return {

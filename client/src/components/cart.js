@@ -21,7 +21,7 @@ class Cart extends Component {
         this.props.updateCartMetaQuantity(product_id, quantity);
         await this.props.getCart();
 
-        const { id, shipping_method, shipping } = this.props.summary;
+        const { shipping_method, shipping } = this.props.summary;
         this.props.updateSummary(shipping_method, shipping);
         await this.props.getSummary();
     }
@@ -31,7 +31,7 @@ class Cart extends Component {
         this.props.updateCartMetaQuantity(product_id, quantity);
         await this.props.getCart();
 
-        const { id, shipping_method, shipping } = this.props.summary;
+        const { shipping_method, shipping } = this.props.summary;
         this.props.updateSummary(shipping_method, shipping);
         await this.props.getSummary();
     }
@@ -40,7 +40,7 @@ class Cart extends Component {
         this.props.deleteCartMetaItem(product_id, quantity);
         await this.props.getCart();
 
-        const { id, shipping_method, shipping } = this.props.summary;
+        const { shipping_method, shipping } = this.props.summary;
         this.props.updateSummary(shipping_method, shipping);
         await this.props.getSummary();
     }

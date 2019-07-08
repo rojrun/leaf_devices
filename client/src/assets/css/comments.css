@@ -5,16 +5,16 @@
     background-size: contain;
     height: calc(70.49vh - 0.57px);
     width: 100%;
-    /* display: flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    align-content: center; */
+    align-content: center;
 }
 
 .comment {
     font-size: calc(2vw + 4.61px);
-    transform: translate(0%, 60%);
+    transform: translate(0%, 70%);
     color: #F0810F;
-    /* flex: 0 1 auto; */
+    flex: 0 1 auto;
 }
