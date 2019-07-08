@@ -12,40 +12,36 @@ class Cart extends Component {
         this.props.getCart();
     }
 
-    handleSubtractCount = async (id, quantity) => {
+    handleSubtractCount = async (product_id, quantity) => {
         if(quantity < 1) {
             quantity = 0;
         } else {
             quantity--;
         }
-        this.props.updateCartMetaQuantity(id, quantity);
+        this.props.updateCartMetaQuantity(product_id, quantity);
         await this.props.getCart();
 
-        const summary_id = this.props.summary.id;
-        const { shipping } = this.props.summary;
-        this.props.updateSummary(summary_id, shipping);
+        const { id, shipping_method, shipping } = this.props.summary;
+        this.props.updateSummary(shipping_method, shipping);
         await this.props.getSummary();
     }
 
-    handleAddCount = async (id, quantity) => {
+    handleAddCount = async (product_id, quantity) => {
         quantity++;
-        this.props.updateCartMetaQuantity(id, quantity);
+        this.props.updateCartMetaQuantity(product_id, quantity);
         await this.props.getCart();
 
-        console.log('handleAddCount', this.props.summary);
-        const summary_id = this.props.summary.id;
-        const { shipping } = this.props.summary;
-        this.props.updateSummary(summary_id, shipping);
+        const { id, shipping_method, shipping } = this.props.summary;
+        this.props.updateSummary(shipping_method, shipping);
         await this.props.getSummary();
     }
 
-    handleDeleteItem = async (id, quantity) => {
-        this.props.deleteCartMetaItem(id, quantity);
+    handleDeleteItem = async (product_id, quantity) => {
+        this.props.deleteCartMetaItem(product_id, quantity);
         await this.props.getCart();
 
-        const summary_id = this.props.summary.id;
-        const { shipping } = this.props.summary;
-        this.props.updateSummary(summary_id, shipping);
+        const { id, shipping_method, shipping } = this.props.summary;
+        this.props.updateSummary(shipping_method, shipping);
         await this.props.getSummary();
     }
 
@@ -60,7 +56,9 @@ class Cart extends Component {
             const { id, quantity, name, price } = item;
             return (
                 <tr key={i}>
-                    <td onClick={ () => this.handleDeleteItem(id) }  className="material-icons clear">clear</td>
+                    <td onClick={ () => this.handleDeleteItem(id) }>
+                        <div className="material-icons clear">clear</div>
+                    </td>
                     <td>{name}</td>
                     <td className="tdQuantity">
                         <button onClick={ () => this.handleSubtractCount(id, quantity) } type="button"

@@ -335,7 +335,7 @@ app.put('/api/cart-meta/product/:id', (req, res) => {
     }
 
     const {id, quantity} = req.body;
-    db.query(`UPDATE \`cart_meta\` SET \`quantity\` = ${quantity} WHERE \`id\`= ${id} AND \`customer_id\`=${userId}`, (error, results) => {
+    db.query(`UPDATE \`cart_meta\` SET \`quantity\`=${quantity} WHERE \`id\`= ${id} AND \`customer_id\`=${userId}`, (error, results) => {
         res.send({
             results: results
         });
@@ -363,12 +363,11 @@ app.get('/api/summary', (req, res) => {
     });
 });
 
-app.put('/api/summary/:id', (req, res) => {
-    let { id, shipping_method, shipping } = req.body;
-    
+app.put('/api/summary', (req, res) => {
+    let { shipping_method, shipping } = req.body;
+    console.log("update summary: ", req.body);
     const userId = req.session.userId;
 
-    // Check if user id, send back error if no id
     if(!userId) {
         res.send({
             success: false,
@@ -400,30 +399,24 @@ app.put('/api/summary/:id', (req, res) => {
             results.map( item => {
                 totalQuantity += item.quantity;
                 subTotal += item.quantity * item.price;
-                console.log("total quantity:", totalQuantity);
             });
-            console.log("total quantity:", totalQuantity);
-            let total = (subTotal * tax) + subTotal + shipping;
-            let salesTax = subTotal * tax;
             
-            db.query(`UPDATE \`summary\` SET cart_id=${cartId}, customer_id=${userId}, total_quantity=${totalQuantity},
-                subtotal=${subTotal}, tax=${salesTax}, shipping_method=${shipping_method}, shipping=${shipping}, total=${total}, date= new Date() 
-                WHERE \`id\`=${id}`, (error, results) => {
-                    res.send({
-                        results: results
-                    });
-                });
+            console.log("total quantity:", totalQuantity);
+            console.log("subTotal", subTotal);
+            console.log("tax", tax);
+            console.log("shipingmethod", shipping_method);
+            console.log("shipping", shipping);
+            let total = (subTotal * tax) + subTotal + shipping;
+            console.log("total $", total);
+            
+            const sql = `UPDATE \`summary\` SET total_quantity=?, subtotal=?, tax=?, shipping_method=?, shipping=?, total=?, date=? WHERE \`cart_id\`= ${cartId}`;
 
-            // const total = (subTotal * tax) + subTotal + shipping;
-            // const sql = `UPDATE \`summary\` SET cart_id=?, customer_id=?, total_quantity=?, subtotal=?, tax=?, shipping_method=?, shipping=?, total=?, date=? 
-            //     WHERE \`id\`= ${id}`;
+            const inserts = [ totalQuantity, subTotal, subTotal * tax, shipping_method, shipping, total, new Date() ];
+            const summaryAdd = mysql.format(sql, inserts);
 
-            // const inserts = [ totalQuantity, subTotal, subTotal * tax, shipping_method, shipping, total, new Date() ];
-            // const summaryAdd = mysql.format(sql, inserts);
-
-            // db.query(summaryAdd, (err, results) => {
-            //     res.send('It Worked!');
-            // });
+            db.query(summaryAdd, (err, results) => {
+                res.send('It Worked!');
+            });
         } else {
             res.status(422).send('No items in cart');
         }

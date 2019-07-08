@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { addToCartMeta, addCartAlert } from '../actions';
+import { addToCartMeta, addCartAlert, updateSummary } from '../actions';
 import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
@@ -34,6 +34,7 @@ class SdcKit extends Component {
         if(productQuantity > 0) {
             this.props.addCartAlert("pulse");
             this.props.addToCartMeta(id, productQuantity);
+            this.props.updateSummary("Standard", 0);
         }
     };
 
@@ -87,4 +88,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { addToCartMeta, addCartAlert })(SdcKit));
+export default withRouter(connect(mapStateToProps, { addToCartMeta, addCartAlert, updateSummary })(SdcKit));

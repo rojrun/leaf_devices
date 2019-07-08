@@ -152,15 +152,24 @@ export function addToSummary() {
     }
 }
 
-export function updateSummary(summaryId, shippingMethod, shippingCost) {
-    const resp = axios.put('/api/summary/' + {summaryId}, {
-        id: summaryId,
+export function updateSummary(shippingMethod, shippingCost) {
+    const resp = axios.put('/api/summary/', {
         shipping_method: shippingMethod,
         shipping: shippingCost
     });
     return {
         type: types.UPDATESUMMARY
     }
+
+// export function updateSummary(summaryId, shippingMethod, shippingCost) {
+//     const resp = axios.put('/api/summary/' + {summaryId}, {
+//         id: summaryId,
+//         shipping_method: shippingMethod,
+//         shipping: shippingCost
+//     });
+//     return {
+//         type: types.UPDATESUMMARY
+//     }
 }
 
 /******* contact-message endpoint *******/

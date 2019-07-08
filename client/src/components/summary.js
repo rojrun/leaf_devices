@@ -20,7 +20,8 @@ class Summary extends Component {
     componentDidUpdate(prevProps) {
         if(prevProps.summary !== this.props.summary) {
             this.instances = M.FormSelect.init(this.refs.dropdown);
-        }  
+        }
+
     }
 
     shippingMethod = (event) => {
@@ -37,9 +38,11 @@ class Summary extends Component {
             shippingCost
         }, 
             async () => {
-                const summary_id = this.props.summary.id;
-                await this.props.updateSummary(summary_id, this.state.value, this.state.shippingCost);
-                this.props.getSummary();
+                // const summary_id = this.props.summary.id;
+                console.log("shippingMethod, summary state:", this.state.value);
+                console.log("shippingMethod, summary state:", this.state.shippingCost);
+                this.props.updateSummary(this.state.value, this.state.shippingCost);
+                await this.props.getSummary();
             }
         );        
     }
