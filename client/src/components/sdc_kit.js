@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { addToCartMeta, addCartAlert, updateSummary } from '../actions';
+import { addToCartMeta, addCartAlert, updateSummary, addToSummary } from '../actions';
 import '../assets/css/sdc_kit.css';
 
 class SdcKit extends Component {
@@ -34,7 +34,16 @@ class SdcKit extends Component {
         if(productQuantity > 0) {
             this.props.addCartAlert("pulse");
             this.props.addToCartMeta(id, productQuantity);
-            this.props.updateSummary("Standard", 0);
+
+            const {shipping_method, shipping} = this.props.summary;
+            console.log("shipping method", shipping_method );
+            console.log("shipping cost", shipping);
+            if(shipping_method !== undefined && shipping !== undefined) {
+                this.props.updateSummary(shipping_method, shipping);
+            } else {             
+                this.props.addToSummary();
+                this.props.updateSummary("Standard", 0);
+            }       
         }
     };
 
@@ -84,8 +93,9 @@ class SdcKit extends Component {
 function mapStateToProps(state) {
     return {
         auth: state.user.auth,
-        cart: state.cart    
+        cart: state.cart,
+        summary: state.summary.single
     }
 }
 
-export default withRouter(connect(mapStateToProps, { addToCartMeta, addCartAlert, updateSummary })(SdcKit));
+export default withRouter(connect(mapStateToProps, { addToCartMeta, addCartAlert, updateSummary, addToSummary })(SdcKit));

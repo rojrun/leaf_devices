@@ -13,12 +13,13 @@ export default {
     UPDATESUMMARY: "updateSummary",
     ADDCARTALERT: "addCartAlert",
     REMOVECARTALERT: "removeCartAlert",
-    ADDGUESTCHECKOUT: "addGuestCheckout", 
-    CUSTOMER: "customer",
+    ADDCHECKOUT: "addCheckout", 
+    CUSTOMER: "getCustomer",
     ADDSIGNUP: "addSignUp",
     ADDSIGNIN: "addSignIn",
     ADD_TO_CART: "addToCart",
     REMOVE_FROM_CART: "removeFromCart",
-    SIGN_IN: 'sign_in',
-    CHECK_AUTH: 'check_auth'
+    SIGN_IN: "sign_in",
+    CHECK_AUTH: "check_auth",
+    UPDATE_CART_STATUS: "updateCartStatus"
 };

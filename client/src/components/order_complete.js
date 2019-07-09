@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getCart, getSummary, getCustomer} from '../actions';
+import {getCart, getSummary, getCustomer, updateCartStatus} from '../actions';
 import Comments from './comments';
 import '../assets/css/order_complete.css';
 
@@ -9,6 +9,7 @@ class OrderComplete extends Component {
         this.props.getCart();
         this.props.getSummary();
         this.props.getCustomer();
+        this.props.updateCartStatus();
     }
 
     addZeroes(num) {
@@ -66,6 +67,7 @@ class OrderComplete extends Component {
 }
 
 function mapStateToProps(state){
+    console.log("mapstatetoprops", state);
     return {
         cart: state.getCartMeta.single,
         summary: state.summary.single,
@@ -73,4 +75,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, { getCart, getSummary, getCustomer })(OrderComplete);
+export default connect(mapStateToProps, { getCart, getSummary, getCustomer, updateCartStatus })(OrderComplete);
