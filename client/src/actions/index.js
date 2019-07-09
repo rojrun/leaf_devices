@@ -76,6 +76,13 @@ export function makeCart() {
     }
 }
 
+export function updateCartStatus() {
+    const resp = axios.put('/api/cart');
+    return {
+        type: types.UPDATE_CART_STATUS
+    }
+}
+
 /******* cart-meta endpoint *******/
 export function getCartMeta() {
     const resp = axios.get('/api/cart-meta');
@@ -186,9 +193,9 @@ export function addContactMessage( your_fname, your_lname, your_email, your_phon
     }
 }
    
-/******* guest-checkout endpoint *******/
-export function addGuestCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber ) {
-    const resp = axios.post('/api/guest-checkout', {
+/******* checkout endpoint *******/
+export function addCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber ) {
+    const resp = axios.post('/api/checkout', {
         first_name: firstName,
         last_name: lastName,
         mailing_address: mailingAddress,
@@ -199,12 +206,12 @@ export function addGuestCheckout( firstName, lastName, mailingAddress, mailingCi
         phone_number: phoneNumber
     });
     return {
-        type: types.ADDGUESTCHECKOUT
+        type: types.ADDCHECKOUT
     }
 }
 
 export function getCustomer() {
-    const resp = axios.get('/api/guest-checkout');
+    const resp = axios.get('/api/checkout');
     return {
         type: types.CUSTOMER,
         payload: resp

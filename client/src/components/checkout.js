@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import {addGuestCheckout} from '../actions';
+import {addCheckout} from '../actions';
 import Input from './general/input';
-import '../assets/css/guest_checkout.css';
+import '../assets/css/checkout.css';
 
-class GuestCheckout extends Component {
+class Checkout extends Component {
 
-    handleGuestCheckout = (values) => {
+    handleCheckout = (values) => {
         const { firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber } = values;
-        this.props.addGuestCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber );
+        this.props.addCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber );
         this.props.history.push("/order-complete");
     }
 
@@ -17,8 +17,8 @@ class GuestCheckout extends Component {
         const { handleSubmit } = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.handleGuestCheckout)}>
-                <div className="center contact">GUEST CHECKOUT</div>
+            <form onSubmit={handleSubmit(this.handleCheckout)}>
+                <div className="center contact">CHECKOUT</div>
                 <div className="row">
                     <Field name="firstName" label="First Name" size="l6 m6 s12" component={Input}/>
                     <Field name="lastName" label="Last Name" size="l6 m6 s12" component={Input}/>
@@ -82,9 +82,9 @@ function validate({firstName, lastName, mailingAddress, mailingCity, mailingStat
     return errors;  
 }
 
-GuestCheckout = reduxForm ({
-    form: 'guest_checkout-form',
+Checkout = reduxForm ({
+    form: 'checkout-form',
     validate: validate
-})(GuestCheckout);
+})(Checkout);
 
-export default connect(null, { addGuestCheckout })(GuestCheckout);
+export default connect(null, { addCheckout })(Checkout);

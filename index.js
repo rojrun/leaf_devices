@@ -183,7 +183,6 @@ app.get('/api/products', (req, res) => {
 app.get('/api/cart', (req, res) => {
     const userId = req.session.userId;
 
-    // Check if user id, send back error if no id
     if(!userId) {
         res.send({
             success: false,
@@ -206,7 +205,6 @@ app.get('/api/cart', (req, res) => {
 app.post('/api/cart', (req, res) => {
     const userId = req.session.userId;
 
-    // Check if user id, send back error if no id
     if(!userId) {
         res.send({
             success: false,
@@ -229,11 +227,27 @@ app.post('/api/cart', (req, res) => {
     });
 });
 
+app.put('/api/cart', (req, res) => {
+    const userId = req.session.userId;
+    if(!userId) {
+        res.send({
+            success: false,
+            error: "There is no user id"
+        });
+        return;
+    }
+
+    db.query(`UPDATE \`cart\` SET \`status\`="complete" WHERE \`customer_id\`=${userId}`, (error, results) => {
+        res.send({
+            results:results
+        });
+    });
+});
+
 /******* cart-meta endpoint *******/
 app.get('/api/cart-meta', (req, res) => {
     const userId = req.session.userId;
 
-    // Check if user id, send back error if no id
     if(!userId) {
         res.send({
             success: false,
@@ -256,7 +270,6 @@ app.get('/api/cart-meta', (req, res) => {
 app.post('/api/cart-meta', (req, res) => {
     const userId = req.session.userId;
 
-    // Check if user id, send back error if no id
     if(!userId) {
         res.send({
             success: false,
@@ -298,7 +311,6 @@ app.post('/api/cart-meta', (req, res) => {
 app.delete('/api/cart-meta/product/:id', (req, res) => {
     const userId = req.session.userId;
 
-    // Check if user id, send back error if no id
     if(!userId) {
         res.send({
             success: false,
@@ -346,7 +358,6 @@ app.put('/api/cart-meta/product/:id', (req, res) => {
 app.get('/api/summary', (req, res) => {
     const userId = req.session.userId;
 
-    // Check if user id, send back error if no id
     if(!userId) {
         res.send({
             success: false,
@@ -365,7 +376,7 @@ app.get('/api/summary', (req, res) => {
 
 app.put('/api/summary', (req, res) => {
     let { shipping_method, shipping } = req.body;
-    console.log("update summary: ", req.body);
+    
     const userId = req.session.userId;
 
     if(!userId) {
@@ -428,7 +439,6 @@ app.post('/api/summary', (req, res) => {
         if(!results.length){
             const userId = req.session.userId;
 
-            // Check if user id, send back error if no id
             if(!userId) {
                 res.send({
                     success: false,
@@ -475,31 +485,83 @@ app.post('/api/summary', (req, res) => {
     });
 });
 
-/******* guest-checkout endpoint *******/
-app.post('/api/guest-checkout', (req, res) => {
+/******* checkout endpoint *******/
+app.post('/api/checkout', (req, res) => {
     const { first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number } = req.body;
 
-    const sql = `INSERT INTO \`guest_checkout\` (first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-    const inserts = [ first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number ];
-    const formattedSql = mysql.format(sql, inserts);
+    const userId = req.session.userId;
+    if(!userId) {
+        res.send({
+            success: false,
+            error: "There is no user id"
+        });
+        return;
+    }
 
-    db.query(formattedSql, (error, results) => {
+    const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p 
+                JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${userId}`;
+
+    db.query(query, (error, results) => {
         if(error){
             res.send('failed');
             return;
         }
-        res.send({
-            results: results
-        });
-    });
+
+        if(results.length) {
+            let cartId = results[0].cartId;
+        
+            const sql = `INSERT INTO \`checkout\` (cart_id, customer_id, first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            const inserts = [ cartId, userId, first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number ];
+            const formattedSql = mysql.format(sql, inserts);
+
+            db.query(formattedSql, (error, results) => {
+                if(error){
+                    res.send('failed');
+                    return;
+                }
+                res.send({
+                    results: results
+                });
+            });
+        } else {
+            res.status(422).send('No items in cart');
+        }  
+    });     
 });
 
-app.get('/api/guest-checkout', (req, res) => {
-    db.query(`SELECT first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip FROM  \`guest_checkout\``, (error, results) => {
+app.get('/api/checkout', (req, res) => {
+    const userId = req.session.userId;
+    if(!userId) {
         res.send({
-            results: results[0] || {}
+            success: false,
+            error: "There is no user id"
         });
-    });
+        return;
+    }
+
+    const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p 
+                JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${userId}`;
+
+    db.query(query, (error, results) => {
+        if(error){
+            res.send('failed');
+            return;
+        }
+
+        if(results.length) {
+            let cartId = results[0].cartId;
+            
+            db.query(`SELECT first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip 
+                FROM \`checkout\`
+                WHERE cart_id=${cartId} AND customer_id=${userId}`, (error, results) => {
+                res.send({
+                    results: results
+                });
+            });
+        } else {
+            res.status(422).send('No items in cart');
+        }     
+    });             
 });
 
 /******* contact-message endpoint *******/

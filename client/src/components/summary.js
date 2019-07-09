@@ -39,8 +39,8 @@ class Summary extends Component {
         }, 
             async () => {
                 // const summary_id = this.props.summary.id;
-                console.log("shippingMethod, summary state:", this.state.value);
-                console.log("shippingMethod, summary state:", this.state.shippingCost);
+                console.log("shippingMethod, value state:", this.state.value);
+                console.log("shippingMethod, shippingCost state:", this.state.shippingCost);
                 this.props.updateSummary(this.state.value, this.state.shippingCost);
                 await this.props.getSummary();
             }
@@ -69,7 +69,7 @@ class Summary extends Component {
                     </div>  
                 </div> 
                 <p><b>Total: ${this.addZeroes(total/100)}</b></p>
-                <Link className="checkoutButton btn" to="/guest-checkout">checkout</Link>
+                <Link className="checkoutButton btn" to="/checkout">checkout</Link>
             </div>
         );
     }

@@ -7,7 +7,7 @@ import NavButtons from './nav_buttons';
 import ProductCarousel from './product_carousel';
 import Contact from './contact';
 import Cart from './cart';
-import GuestCheckout from './guest_checkout';
+import Checkout from './checkout';
 import OrderComplete from './order_complete';
 import SignUp from './sign_up';
 import SignIn from './sign_in';
@@ -26,7 +26,7 @@ const App = () => (
                     <Route exact path="/" component={auth(ProductCarousel, false)}/>
                     <Route path="/contact" component={Contact}/>
                     <Route path="/cart" component={auth(Cart)}/>
-                    <Route path="/guest-checkout" component={GuestCheckout}/>
+                    <Route path="/checkout" component={Checkout}/>
                     <Route path="/order-complete" component={OrderComplete}/>
                     <Route path="/sign-up-sign-in" component={SignUpInPage}/>
                     <Route path="/sign-up" component={SignUp}/>
