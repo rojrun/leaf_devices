@@ -6,11 +6,12 @@ import {createStore, applyMiddleware} from 'redux';
 import reduxPromise from 'redux-promise';
 import rootReducer from './reducers';
 import App from './components/app';
+import thunk from './middleware/thunk';
 
 import types from './actions/types';
 import {checkAuth} from './actions';
 
-const store = createStore(rootReducer, {}, applyMiddleware(reduxPromise));
+const store = createStore(rootReducer, {}, applyMiddleware(thunk, reduxPromise));
 
 store.dispatch({
     type: types.SIGN_IN

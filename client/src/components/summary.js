@@ -13,7 +13,6 @@ class Summary extends Component {
 
     async componentDidMount() {
         this.instances = M.FormSelect.init(this.refs.dropdown);
-        this.props.addToSummary();  
         await this.props.getSummary();
     }
 
@@ -38,9 +37,6 @@ class Summary extends Component {
             shippingCost
         }, 
             async () => {
-                // const summary_id = this.props.summary.id;
-                console.log("shippingMethod, value state:", this.state.value);
-                console.log("shippingMethod, shippingCost state:", this.state.shippingCost);
                 this.props.updateSummary(this.state.value, this.state.shippingCost);
                 await this.props.getSummary();
             }

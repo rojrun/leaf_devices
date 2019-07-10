@@ -1,20 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-// import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { getCart, updateSummary, getSummary, removeCartAlert } from '../actions';
 import '../assets/css/nav_buttons.css';
 
 class NavButtons extends Component {
 
-    handleCartSummary = /*async*/ () => {
+    handleCartSummary = () => {
         this.props.removeCartAlert();
-        // this.props.history.push("/cart");
-        // await this.props.getCart();
-        // console.log("handleCartSummary, summary_id: ", this.props.summary.id);
-        // const summary_id = this.props.summary.id;
-        // this.props.updateSummary(summary_id);
-        // await this.props.getSummary();
+    }
+
+    handleSignOut = () => {
+        console.log("signed out clicked");
     }
 
     render() {
@@ -27,7 +24,7 @@ class NavButtons extends Component {
                     <Link className="btn navButtons" to="/contact">contact</Link>
                     <Link className="btn navButtons" to="/sign-in">sign in</Link>
                     <Link className="btn navButtons" to="/sign-up">sign up</Link>
-                    <Link className="btn navButtons" to="/sign-out">sign out</Link>
+                    <Link onClick={ this.handleSignOut } className="btn navButtons" to="/sign-out">sign out</Link>
                     <Link onClick={ this.handleCartSummary } className={ `btn navButtons ${cartAlert}` } to="/cart">cart</Link>
                 </div>
                 <div className="show-on-small hide-on-med-and-up mobileNavBar">
@@ -35,7 +32,7 @@ class NavButtons extends Component {
                     <Link className="material-icons iconButtons" to="/contact">contacts</Link>
                     <Link className="material-icons iconButtons" to="/sign-in">lock_open</Link>
                     <Link className="material-icons iconButtons" to="/sign-up">create</Link>
-                    <Link className="material-icons iconButtons" to="/sign-out">lock</Link>
+                    <Link onClick={ this.handleSignOut } className="material-icons iconButtons" to="/sign-out">lock</Link>
                     <Link onClick={ this.handleCartSummary } className={ `material-icons iconButtons ${cartAlert}` } to="/cart">shopping_cart</Link>
                 </div>
             </Fragment>
@@ -45,8 +42,7 @@ class NavButtons extends Component {
 
 function mapStateToProps(state){
     return {
-        addCartAlert: state.addCartAlert,
-        // summary: state.summary.single
+        addCartAlert: state.addCartAlert
     }
 }
 

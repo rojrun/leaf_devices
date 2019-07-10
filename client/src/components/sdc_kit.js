@@ -27,21 +27,20 @@ class SdcKit extends Component {
         });
     }
 
-    handleAddToCart = () => {
+    handleAddToCart = async () => {
         const productQuantity = this.state.productQuantity;
         const {id} = this.props.product;
 
         if(productQuantity > 0) {
             this.props.addCartAlert("pulse");
-            this.props.addToCartMeta(id, productQuantity);
+            await this.props.addToCartMeta(id, productQuantity);
 
+            // Added for when "back to shopping" button is pressed, from Cart component.
             const {shipping_method, shipping} = this.props.summary;
-            console.log("shipping method", shipping_method );
-            console.log("shipping cost", shipping);
+            await this.props.addToSummary();
             if(shipping_method !== undefined && shipping !== undefined) {
                 this.props.updateSummary(shipping_method, shipping);
             } else {             
-                this.props.addToSummary();
                 this.props.updateSummary("Standard", 0);
             }       
         }
@@ -50,8 +49,6 @@ class SdcKit extends Component {
     render() {
         const { name, price, href, style, image, id } = this.props.product;
         const {productQuantity} = this.state;
-
-        console.log('Is User Signed In:', this.props.auth);
     
         return (
             <div className={`carousel-item ${style}`} href={href}>

@@ -18,7 +18,7 @@ class OrderComplete extends Component {
 
     render() {
         if(!this.props.cart.length){
-            return <Comments message="LOADING"/>
+            return <Comments message="LOADING CART"/>
         }
 
         const cart = this.props.cart.map( (item, i) => {
@@ -31,7 +31,7 @@ class OrderComplete extends Component {
                 </tr>
             );
         });
-
+        
         const { total_quantity, subtotal, tax, shipping_method, shipping, total } = this.props.summary;
         const { first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip } = this.props.customer;
 
@@ -67,11 +67,10 @@ class OrderComplete extends Component {
 }
 
 function mapStateToProps(state){
-    console.log("mapstatetoprops", state);
     return {
         cart: state.getCartMeta.single,
         summary: state.summary.single,
-        customer: state.customer.single
+        customer: state.customer.single[0] || {}
     }
 }
 

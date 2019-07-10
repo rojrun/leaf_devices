@@ -93,12 +93,17 @@ export function getCartMeta() {
 }
 
 export function addToCartMeta(id, productQuantity) {
-    const resp = axios.post('/api/cart-meta', {
-        product_id: id,
-        quantity: productQuantity
-    });
-    return {
-        type: types.ADDTOCARTMETA
+    return async function(dispatch){
+        const resp = await axios.post('/api/cart-meta', {
+            product_id: id,
+            quantity: productQuantity
+        });
+
+        dispatch({
+            type: types.ADDTOCARTMETA
+        });
+
+        return resp;
     }
 }
 
@@ -153,9 +158,13 @@ export function getSummary() {
 }
 
 export function addToSummary() {
-    const resp = axios.post('/api/summary');
-    return {
-        type: types.ADDTOSUMMARY
+    return async function(dispatch){
+        const resp = await axios.post('/api/summary');
+        dispatch({
+            type: types.ADDTOSUMMARY
+        });
+
+        return resp;
     }
 }
 
@@ -167,16 +176,6 @@ export function updateSummary(shippingMethod, shippingCost) {
     return {
         type: types.UPDATESUMMARY
     }
-
-// export function updateSummary(summaryId, shippingMethod, shippingCost) {
-//     const resp = axios.put('/api/summary/' + {summaryId}, {
-//         id: summaryId,
-//         shipping_method: shippingMethod,
-//         shipping: shippingCost
-//     });
-//     return {
-//         type: types.UPDATESUMMARY
-//     }
 }
 
 /******* contact-message endpoint *******/

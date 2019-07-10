@@ -26,6 +26,10 @@
     padding: inherit;
 }
 
+.navButtons:hover {
+    color: #F0810F !important;
+}
+
 .iconButtons {
     background-color: #063852;
     border-radius: 0.6em;

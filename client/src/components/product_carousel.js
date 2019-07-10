@@ -21,7 +21,7 @@ class ProductCarousel extends Component {
 
     render() {
         if(!this.props.products.length){
-            return <Comments message="LOADING PAGE"/>
+            return <Comments message="LOADING PRODUCTS"/>
         }
 
         const products = this.props.products.map( (product) => {
