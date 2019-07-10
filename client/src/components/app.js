@@ -12,6 +12,7 @@ import OrderComplete from './order_complete';
 import SignUp from './sign_up';
 import SignIn from './sign_in';
 import SignUpInPage from './signUpInPage';
+import SignOut from './sign_out';
 import '../assets/css/app.css';
 import auth from '../hoc/auth';
 
@@ -31,6 +32,7 @@ const App = () => (
                     <Route path="/sign-up-sign-in" component={SignUpInPage}/>
                     <Route path="/sign-up" component={SignUp}/>
                     <Route path="/sign-in" component={SignIn}/>
+                    <Route path="/sign-out" component={SignOut}/>
                 </main>    
                 <footer className="footer-copyright">
                     <p>© 2019 Leaf Devices LLC.</p>
