@@ -12,6 +12,7 @@ class NavButtons extends Component {
 
     handleSignOut = () => {
         console.log("signed out clicked");
+        // this.props.signOut();
     }
 
     render() {

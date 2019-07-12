@@ -10,11 +10,10 @@ class SignIn extends Component {
     handleSignIn = (values) => {
         const { email, password } = values;
         this.props.addSignIn(email, password);
-        this.props.history.push("/cart");
     } 
 
     render() {
-        const { handleSubmit } = this.props;
+        const {handleSubmit, authError} = this.props;
 
         return (
             <form onSubmit={handleSubmit(this.handleSignIn)}>
@@ -28,6 +27,7 @@ class SignIn extends Component {
                 <div className="row center">
                     <button onClick={this.props.reset} type="button" className="btn waves-effect contactButton">Cancel</button>                 
                     <button className="waves-effect waves-light btn completeSignIn">complete sign in</button>
+                    <p className="red-text text-darken-2">{authError}</p>
                 </div>  
             </form>    
         );
@@ -48,9 +48,15 @@ function validate({ email, password }) {
     return errors;
 }
 
+function mapStateToProps(state) {
+    return {
+        error: state.user.signInError
+    };
+}
+
 SignIn = reduxForm ({
     form: 'sign_in_form',
     validate: validate
 })(SignIn);
 
-export default withRouter(connect(null, { addSignIn })(SignIn));
+export default withRouter(connect(mapStateToProps, { addSignIn })(SignIn));
