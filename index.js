@@ -277,6 +277,7 @@ app.post('/api/cart-meta', (req, res) => {
     }
 
     const {product_id, quantity} = req.body;
+    console.log("addToCartMeta", req.body);
     db.query(`SELECT * FROM \`cart\` WHERE customer_id=${userId} AND status="incomplete"`, (error, result) => {
         const inserSql = 'INSERT INTO `cart_meta` (`cart_id`, `customer_id`, `product_id`, `quantity`) VALUES (?, ?, ?, ?)';
 
@@ -293,6 +294,13 @@ app.post('/api/cart-meta', (req, res) => {
                 });
             });
             return;
+        } else {
+            // db.query(`SELECT product_id, quantity FROM \`cart_meta\` WHERE customer_id=${userId}`, (error, result) => {
+            //     if(product_id === result.product_id) {
+            //         result.quantity += quantity;
+
+            //     }
+            // });
         }
 
         const [cart] = result;

@@ -17,6 +17,8 @@ export default {
     CUSTOMER: "getCustomer",
     ADDSIGNUP: "addSignUp",
     ADDSIGNIN: "addSignIn",
+    SIGN_IN_ERROR: "sign_in_error",
+    SIGN_OUT: "signOut",
     ADD_TO_CART: "addToCart",
     REMOVE_FROM_CART: "removeFromCart",
     SIGN_IN: "sign_in",

@@ -4,7 +4,9 @@
 }
 
 .userCartLinks {
-    font-size: 0.875em;
-    margin: 10% 5%;
+    background-color: #063852;
+    border-radius: 0.6em;
+    color: #F0810F;
+    margin: 10%;
     width: 50%;
 }
