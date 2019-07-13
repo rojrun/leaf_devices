@@ -28,13 +28,19 @@ export async function checkAuth(dispatch){
 }
 
 export function addSignIn(email, password) {
-    const resp = axios.post('/api/sign-in', {
-        email: email,
-        password: password
-    });
-    return {
-        type: types.ADDSIGNIN
+    return async function(dispatch){
+        const resp = await axios.post('/api/sign-in', {
+            email: email,
+            password: password
+        });
+
+        return resp.data;
+
+        dispatch({
+            type: types.ADDSIGNIN
+        });
     }
+    
 }
 
 export function addToCart(id, quantity) {

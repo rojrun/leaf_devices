@@ -148,7 +148,7 @@ app.post('/api/sign-in', (req, res) => {
                 if(password === user.password){
                     req.session.userId = user.id;
 
-                    res.send({
+                    return res.send({
                         message: 'User signed in',
                         user: {
                             email: email,
@@ -277,11 +277,10 @@ app.post('/api/cart-meta', (req, res) => {
     }
 
     const {product_id, quantity} = req.body;
-    console.log("addToCartMeta", req.body);
     db.query(`SELECT * FROM \`cart\` WHERE customer_id=${userId} AND status="incomplete"`, (error, result) => {
         const inserSql = 'INSERT INTO `cart_meta` (`cart_id`, `customer_id`, `product_id`, `quantity`) VALUES (?, ?, ?, ?)';
-
-        if(!result.length){
+        
+        if(!result.length) {
             db.query(`INSERT INTO \`cart\` (customer_id, status) VALUES (${userId}, "incomplete")`, (error, result) => {
                 const cartId = result.insertId;
                 const inserts = [cartId, userId, product_id, quantity];
@@ -295,22 +294,26 @@ app.post('/api/cart-meta', (req, res) => {
             });
             return;
         } else {
-            // db.query(`SELECT product_id, quantity FROM \`cart_meta\` WHERE customer_id=${userId}`, (error, result) => {
-            //     if(product_id === result.product_id) {
-            //         result.quantity += quantity;
-
-            //     }
-            // });
-        }
-
-        const [cart] = result;
-        const inserts = [cart.id, userId, product_id, quantity];
-        const sql = mysql.format(inserSql, inserts);
-        db.query(sql, (err, result) => {
-            res.send({
-                success: true
+            const cartId = result[0].id;
+            db.query(`SELECT * FROM \`cart_meta\` WHERE \`cart_id\`=${cartId} AND \`product_id\`=${product_id}`, (error, result) => {
+                if(result.length) {
+                    db.query(`UPDATE \`cart_meta\` SET quantity=${result[0].quantity += quantity} WHERE product_id=${product_id}`, (error, result) => {
+                        res.send({
+                            success: true
+                        });
+                    });
+                    return;
+                } else {
+                    const inserts = [cartId, userId, product_id, quantity];
+                    const sql = mysql.format(inserSql, inserts);
+                    db.query(sql, (error, result) => {
+                        res.send({
+                            success: true
+                        });
+                    });
+                }
             });
-        });
+        }  
     });
 });
 
