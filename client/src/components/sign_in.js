@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { withRouter } from 'react-router';
 import { addSignIn } from '../actions';
 import Input from './general/input';
 import '../assets/css/sign_in.css'; 
 
 class SignIn extends Component {
-    handleSignIn = (values) => {
+    state = {
+        errorMessage: ""
+    }
+
+    handleSignIn = async (values) => {
         const { email, password } = values;
-        this.props.addSignIn(email, password);
+        const resp = await this.props.addSignIn(email, password);
+
+        if(resp.user) {
+            this.props.history.push('/cart');
+        } else {
+            this.setState({
+                errorMessage: "Email and/or Password do not match" 
+            });          
+        }
     } 
 
     render() {
-        const {handleSubmit, authError} = this.props;
-
+        const {handleSubmit} = this.props;     
+        
         return (
             <form onSubmit={handleSubmit(this.handleSignIn)}>
                 <div className="center contact">SIGN IN</div>
@@ -25,9 +36,9 @@ class SignIn extends Component {
                     <Field name="password" label="password" size="l12 m12 s12" component={Input}/>
                 </div>
                 <div className="row center">
-                    <button onClick={this.props.reset} type="button" className="btn waves-effect contactButton">Cancel</button>                 
-                    <button className="waves-effect waves-light btn completeSignIn">complete sign in</button>
-                    <p className="red-text text-darken-2">{authError}</p>
+                    <button onClick={this.props.reset} type="button" className="btn contactButton">Cancel</button>                 
+                    <button className="btn completeSignIn">complete sign in</button>
+                    <p className="red-text text-darken-2">{this.state.errorMessage}</p>
                 </div>  
             </form>    
         );
@@ -48,15 +59,9 @@ function validate({ email, password }) {
     return errors;
 }
 
-function mapStateToProps(state) {
-    return {
-        error: state.user.signInError
-    };
-}
-
 SignIn = reduxForm ({
     form: 'sign_in_form',
     validate: validate
 })(SignIn);
 
-export default withRouter(connect(mapStateToProps, { addSignIn })(SignIn));
+export default connect(null, { addSignIn })(SignIn);

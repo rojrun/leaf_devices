@@ -48,7 +48,7 @@ class SdcKit extends Component {
 
     render() {
         const { name, price, href, style, image, id } = this.props.product;
-        const {productQuantity} = this.state;
+        const { productQuantity } = this.state;
 
         console.log("Auth:", this.props.auth);
     

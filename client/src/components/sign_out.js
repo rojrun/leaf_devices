@@ -8,11 +8,10 @@ class SignOut extends Component {
         this.props.signOut();
         setTimeout( () => {
             this.props.history.push('/');
-        }, 4000);
+        }, 2500);
     }
 
     render() {
-        // console.log("Auth:", this.props.auth);
         return (
             <Comments message="YOU HAVE SIGNED OUT"/>
         );
