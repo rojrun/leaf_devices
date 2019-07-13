@@ -29,3 +29,9 @@ label.active {
     color: #063852;
 }
 
+@media only screen and (max-device-width: 480px) {
+    input[type=text]:not(.browser-default)  {
+        height: 2.5rem;
+        margin-bottom: 0;
+    }
+}

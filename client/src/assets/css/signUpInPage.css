@@ -1,12 +1,12 @@
-.contact {
+.userCart {
     color: #063852;
     font-size: 2em;
-    top: 4%;
 }
 
-.contactButton {
+.userCartLinks {
     background-color: #063852;
     border-radius: 0.6em;
     color: #F0810F;
-    margin: 0 2% 0 2%;
+    margin: 10%;
+    width: 50%;
 }

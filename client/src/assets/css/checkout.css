@@ -1,0 +1,52 @@
+.completeCheckout {
+    background-color: #063852;
+    border-radius: 0.6em;
+    color: #F0810F;
+    margin: 0 2% 0 2%;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-width : 320px) 
+and (max-width : 480px) {
+    .completeCheckout {
+        margin-top: 2%;
+    }
+
+    .contact {
+        font-size: 1.6em;
+    }
+}
+
+/* Smartphones ----------- */
+@media only screen 
+and (min-width: 481px) 
+and (max-width: 767px) {
+/* Styles */
+}
+
+/* Tablets, iPads (portrait) ----------- */
+@media only screen 
+and (min-width : 601px) 
+and (max-width : 768px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Tablets, iPads (landscape) ----------- */
+@media only screen 
+and (min-width : 601px) 
+and (max-width : 768px) 
+and (orientation: landscape) {
+/* Styles */
+}
+
+@media only screen
+and (min-width: 1025px) 
+and (max-width: 1280px) {
+
+}
+
+@media (min-width: 1281px) {
+
+}

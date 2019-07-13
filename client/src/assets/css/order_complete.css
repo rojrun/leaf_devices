@@ -1,0 +1,33 @@
+.orderOverview {
+    background-color: rgba(242,242,242,0.5);
+    border-radius: 0.6em;
+}
+
+.order {
+    color: #063852;
+    font-size: 1.3em;
+    margin-left: 5%;
+    padding-top: 3%;
+}
+
+.orderSummary {
+    padding-right: 5%;
+}
+
+.orderDetail {
+    padding-bottom: 3%;
+    padding-top: 2%;
+}
+
+.orderShip {
+    margin-top: 2%;
+}
+
+.orderTable {
+    margin-left: 5%;
+    width: 90%;
+}
+
+.orderCompleteText {
+    font-weight: bolder;
+}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import SdcKit from './sdc_kit';
 import {connect} from 'react-redux';
 import {getProducts} from '../actions';
+import SdcKit from './sdc_kit';
 import Comments from './comments';
+import '../assets/css/product_carousel.css';
 
 /* Main carousel component to display products */
 class ProductCarousel extends Component {
@@ -20,7 +21,7 @@ class ProductCarousel extends Component {
 
     render() {
         if(!this.props.products.length){
-            return <Comments message="LOADING PAGE"/>
+            return <Comments message="LOADING PRODUCTS"/>
         }
 
         const products = this.props.products.map( (product) => {

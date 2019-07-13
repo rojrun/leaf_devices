@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary} from '../actions';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addToCartMeta, getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary } from '../actions';
 import Summary from './summary';
-import '../assets/css/cart.css';
 import Comments from './comments';
+import '../assets/css/cart.css';
 
 /* Cart component to display selected items from landing page */
 class Cart extends Component {
@@ -12,58 +12,62 @@ class Cart extends Component {
         this.props.getCart();
     }
 
-    handleSubtractCount = async (id, quantity) => {
+    handleSubtractCount = async (product_id, quantity) => {
         if(quantity < 1) {
             quantity = 0;
         } else {
             quantity--;
         }
-        await this.props.updateCartMetaQuantity(id, quantity);
+        this.props.updateCartMetaQuantity(product_id, quantity);
         await this.props.getCart();
 
-        const summary_id = this.props.summary.id;
-        await this.props.updateSummary(summary_id);
+        const { shipping_method, shipping } = this.props.summary;
+        this.props.updateSummary(shipping_method, shipping);
         await this.props.getSummary();
     }
 
-    handleAddCount = async (id, quantity) => {
+    handleAddCount = async (product_id, quantity) => {
         quantity++;
-        await this.props.updateCartMetaQuantity(id, quantity);
+        this.props.updateCartMetaQuantity(product_id, quantity);
         await this.props.getCart();
 
-        const summary_id = this.props.summary.id;
-        await this.props.updateSummary(summary_id);
+        const { shipping_method, shipping } = this.props.summary;
+        this.props.updateSummary(shipping_method, shipping);
         await this.props.getSummary();
     }
 
-    handleDeleteItem = async (id, quantity) => {
-        await this.props.deleteCartMetaItem(id, quantity);
+    handleDeleteItem = async (product_id, quantity) => {
+        this.props.deleteCartMetaItem(product_id, quantity);
         await this.props.getCart();
 
-        const summary_id = this.props.summary.id;
-        await this.props.updateSummary(summary_id);
+        const { shipping_method, shipping } = this.props.summary;
+        this.props.updateSummary(shipping_method, shipping);
         await this.props.getSummary();
     }
 
     render() {
-        if(!this.props.cart.length){
+        if(!this.props.cartMeta.length){
             return <Comments message="CART EMPTY"/>
         }
 
-        const cart = this.props.cart.map( (item, i) => {
-            const {id, quantity, name, price} = item;
+        const cart = this.props.cartMeta.map( (item, i) => {
+            const { id, quantity, name, price } = item;
             return (
                 <tr key={i}>
-                    <td onClick={ () => this.handleDeleteItem(id) }  className="material-icons clear">clear</td>
+                    <td onClick={ () => this.handleDeleteItem(id) }>
+                        <div className="material-icons clear">clear</div>
+                    </td>
                     <td>{name}</td>
-                    <td className="row center">
+                    <td className="tdQuantity">
                         <button onClick={ () => this.handleSubtractCount(id, quantity) } type="button"
-                                className="btn inputButtons cartMinusBtn waves-effect waves-light"
+                                className="btn cartMinusBtn cartBtn"
                                 data-quantity="subtract" data-field="quantity">-
                         </button>
-                        {quantity}
+                        <div className="cartQuantity">
+                            {quantity}
+                        </div>    
                         <button onClick={ () => this.handleAddCount(id, quantity) } type="button"
-                                className="btn inputButtons cartAddBtn waves-effect waves-light"
+                                className="btn cartAddBtn cartBtn"
                                 data-quantity="add" data-field="quantity">+
                         </button>
                     </td>
@@ -75,9 +79,9 @@ class Cart extends Component {
         return (
             <div>
                 <div className="cart center">CART</div>
-                <div className="col s12 row">
-                    <div className="col s8">
-                        <table className="striped rounded">
+                <div className="col s12 m12 l12 row cartTable">
+                    <div className="col s12 m12 l8 table">
+                        <table className="col s12 m12 l12 striped rounded">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -91,10 +95,10 @@ class Cart extends Component {
                             </tbody>
                         </table>
                         <div className="row center">
-                            <Link className="btn inputButtons waves-effect waves-light shop_update" to="/">back to shopping</Link>
+                            <Link className="btn shop_update" to="/">back to shopping</Link>
                         </div>
                     </div>
-                    <div className="col s4">
+                    <div className="col s12 m12 l4">
                         <Summary/>
                     </div>
                 </div>
@@ -105,9 +109,9 @@ class Cart extends Component {
 
 function mapStateToProps(state){
     return {
-        cart: state.getCartMeta.single,
+        cartMeta: state.getCartMeta.single,
         summary: state.summary.single
     }
 }
 
-export default connect(mapStateToProps, { getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary })(Cart);
+export default connect(mapStateToProps, { addToCartMeta, getCart, deleteCartMetaItem, updateCartMetaQuantity, updateSummary, getSummary })(Cart);

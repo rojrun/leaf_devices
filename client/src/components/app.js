@@ -2,35 +2,44 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Logo from './logo';
 import NavButtons from './nav_buttons';
 import ProductCarousel from './product_carousel';
 import Contact from './contact';
 import Cart from './cart';
 import Checkout from './checkout';
-import Create from './create';
-import Login from './login';
+import OrderComplete from './order_complete';
+import SignUp from './sign_up';
+import SignIn from './sign_in';
+import SignUpInPage from './signUpInPage';
+import SignOut from './sign_out';
 import '../assets/css/app.css';
+import auth from '../hoc/auth';
 
 const App = () => (
     <Router>
-        <div className="row">
-            <div className="col s2 back_ground"></div>
-            <div className="col s8 main_content">
-                <div className="col s12 logo"></div>
-                <Route exact path="/" component={ProductCarousel}/>
-                <Route path="/contact" component={Contact}/>
-                <Route path="/cart" component={Cart}/>
-                <Route path="/checkout" component={Checkout}/>
-                <Route path="/create" component={Create}/>
-                <Route path="/login" component={Login}/>
-                <div className="footer">
-                    <div>© 2019 Leaf Devices LLC. </div>
-                    <div> All rights reserved.</div>
-                </div>
+        <div>
+            <div className="main_content">
+                <header>
+                    <Logo/>
+                </header>
+                <main>
+                    <Route exact path="/" component={auth(ProductCarousel, false)}/>
+                    <Route path="/contact" component={Contact}/>
+                    <Route path="/cart" component={auth(Cart)}/>
+                    <Route path="/checkout" component={Checkout}/>
+                    <Route path="/order-complete" component={OrderComplete}/>
+                    <Route path="/sign-up-sign-in" component={SignUpInPage}/>
+                    <Route path="/sign-up" component={SignUp}/>
+                    <Route path="/sign-in" component={SignIn}/>
+                    <Route path="/sign-out" component={SignOut}/>
+                </main>    
+                <footer className="footer-copyright">
+                    <p>© 2019 Leaf Devices LLC.</p>
+                    <p>&nbsp; All rights reserved.</p>  
+                </footer>
             </div>
-            <div className="col s2 back_ground">
-                <NavButtons/>
-            </div>
+            <NavButtons/>
         </div>
     </Router>
 );

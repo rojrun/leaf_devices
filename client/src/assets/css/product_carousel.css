@@ -1,3 +1,12 @@
 .carousel {
-    height: 69vh;
+    height: calc(72.79vh - 4.92px);
+}
+
+/*-------------- Media Queries ------------*/
+
+@media only screen
+and (orientation: portrait) {
+    .carousel {
+        height: calc(76.57vh - 46.90px);
+    }
 }

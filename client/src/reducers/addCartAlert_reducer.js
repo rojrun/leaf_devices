@@ -1,14 +1,15 @@
 import types from '../actions/types';
 
 const DEFAULT_STATE = {
-    cartAlert: ''
+    cartAlert: ""
 };
 
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type){
         case types.ADDCARTALERT:
-            console.log("ADDCARTALERT reducer: ", state);
-            return { ...state, cartAlert: action.cartAlert};
+            return { ...state, cartAlert: action.payload.cartAlert};
+        case types.REMOVECARTALERT:
+            return { ...state, cartAlert: action.payload.cartAlert};    
         default:
             return state;
     }

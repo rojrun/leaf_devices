@@ -7,9 +7,20 @@ export default {
     ADDTOCARTMETA: "addCartToMeta",
     GETCARTMETA: "getCartMeta",
     ADDTOSUMMARY: "addToSummary",
-    SUMMARY: "summary",
+    SUMMARY: "getSummary",
     UPDATECARTMETAQUANTITY: "updateCartMetaQuantity",
     DELETECARTMETAITEM: "deleteCartMetaItem",
     UPDATESUMMARY: "updateSummary",
-    ADDCARTALERT: "addCartAlert"
+    ADDCARTALERT: "addCartAlert",
+    REMOVECARTALERT: "removeCartAlert",
+    ADDCHECKOUT: "addCheckout", 
+    CUSTOMER: "getCustomer",
+    ADDSIGNUP: "addSignUp",
+    ADDSIGNIN: "addSignIn",
+    SIGN_OUT: "signOut",
+    ADD_TO_CART: "addToCart",
+    REMOVE_FROM_CART: "removeFromCart",
+    SIGN_IN: "sign_in",
+    CHECK_AUTH: "check_auth",
+    UPDATE_CART_STATUS: "updateCartStatus"
 };

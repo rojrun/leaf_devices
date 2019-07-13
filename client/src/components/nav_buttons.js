@@ -1,35 +1,35 @@
-import React, {Component, Fragment} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {getCart, updateSummary, getSummary} from '../actions';
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getCart, updateSummary, getSummary, removeCartAlert } from '../actions';
 import '../assets/css/nav_buttons.css';
 
 class NavButtons extends Component {
 
-    handleCartSummary = async () => {
-        await this.props.getCart();
-
-        const summary_id = this.props.summary.id;
-        await this.props.updateSummary(summary_id);
-        await this.props.getSummary();
+    handleCartSummary = () => {
+        this.props.removeCartAlert();
     }
 
     render() {
-        const {cartAlert} = this.props.addCartAlert;
+        const { cartAlert } = this.props.addCartAlert;
         
         return (
             <Fragment>
-                <div className="hide-on-small-only">
-                    <Link className="waves-effect waves-light btn navButtons" to="/">home</Link>
-                    <Link className="waves-effect waves-light btn navButtons" to="/contact">contact</Link>
-                    <Link onClick={this.handleCartSummary} className={`waves-effect waves-light btn navButtons ${cartAlert}`} to="/cart">cart</Link>
-                    {/*<Link className="waves-effect waves-light btn navButtons" to="/create">create</Link>*/}
-                    {/*<Link className="waves-effect waves-light btn navButtons" to="/login">login</Link>*/}
+                <div className="hide-on-small-only navBar">
+                    <Link className="btn navButtons" to="/">home</Link>
+                    <Link className="btn navButtons" to="/contact">contact</Link>
+                    <Link className="btn navButtons" to="/sign-in">sign in</Link>
+                    <Link className="btn navButtons" to="/sign-up">sign up</Link>
+                    <Link className="btn navButtons" to="/sign-out">sign out</Link>
+                    <Link onClick={ this.handleCartSummary } className={ `btn navButtons ${cartAlert}` } to="/cart">cart</Link>
                 </div>
-                <div className="show-on-small hide-on-med-and-up">
+                <div className="show-on-small hide-on-med-and-up mobileNavBar">
                     <Link className="material-icons iconButtons" to="/">home</Link>
-                    <Link className="material-icons iconButtons" to="/contact">message</Link>
-                    <Link onClick={this.handleCartSummary} className={`material-icons iconButtons ${cartAlert}`} to="/cart">shopping_cart</Link>
+                    <Link className="material-icons iconButtons" to="/contact">contacts</Link>
+                    <Link className="material-icons iconButtons" to="/sign-in">lock_open</Link>
+                    <Link className="material-icons iconButtons" to="/sign-up">create</Link>
+                    <Link className="material-icons iconButtons" to="/sign-out">lock</Link>
+                    <Link onClick={ this.handleCartSummary } className={ `material-icons iconButtons ${cartAlert}` } to="/cart">shopping_cart</Link>
                 </div>
             </Fragment>
         );
@@ -38,10 +38,8 @@ class NavButtons extends Component {
 
 function mapStateToProps(state){
     return {
-        cart: state.getCartMeta.single,
-        summary: state.summary.single,
         addCartAlert: state.addCartAlert
     }
 }
 
-export default connect(mapStateToProps, {getCart, updateSummary, getSummary})(NavButtons);
+export default connect(mapStateToProps, {getCart, updateSummary, getSummary, removeCartAlert})(NavButtons);

@@ -1,100 +1,139 @@
+.black, .blue, .green, .purple, .red {
+    border-radius: 0.6em;
+}
+
 .black {
     background-color: black;
-    border-radius: 6px;
 }
 
 .blue {
     background-color: #1034A6;
-    border-radius: 6px;
 }
 
 .green {
     background-color: #0B6623;
-    border-radius: 6px;
 }
 
 .purple {
     background-color: #7851A9;
-    border-radius: 6px;
 }
 
 .red {
     background-color: #C21807;
-    border-radius: 6px;
-}
-
-.card {
-    background-color: white;
-    height: 93%;
-}
-
-@media only screen and (max-device-width: 480px) {
-    .card {
-        height: 50%;
-    }
-
-    .quantityField {
-        display: inline-flex;
-        left: 5%;
-        width: 95%;
-    }
-
-    /* .name {
-
-    }
-
-    .price {
-
-    } */
-}
-
-.prodImage {
-    height: 100%;
-    width: 100%;
 }
 
 .carousel .carousel-item {
-    bottom: 31%;
-    height: 80%;
+    border-radius: 0.6em;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: auto;
+    width: calc(31.33vw + 172.06px);
+}
+
+.card, .content {
+    background-color: inherit;
+    flex: 1 0 50%;
+    margin: 0;
+}
+
+.prodImage {
+    border-radius: 0.6em;
+    height: 92%;
+    width: 92%;
+    margin: 4%;
 }
 
 .name {
     color: white;
-    font-size: 2em;
-    margin-top: 16%;
+    font-size: calc(1.55vw + 11.02px);
+    margin: 0 4%;
+    margin-top: 8%;
 }
 
 .price {
-    color: white;
-    font-size: 2em;
+    color: #063852;
+    font-size: calc(1.55vw + 11.02px);
+    text-align: center;
+    margin: 4%;
+}
+
+.productInput {
+    height: 29%;
+    margin: 0 4%;
+    margin-bottom: 8%;
+    width: 92%;
+    background-color: transparent;
+}
+
+.quantityField {
+    background-color: transparent;
+    height: 50%;
+    width: 100%;
 }
 
 .inputButtons, .inputSubmit {
     background-color: #063852;
-    border-radius: 6px;
+    border-radius: 0.6em;
     color: #F0810F;
-    margin-left: 3%;
+    line-height: inherit;
 }
 
-.inputQuantity {
-    color: #F0810F;
-    height: 5%;
-    width: 5%;
+.inputButtons {
+    width: 30%;
+    height: 100%;
+    vertical-align: top;
+}
+
+.inputSubmit {
+    height: 49%;
+    margin-top: 1%;
+    width: 100%;
 }
 
 .productQuantity {
     background-color: #F0810F;
+    border-radius: 0.6em;
+    margin: 0 1%;
+    padding: 0 12%;
+    display: inline-block;
+    width: 38%;
+    height: 100%;
+}
+
+input[type=number]:not(.browser-default) {
+    border-bottom: none!important;
+    box-shadow: none!important;
     color: #063852;
-    height: 1%;
-    margin-left: 3%;
-    padding: 2% 5%;
-    width: 2%;
+    margin: 0;
+    height: inherit;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
 }
 
 .btn:hover {
-    background-color: #006400;
+    background-color: transparent;
+    color: #063852;
+    cursor: url("../../../dist/images/cursor.png"), auto;
 }
 
 .btn:focus {
     background-color: #063852;
+}
+
+@media only screen
+and (orientation: portrait) {
+    .carousel .carousel-item {
+        height: calc(56.39vh + 29.70px);
+        width: calc(31.96vw + 72.73px);
+    }
+
+    .card, .content {
+        flex: 1 0 100%;
+        height: calc(28.20vh + 14.85px);
+    }
 }
