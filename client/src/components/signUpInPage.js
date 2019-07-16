@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import '../assets/css/SignUpInPage.css';
+import '../assets/css/signUpInPage.css';
 
 const SignUpInPage = () => (
     <div>
