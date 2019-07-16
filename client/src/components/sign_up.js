@@ -9,7 +9,7 @@ class SignUp extends Component {
     handleSignUp = (values) => {
         const { name, email, password } = values;
         this.props.addSignUp(name, email, password);
-        // this.props.history.push("/");
+        this.props.history.push("/cart");
     } 
 
     render() {
@@ -28,8 +28,8 @@ class SignUp extends Component {
                     <Field name="password" label="password" size="l12 m12 s12" component={Input}/>
                 </div>
                 <div className="row center">
-                    <button onClick={this.props.reset} type="button" className="btn waves-effect contactButton">Cancel</button>                 
-                    <button className="waves-effect waves-light btn completeSignUp">complete sign up</button>
+                    <button onClick={this.props.reset} type="button" className="btn contactButton">Cancel</button>                 
+                    <button className="btn completeSignUp">complete sign up</button>
                 </div>  
             </form>    
         );

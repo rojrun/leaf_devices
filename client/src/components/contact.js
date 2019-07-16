@@ -45,8 +45,8 @@ class Contact extends Component {
                     <Field name="message" label="Message" component={Input}/>
                 </div>
                 <div className="row center">
-                    <button onClick={this.props.reset} type="button" className="btn waves-effect contactButton">Cancel</button>
-                    <button className="btn waves-effect waves-light contactButton">Submit</button>
+                    <button onClick={this.props.reset} type="button" className="btn contactButton">Cancel</button>
+                    <button className="btn contactButton">Submit</button>
                 </div> 
             </form>
         );

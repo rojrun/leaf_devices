@@ -50,7 +50,7 @@ class SdcKit extends Component {
         const { name, price, href, style, image, id } = this.props.product;
         const { productQuantity } = this.state;
 
-        console.log("Auth:", this.props.auth);
+        //console.log("Auth:", this.props.auth);
     
         return (
             <div className={`carousel-item ${style}`} href={href}>

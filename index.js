@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
 const PORT = process.env.PORT || 9000;
-const { resolve } = require('path');
+// const { resolve } = require('path');
 const { cookieSecret } = require('./config');
 const cookieSession = require('cookie-session');
 const db = require('./db');
@@ -15,7 +15,7 @@ app.use(cookieSession({
     name: 'session',
     secret: cookieSecret
 }));
-app.use(express.static(resolve(__dirname, 'client', 'dist')));
+// app.use(express.static(resolve(__dirname, 'client', 'dist')));
 
 
 /******** sign-up endpoint *************/
@@ -591,9 +591,9 @@ app.post('/api/contact-message', (req, res) => {
     });
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(resolve(__dirname, 'client', 'dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(resolve(__dirname, 'client', 'dist', 'index.html'));
+// });
 
 app.listen(PORT, () => {
     console.log('Server running @ localhost:' + PORT);
