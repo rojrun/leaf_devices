@@ -121,10 +121,6 @@ input[type=number]::-webkit-outer-spin-button {
     cursor: url("../../../dist/images/cursor.png"), auto;
 }
 
-.btn:focus {
-    background-color: #063852;
-}
-
 @media only screen
 and (orientation: portrait) {
     .carousel .carousel-item {
