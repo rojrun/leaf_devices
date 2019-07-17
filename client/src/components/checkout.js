@@ -36,8 +36,8 @@ class Checkout extends Component {
                     <Field name="phoneNumber" label="Phone Number" size="16 m6 s6" component={Input}/>
                 </div>
                 <div className="row center">
-                    <button onClick={this.props.reset} type="button" className="btn waves-effect contactButton">Cancel</button>                 
-                    <button className="waves-effect waves-light btn completeCheckout">complete checkout</button>
+                    <button onClick={this.props.reset} type="button" className="btn contactButton">Cancel</button>                 
+                    <button className="btn completeCheckout">complete checkout</button>
                 </div>  
             </form>
         );
