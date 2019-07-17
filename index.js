@@ -32,6 +32,7 @@ app.get('/api/is-signed-in', (req, res) => {
 
     if(req.session.userId){
         auth = true;
+        return;
     }
 
     res.send({auth});
