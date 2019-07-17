@@ -37,7 +37,7 @@ class SignIn extends Component {
                 </div>
                 <div className="row center">
                     <button onClick={this.props.reset} type="button" className="btn contactButton">Cancel</button>                 
-                    <button className="btn completeSignIn">complete sign in</button>
+                    <button type="button" className="btn completeSignIn">complete sign in</button>
                     <p className="red-text text-darken-2">{this.state.errorMessage}</p>
                 </div>  
             </form>    
