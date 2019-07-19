@@ -68,7 +68,7 @@ class OrderComplete extends Component {
 
 function mapStateToProps(state){
     return {
-        cart: state.getCartMeta.single,
+        cart: state.cart.single || [],
         summary: state.summary.single,
         customer: state.customer.single[0] || {}
     }

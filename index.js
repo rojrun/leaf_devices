@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
 const PORT = process.env.PORT || 9000;
-const { resolve } = require('path');
+// const { resolve } = require('path');
 const { cookieSecret } = require('./config');
 const cookieSession = require('cookie-session');
 const db = require('./db');
@@ -15,7 +15,7 @@ app.use(cookieSession({
     name: 'session',
     secret: cookieSecret
 }));
-app.use(express.static(resolve(__dirname, 'client', 'dist')));
+// app.use(express.static(resolve(__dirname, 'client', 'dist')));
 
 
 /******** sign-up endpoint *************/
@@ -32,7 +32,6 @@ app.get('/api/is-signed-in', (req, res) => {
 
     if(req.session.userId){
         auth = true;
-        return;
     }
 
     res.send({auth});
@@ -95,13 +94,9 @@ app.post('/api/sign-up', (req, res) => {
     } 
 
     if ( hasName(name) && isEmailValid(email) && isPasswordValid(password) ) {
-        db.query(`SELECT id FROM \`users\` WHERE email='${email}'`, (error, results) => {
-            if (results) {
-                res.send({
-                    message: 'Email already in use'
-                });
-                return;
-            } else {
+        db.query(`SELECT email FROM \`users\` WHERE email='${email}'`, (error, results) => {
+            console.log("email check", results);
+            if (!results.length) {
                 const sql = `INSERT INTO \`users\` (name, email, password) VALUES (?, ?, ?)`;
                 const inserts = [ name, email, password ];
                 const formattedSql = mysql.format(sql, inserts);
@@ -118,7 +113,12 @@ app.post('/api/sign-up', (req, res) => {
                         messege: "New user email successfully added",
                         results: results
                     });
+                });         
+            } else {
+                res.send({
+                    message: 'Email already in use'
                 });
+                return;
             }     
         });           
     }
@@ -488,7 +488,7 @@ app.post('/api/summary', (req, res) => {
 
 /******* checkout endpoint *******/
 app.post('/api/checkout', (req, res) => {
-    const { first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number } = req.body;
+    const { first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, phone_number } = req.body;
 
     const userId = req.session.userId;
     if(!userId) {
@@ -511,8 +511,8 @@ app.post('/api/checkout', (req, res) => {
         if(results.length) {
             let cartId = results[0].cartId;
         
-            const sql = `INSERT INTO \`checkout\` (cart_id, customer_id, first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-            const inserts = [ cartId, userId, first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, email_address, phone_number ];
+            const sql = `INSERT INTO \`checkout\` (cart_id, customer_id, first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            const inserts = [ cartId, userId, first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, phone_number ];
             const formattedSql = mysql.format(sql, inserts);
 
             db.query(formattedSql, (error, results) => {
@@ -592,9 +592,9 @@ app.post('/api/contact-message', (req, res) => {
     });
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(resolve(__dirname, 'client', 'dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(resolve(__dirname, 'client', 'dist', 'index.html'));
+// });
 
 app.listen(PORT, () => {
     console.log('Server running @ localhost:' + PORT);
