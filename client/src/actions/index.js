@@ -205,7 +205,7 @@ export function addContactMessage( your_fname, your_lname, your_email, your_phon
 }
    
 /******* checkout endpoint *******/
-export function addCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber ) {
+export function addCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, phoneNumber ) {
     const resp = axios.post('/api/checkout', {
         first_name: firstName,
         last_name: lastName,
@@ -213,7 +213,6 @@ export function addCheckout( firstName, lastName, mailingAddress, mailingCity, m
         mailing_city: mailingCity,
         mailing_state: mailingState,
         mailing_zip: mailingZip,
-        email_address: emailAddress,
         phone_number: phoneNumber
     });
     return {

@@ -8,8 +8,8 @@ import '../assets/css/checkout.css';
 class Checkout extends Component {
 
     handleCheckout = (values) => {
-        const { firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber } = values;
-        this.props.addCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, emailAddress, phoneNumber );
+        const { firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, phoneNumber } = values;
+        this.props.addCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, phoneNumber );
         this.props.history.push("/order-complete");
     }
 
@@ -32,7 +32,6 @@ class Checkout extends Component {
                     <Field name="mailingZip" label="Mailing Zip" size="l4 m3 s6"component={Input}/>
                 </div>
                 <div className="row">
-                    <Field name="emailAddress" label="Email Address" size="l6 m6 s6" component={Input}/>
                     <Field name="phoneNumber" label="Phone Number" size="16 m6 s6" component={Input}/>
                 </div>
                 <div className="row center">
@@ -69,10 +68,6 @@ function validate({firstName, lastName, mailingAddress, mailingCity, mailingStat
 
     if(!mailingZip){
         errors.mailingZip = "Please enter your mailing zip code.";
-    }
-
-    if(!emailAddress){
-        errors.emailAddress = "Please enter your email address.";
     }
 
     if(!phoneNumber){

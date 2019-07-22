@@ -6,9 +6,9 @@ import Input from './general/input';
 import '../assets/css/sign_up.css'; 
 
 class SignUp extends Component {
-    handleSignUp = (values) => {
+    handleSignUp = async (values) => {
         const { name, email, password } = values;
-        this.props.addSignUp(name, email, password);
+        await this.props.addSignUp(name, email, password);
         this.props.history.push("/cart");
     } 
 

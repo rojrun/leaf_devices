@@ -12,7 +12,7 @@ export default (state = DEFAULT_STATE, action) => {
         case types.CHECK_AUTH:
             return { auth: action.auth };
         case types.SIGN_OUT:
-            return {...state, auth: false};    
+            return { auth: false };    
         default:
             return state;
     }
