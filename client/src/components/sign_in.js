@@ -15,7 +15,7 @@ class SignIn extends Component {
         const resp = await this.props.addSignIn(email, password);
 
         if(resp.user) {
-            this.props.history.push('/cart');
+            this.props.history.push("/cart");
         } else {
             this.setState({
                 errorMessage: "Email and/or Password do not match" 
