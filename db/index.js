@@ -1,4 +1,4 @@
-const {db} = require('../config');
+const {db} = require('../../scratchpad');
 const mysql = require('mysql');
 const connection = mysql.createConnection(db);
 
