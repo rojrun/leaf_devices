@@ -9,6 +9,10 @@ class OrderComplete extends Component {
         this.props.getCart();
         this.props.getSummary();
         this.props.getCustomer();
+        
+    }
+
+    componentDidUpdate() {
         this.props.updateCartStatus();
     }
 
@@ -18,7 +22,7 @@ class OrderComplete extends Component {
 
     render() {
         if(!this.props.cart.length){
-            return <Comments message="LOADING CART"/>
+            return <Comments message="LOADING SUMMARY"/>
         }
 
         const cart = this.props.cart.map( (item, i) => {

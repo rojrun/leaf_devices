@@ -8,13 +8,16 @@ export function signOut(){
 }
 
 export function addSignUp(name, email, password) {
-    const resp = axios.post('/api/sign-up', {
-        name: name,
-        email: email,
-        password: password
-    });
-    return {
-        type: types.ADDSIGNUP
+    return async function(dispatch) {
+        const resp = await axios.post('/api/sign-up', {
+            name: name,
+            email: email,
+            password: password
+        });
+
+        dispatch({
+            type: types.ADDSIGNUP
+        });
     }
 }
 
@@ -65,47 +68,62 @@ export function removeFromCart(id, quantity) {
 
 /******* products endpoint *******/
 export function getProducts() {
-    const resp = axios.get('/api/products');
-    return {
-        type: types.PRODUCTS,
-        payload: resp
+    return async function(dispatch) {
+        const resp = await axios.get('/api/products');
+
+        dispatch({
+            type: types.PRODUCTS,
+            payload: resp
+        });
     }
-}
+}    
 
 /******* cart endpoint *******/
 export function getCart() {
-    const resp = axios.get('/api/cart');
-    return {
-        type: types.GETCART,
-        payload: resp
-    }
+    return async function(dispatch) {
+        const resp = await axios.get('/api/cart');
+        
+        dispatch({
+            type: types.GETCART,
+            payload: resp
+        });
+    }    
 }
 
 export function makeCart() {
-    const resp = axios.post('/api/cart');
-    return {
-        type: types.MAKECART
-    }
+    return async function(dispatch) {
+        const resp = await axios.post('/api/cart');
+
+        dispatch({
+            type: types.MAKECART
+        });
+    }    
 }
 
 export function updateCartStatus() {
-    const resp = axios.put('/api/cart');
-    return {
-        type: types.UPDATE_CART_STATUS
-    }
+    return async function(dispatch) {
+        const resp = await axios.put('/api/cart');
+
+        dispatch({
+            type: types.UPDATE_CART_STATUS
+        });
+    }    
 }
 
 /******* cart-meta endpoint *******/
 export function getCartMeta() {
-    const resp = axios.get('/api/cart-meta');
-    return {
-        type: types.GETCARTMETA,
-        payload: resp
-    }
+    return async function(dispatch) {
+        const resp = await axios.get('/api/cart-meta');
+        
+        dispatch({
+            type: types.GETCARTMETA,
+            payload: resp
+        });
+    }    
 }
 
 export function addToCartMeta(id, productQuantity) {
-    return async function(dispatch){
+    return async function(dispatch) {
         const resp = await axios.post('/api/cart-meta', {
             product_id: id,
             quantity: productQuantity
@@ -120,24 +138,30 @@ export function addToCartMeta(id, productQuantity) {
 }
 
 export function updateCartMetaQuantity(cartId, productQuantity) {
-    const resp = axios.put('/api/cart-meta/product/' + {cartId}, {
-        id: cartId,
-        quantity: productQuantity
-    });
-    return {
-        type: types.UPDATECARTMETAQUANTITY
-    }
+    return async function(dispatch) {
+        const resp = await axios.put('/api/cart-meta/product/' + {cartId}, {
+            id: cartId,
+            quantity: productQuantity
+        });
+
+        dispatch({
+            type: types.UPDATECARTMETAQUANTITY
+        });
+    }    
 }
 
 export function deleteCartMetaItem(cartMetaId) {
-    const resp = axios.delete('/api/cart-meta/product/' + {cartMetaId}, {
-        data: {
-            id: cartMetaId
-        }
-    });
-    return {
-        type: types.DELETECARTMETAITEM
-    }
+    return async function(dispatch) {
+        const resp = await axios.delete('/api/cart-meta/product/' + {cartMetaId}, {
+            data: {
+                id: cartMetaId
+            }
+        });
+
+        dispatch({
+            type: types.DELETECARTMETAITEM
+        });
+    }    
 }
 
 /* Adds cart notification to cart button */
@@ -162,16 +186,20 @@ export function removeCartAlert(style) {
 
 /******* summary endpoint *******/
 export function getSummary() {
-    const resp = axios.get('/api/summary');
-    return {
-        type: types.SUMMARY,
-        payload: resp
-    }
+    return async function(dispatch) {
+        const resp = await axios.get('/api/summary');
+
+        dispatch({
+            type: types.SUMMARY,
+            payload: resp
+        });
+    }    
 }
 
 export function addToSummary() {
-    return async function(dispatch){
+    return async function(dispatch) {
         const resp = await axios.post('/api/summary');
+
         dispatch({
             type: types.ADDTOSUMMARY
         });
@@ -181,49 +209,61 @@ export function addToSummary() {
 }
 
 export function updateSummary(shippingMethod, shippingCost) {
-    const resp = axios.put('/api/summary/', {
-        shipping_method: shippingMethod,
-        shipping: shippingCost
-    });
-    return {
-        type: types.UPDATESUMMARY
-    }
+    return async function(dispatch) {
+        const resp = await axios.put('/api/summary/', {
+            shipping_method: shippingMethod,
+            shipping: shippingCost
+        });
+
+        dispatch({
+            type: types.UPDATESUMMARY
+        });
+    }    
 }
 
 /******* contact-message endpoint *******/
 export function addContactMessage( your_fname, your_lname, your_email, your_phone_number, your_message ) {
-    const resp = axios.post('/api/contact-message', {
-        first_name: your_fname,
-        last_name: your_lname,
-        email: your_email,
-        phone_number: your_phone_number,
-        message: your_message
-    });
-    return {
-        type: types.ADDCONTACTUS
-    }
+    return async function(dispatch) {
+        const resp = await axios.post('/api/contact-message', {
+            first_name: your_fname,
+            last_name: your_lname,
+            email: your_email,
+            phone_number: your_phone_number,
+            message: your_message
+        });
+
+        dispatch({
+            type: types.ADDCONTACTUS
+        });
+    }    
 }
    
 /******* checkout endpoint *******/
 export function addCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, phoneNumber ) {
-    const resp = axios.post('/api/checkout', {
-        first_name: firstName,
-        last_name: lastName,
-        mailing_address: mailingAddress,
-        mailing_city: mailingCity,
-        mailing_state: mailingState,
-        mailing_zip: mailingZip,
-        phone_number: phoneNumber
-    });
-    return {
-        type: types.ADDCHECKOUT
-    }
+    return async function(dispatch) {
+        const resp = await axios.post('/api/checkout', {
+            first_name: firstName,
+            last_name: lastName,
+            mailing_address: mailingAddress,
+            mailing_city: mailingCity,
+            mailing_state: mailingState,
+            mailing_zip: mailingZip,
+            phone_number: phoneNumber
+        });
+
+        dispatch({
+            type: types.ADDCHECKOUT
+        });
+    }    
 }
 
 export function getCustomer() {
-    const resp = axios.get('/api/checkout');
-    return {
-        type: types.CUSTOMER,
-        payload: resp
-    }
+    return async function(dispatch) {
+        const resp = await axios.get('/api/checkout');
+
+        dispatch({
+            type: types.CUSTOMER,
+            payload: resp
+        });
+    }    
 }

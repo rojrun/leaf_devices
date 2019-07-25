@@ -7,9 +7,9 @@ import '../assets/css/checkout.css';
 
 class Checkout extends Component {
 
-    handleCheckout = (values) => {
+    handleCheckout = async (values) => {
         const { firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, phoneNumber } = values;
-        this.props.addCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, phoneNumber );
+        await this.props.addCheckout( firstName, lastName, mailingAddress, mailingCity, mailingState, mailingZip, phoneNumber );
         this.props.history.push("/order-complete");
     }
 
