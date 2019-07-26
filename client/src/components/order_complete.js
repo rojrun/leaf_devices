@@ -9,11 +9,9 @@ class OrderComplete extends Component {
         this.props.getCart();
         this.props.getSummary();
         this.props.getCustomer();
-        
-    }
-
-    componentDidUpdate() {
-        this.props.updateCartStatus();
+        setTimeout(() => {
+            this.props.updateCartStatus();
+        }, 5000);
     }
 
     addZeroes(num) {
