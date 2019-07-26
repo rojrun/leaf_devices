@@ -544,20 +544,18 @@ app.get('/api/checkout', (req, res) => {
     const query = `SELECT p.name, p.price, i.quantity, c.id AS \`cartId\` FROM cart AS c JOIN products AS p 
                 JOIN cart_meta AS i ON c.id=i.cart_id AND i.product_id=p.id WHERE c.status="incomplete" AND c.customer_id=${userId}`;
 
-                console.log('Checkout Query:', query);
     db.query(query, (error, results) => {
         if(error){
             res.send('failed');
             return;
         }
-        console.log("results", results);
+        
         if(results.length) {
             let cartId = results[0].cartId;
-            console.log("cartId", cartId);
+    
             db.query(`SELECT first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip 
                 FROM \`checkout\`
                 WHERE cart_id=${cartId} AND customer_id=${userId}`, (error, results) => {
-                    console.log("checkout", results);
                 res.send({
                     results: results
                 });

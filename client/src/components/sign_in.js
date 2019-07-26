@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router-dom';
 import { addSignIn } from '../actions';
 import Input from './general/input';
 import '../assets/css/sign_in.css'; 
@@ -14,7 +14,7 @@ class SignIn extends Component {
     handleSignIn = async (values) => {
         const { email, password } = values;
         const resp = await this.props.addSignIn(email, password);
-
+        
         if(resp.user) {
             this.props.history.push("/cart");
         } else {
@@ -38,7 +38,7 @@ class SignIn extends Component {
                 </div>
                 <div className="row center">
                     <button onClick={this.props.reset} type="button" className="btn contactButton">Cancel</button>                 
-                    <button type="button" className="btn completeSignIn">complete sign in</button>
+                    <button className="btn completeSignIn">complete sign in</button>
                     <p className="red-text text-darken-2">{this.state.errorMessage}</p>
                 </div>  
             </form>    

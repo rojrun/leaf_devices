@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router-dom';
 import {addSignUp} from '../actions';
 import Input from './general/input';
 import '../assets/css/sign_up.css'; 
