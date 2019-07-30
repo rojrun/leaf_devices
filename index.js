@@ -143,6 +143,7 @@ app.post('/api/sign-in', (req, res) => {
             });
             return;
         } else {
+            
             const user = result[0];
 
             if(user) {
@@ -507,19 +508,20 @@ app.post('/api/checkout', (req, res) => {
             res.send('failed');
             return;
         }
-
+        
         if(results.length) {
             let cartId = results[0].cartId;
         
-            const sql = `INSERT INTO \`checkout\` (cart_id, customer_id, first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            const sql = `INSERT INTO \`checkout\` (cart_id, customer_id, first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
             const inserts = [ cartId, userId, first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip, phone_number ];
             const formattedSql = mysql.format(sql, inserts);
 
             db.query(formattedSql, (error, results) => {
-                if(error){
+                if(error) {
                     res.send('failed');
                     return;
                 }
+                
                 res.send({
                     results: results
                 });
@@ -548,10 +550,10 @@ app.get('/api/checkout', (req, res) => {
             res.send('failed');
             return;
         }
-
+        
         if(results.length) {
             let cartId = results[0].cartId;
-            
+    
             db.query(`SELECT first_name, last_name, mailing_address, mailing_city, mailing_state, mailing_zip 
                 FROM \`checkout\`
                 WHERE cart_id=${cartId} AND customer_id=${userId}`, (error, results) => {
