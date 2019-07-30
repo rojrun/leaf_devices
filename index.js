@@ -601,5 +601,5 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
     console.log('Server running @ localhost:' + PORT);
 }).on('error', (err) => {
-    console.log('Server listen error, do you already have a server running on PORT:' + port);
+    console.log('Server listen error, do you already have a server running on PORT:' + PORT);
 });
