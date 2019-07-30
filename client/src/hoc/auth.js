@@ -15,10 +15,10 @@ export default function (WrappedComponent, redirect = true){
 
         checkAuth(){
             const { auth, history } = this.props;
-
+            
             if(!auth && redirect){
                 history.push('/sign-up-sign-in');
-            }
+            } 
         }
 
         render(){
