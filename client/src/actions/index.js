@@ -16,7 +16,7 @@ export function addSignUp(name, email, password) {
         });
 
         dispatch({
-            type: types.ADDSIGNUP
+            type: types.SIGN_UP
         });
     }
 }
@@ -37,11 +37,11 @@ export function addSignIn(email, password) {
             password: password
         });
 
-        return resp.data;
-
         dispatch({
-            type: types.ADDSIGNIN
-        });
+            type: types.SIGN_IN
+        }); 
+
+        return resp.data;
     }
     
 }
