@@ -147,7 +147,7 @@ app.post('/api/sign-in', (req, res) => {
             const user = result[0];
 
             if(user) {
-                if(password === user.password){
+                if(password === user.password) {
                     req.session.userId = user.id;
 
                     return res.send({
@@ -168,6 +168,16 @@ app.post('/api/sign-in', (req, res) => {
     });
 });
 
+/******* sign-out endpoint ********/
+app.get('/api/sign-out', (req, res) => {
+    req.session.userId = null;
+
+    return res.send({
+        success: true,
+        message: 'Sign out successful'
+    });
+});
+
 /******* products endpoint *******/
 app.get('/api/products', (req, res) => {
    db.query('SELECT p.id, p.name, p.description, p.price, p.href, p.style, p.image FROM `products` AS p', (error, results) => {
@@ -181,7 +191,8 @@ app.get('/api/products', (req, res) => {
 
 /******* function getCart(), from /actions/index.js *****************/
 app.get('/api/cart', (req, res) => {
-    const userId = req.session.userId;
+    // const userId = req.session.userId;
+    const cartId = req.session.cartId;
 
     if(!userId) {
         res.send({
@@ -204,6 +215,7 @@ app.get('/api/cart', (req, res) => {
 
 app.post('/api/cart', (req, res) => {
     const userId = req.session.userId;
+    const cartId = req.session.cartId;
 
     if(!userId) {
         res.send({
@@ -268,25 +280,23 @@ app.get('/api/cart-meta', (req, res) => {
 
 /*********** function addToCartMeta, from /actions/index.js **********/
 app.post('/api/cart-meta', (req, res) => {
-    const userId = req.session.userId;
+    const userId = req.session.userId || null;
+    const returningCartId = req.session.cartId;
 
-    if(!userId) {
-        res.send({
-            success: false,
-            error: "There is no user id"
-        });
-        return;
-    }
+
+    // If returningcartid 
+    //      
 
     const {product_id, quantity} = req.body;
-    db.query(`SELECT * FROM \`cart\` WHERE customer_id=${userId} AND status="incomplete"`, (error, result) => {
+    // db.query(`SELECT * FROM \`cart\` WHERE customer_id=${userId} AND status="incomplete"`, (error, result) => {
         const inserSql = 'INSERT INTO `cart_meta` (`cart_id`, `customer_id`, `product_id`, `quantity`) VALUES (?, ?, ?, ?)';
         
-        if(!result.length) {
+        if(!returningCartId) {
             db.query(`INSERT INTO \`cart\` (customer_id, status) VALUES (${userId}, "incomplete")`, (error, result) => {
                 const cartId = result.insertId;
                 const inserts = [cartId, userId, product_id, quantity];
                 const sql = mysql.format(inserSql, inserts);
+                req.session.cartId = cartId;
 
                 db.query(sql, (err, result) => {
                     res.send({
@@ -296,7 +306,7 @@ app.post('/api/cart-meta', (req, res) => {
             });
             return;
         } else {
-            const cartId = result[0].id;
+            const cartId = returningCartId;
             db.query(`SELECT * FROM \`cart_meta\` WHERE \`cart_id\`=${cartId} AND \`product_id\`=${product_id}`, (error, result) => {
                 if(result.length) {
                     db.query(`UPDATE \`cart_meta\` SET quantity=${result[0].quantity += quantity} WHERE product_id=${product_id}`, (error, result) => {
@@ -316,7 +326,7 @@ app.post('/api/cart-meta', (req, res) => {
                 }
             });
         }  
-    });
+    // });
 });
 
 app.delete('/api/cart-meta/product/:id', (req, res) => {
@@ -522,6 +532,7 @@ app.post('/api/checkout', (req, res) => {
                     return;
                 }
                 
+                req.session.cartId = null;
                 res.send({
                     results: results
                 });

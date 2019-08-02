@@ -2,8 +2,12 @@ import axios from 'axios';
 import types from './types';
 
 export function signOut(){
-    return {
-        type: types.SIGN_OUT
+    return async function(dispatch){
+        await axios.get('/api/sign-out');
+
+        dispatch({
+            type: types.SIGN_OUT
+        });
     }
 }
 

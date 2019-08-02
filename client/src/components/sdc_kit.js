@@ -90,6 +90,7 @@ class SdcKit extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log("state", state);
     return {
         auth: state.user.auth,
         cart: state.cart,
