@@ -27,6 +27,7 @@ const App = () => (
                     <Route exact path="/" component={auth(ProductCarousel, false)}/>
                     <Route path="/contact" component={Contact}/>
                     <Route path="/cart" component={auth(Cart)}/>
+                    {/* <Route path="/cart" component={Cart}/> */}
                     <Route path="/checkout" component={Checkout}/>
                     <Route path="/order-complete" component={OrderComplete}/>
                     <Route path="/sign-up-sign-in" component={SignUpInPage}/>

@@ -46,6 +46,7 @@ class Cart extends Component {
     }
 
     render() {
+        console.log("cart:", this.props.cart);
         if(!this.props.cart.length){
             return <Comments message="CART EMPTY"/>
         }
@@ -108,6 +109,7 @@ class Cart extends Component {
 }
 
 function mapStateToProps(state){
+    console.log("state", state);
     return {
         cart: state.cart.single || [],
         summary: state.summary.single
