@@ -59,16 +59,20 @@ class Cart extends Component {
                     </td>
                     <td>{name}</td>
                     <td className="tdQuantity">
-                        <button onClick={ () => this.handleSubtractCount(id, quantity) } type="button"
-                                className="btn cartMinusBtn cartBtn"
-                                data-quantity="subtract" data-field="quantity">-
+                        <button onClick={ () => this.handleSubtractCount(id, quantity) } 
+                            type="button"
+                            className="btn cartMinusBtn cartBtn"
+                            data-quantity="subtract" 
+                            data-field="quantity">-
                         </button>
                         <div className="cartQuantity">
                             {quantity}
                         </div>    
-                        <button onClick={ () => this.handleAddCount(id, quantity) } type="button"
-                                className="btn cartAddBtn cartBtn"
-                                data-quantity="add" data-field="quantity">+
+                        <button onClick={ () => this.handleAddCount(id, quantity) } 
+                            type="button"
+                            className="btn cartAddBtn cartBtn"
+                            data-quantity="add" 
+                            data-field="quantity">+
                         </button>
                     </td>
                     <td className="right-align">${price/100}</td>

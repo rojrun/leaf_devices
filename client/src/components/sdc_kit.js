@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+// import { withRouter } from 'react-router';
 import { addToCartMeta, addCartAlert, updateSummary, addToSummary } from '../actions';
 import '../assets/css/sdc_kit.css';
 
@@ -98,4 +98,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { addToCartMeta, addCartAlert, updateSummary, addToSummary })(SdcKit));
+export default connect(mapStateToProps, { addToCartMeta, addCartAlert, updateSummary, addToSummary })(SdcKit);

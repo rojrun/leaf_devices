@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../assets/css/summary.css';
 import { addToSummary, getSummary, updateSummary } from '../actions';
+import '../assets/css/summary.css';
 
 /* Child component of Cart component. Rerenders when quantity changes. */
 class Summary extends Component {
