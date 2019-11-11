@@ -204,6 +204,7 @@ app.get('/api/cart', (req, res) => {
 
 app.post('/api/cart', (req, res) => {
     const userId = req.session.userId;
+    console.log("userId", userId);
 
     if(!userId) {
         res.send({
